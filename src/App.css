@@ -42,7 +42,9 @@ label span,
 .kicker,
 .panel-heading,
 .job-banner span,
-.shift-card span {
+.shift-card span,
+.money-card span,
+.money-swing span {
   color: #ffb86b;
   text-transform: uppercase;
   letter-spacing: 0.13em;
@@ -70,18 +72,52 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
 .subtitle,
 .empty,
 .footer-note { color: #c7aa88; }
-.shift-card {
-  min-width: 14rem;
-  border: 1px solid rgba(49, 211, 138, 0.34);
+.hero-stats {
+  min-width: min(26rem, 100%);
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0.75rem;
+}
+.shift-card,
+.money-card {
   border-radius: 22px;
   padding: 1rem;
-  background: rgba(17, 35, 25, 0.72);
   display: grid;
   align-content: center;
   gap: 0.2rem;
 }
+.shift-card {
+  border: 1px solid rgba(49, 211, 138, 0.34);
+  background: rgba(17, 35, 25, 0.72);
+}
 .shift-card strong { color: #31d38a; font-size: 2rem; }
 .shift-card small { color: #98d6b8; }
+.money-card {
+  border: 2px solid rgba(255, 184, 107, 0.70);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 184, 107, 0.34), transparent 11rem),
+    rgba(42, 25, 9, 0.90);
+  box-shadow: 0 0 38px rgba(255, 129, 46, 0.28);
+}
+.money-card strong {
+  color: #ffe66d;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+}
+.money-card small { color: #ffe8bc; font-weight: 700; }
+.money-card.positive,
+.ledger-card.positive,
+.money-swing.positive { border-color: rgba(49, 211, 138, 0.78); box-shadow: 0 0 34px rgba(49, 211, 138, 0.22); }
+.money-card.positive strong,
+.ledger-card.positive strong,
+.money-swing.positive strong { color: #5cffaa; }
+.money-card.negative,
+.ledger-card.negative,
+.money-swing.negative { border-color: rgba(255, 95, 71, 0.82); box-shadow: 0 0 34px rgba(255, 95, 71, 0.22); }
+.money-card.negative strong,
+.ledger-card.negative strong,
+.money-swing.negative strong { color: #ff7d66; }
 
 .job-banner {
   display: grid;
@@ -100,6 +136,19 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
 }
 .job-banner strong { display: block; font-size: 1.25rem; margin: 0.25rem 0; }
 .job-banner p { color: #d8c2a5; margin: 0; line-height: 1.45; }
+.ledger-card {
+  border-width: 2px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 184, 107, 0.18), transparent 12rem),
+    rgba(27, 16, 7, 0.86);
+}
+.ledger-card strong {
+  color: #ffe66d;
+  font-size: clamp(2.25rem, 4vw, 3.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+}
+.ledger-card p { font-weight: 700; }
 
 .layout-grid {
   display: grid;
@@ -153,6 +202,14 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
   padding: 1rem;
   background: rgba(49, 211, 138, 0.07);
 }
+.swing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.85rem 0; }
+.money-swing {
+  border: 1px solid rgba(255, 184, 107, 0.36);
+  border-radius: 16px;
+  padding: 0.85rem;
+  background: rgba(17, 11, 6, 0.58);
+}
+.money-swing strong { display: block; color: #ffe66d; font-size: 2rem; line-height: 1; margin-top: 0.25rem; }
 .big-button { width: 100%; background: linear-gradient(90deg, rgba(255, 129, 46, 0.28), rgba(49, 211, 138, 0.18)); }
 .feedback { display: grid; gap: 0.25rem; }
 .feedback.success { border-color: rgba(49, 211, 138, 0.55); box-shadow: 0 0 28px rgba(49, 211, 138, 0.16); }
@@ -183,6 +240,6 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
 
 @media (max-width: 760px) {
   .hero-panel { flex-direction: column; }
-  .job-banner { grid-template-columns: 1fr; }
+  .hero-stats, .job-banner, .swing-grid { grid-template-columns: 1fr; }
   .stage-track { grid-template-columns: 1fr; }
 }

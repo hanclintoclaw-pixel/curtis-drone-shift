@@ -270,9 +270,21 @@ function nextStageId(job: JobProfile, stageId: JobStageId) {
 }
 
 function nuyenText(value: number) {
-  if (value > 0) return `+${value} nuyen`
-  if (value < 0) return `${value} nuyen`
-  return 'break-even'
+  if (value > 0) return `+¥${value}`
+  if (value < 0) return `-¥${Math.abs(value)}`
+  return '¥0'
+}
+
+function nuyenTone(value: number) {
+  if (value > 0) return 'positive'
+  if (value < 0) return 'negative'
+  return 'neutral'
+}
+
+function nuyenLabel(value: number) {
+  if (value > 0) return 'projected payoff'
+  if (value < 0) return 'projected cost'
+  return 'break-even so far'
 }
 
 function qualityLabel(quality: number) {
@@ -404,10 +416,17 @@ function App() {
         <h1>Drone Shift</h1>
         <p className="subtitle">A guided repair-and-maintenance work-order tool for drones, vehicles, Taco shop problems, and Curtis-grade DIY decisions.</p>
       </div>
-      <div className="shift-card">
-        <span>Today's ticket</span>
-        <strong>Tutorial 1</strong>
-        <small>No cron yet. Manual test build only.</small>
+      <div className="hero-stats">
+        <div className="shift-card">
+          <span>Today's ticket</span>
+          <strong>Tutorial 1</strong>
+          <small>No cron yet. Manual test build only.</small>
+        </div>
+        <div className={`money-card ${nuyenTone(shift.nuyenDelta)}`}>
+          <span>Running total</span>
+          <strong>{nuyenText(shift.nuyenDelta)}</strong>
+          <small>{nuyenLabel(shift.nuyenDelta)} · {qualityLabel(shift.quality)}</small>
+        </div>
       </div>
     </header>
 
@@ -422,10 +441,10 @@ function App() {
         <strong>{job.asset}</strong>
         <p>{job.baseline}</p>
       </article>
-      <article>
+      <article className={`ledger-card ${nuyenTone(shift.nuyenDelta)}`}>
         <span>Shop ledger</span>
         <strong>{nuyenText(shift.nuyenDelta)}</strong>
-        <p>{qualityLabel(shift.quality)} - quality {shift.quality}</p>
+        <p>{nuyenLabel(shift.nuyenDelta)} · {qualityLabel(shift.quality)} · quality {shift.quality}</p>
       </article>
     </section>
 
@@ -466,7 +485,11 @@ function App() {
             </div>
             <div className="roll-preview">
               <h3>{selectedAction.label}</h3>
-              <p>Roll {skills[selectedAction.skill]} dice vs TN {selectedAction.targetNumber}. Success moves the ticket forward with {nuyenText(selectedAction.nuyenSuccess)}; failure still moves forward but records {nuyenText(selectedAction.nuyenFailure)} and a shop complication.</p>
+              <p>Roll {skills[selectedAction.skill]} dice vs TN {selectedAction.targetNumber}. This step changes the running total immediately after the roll.</p>
+              <div className="swing-grid">
+                <article className={`money-swing ${nuyenTone(selectedAction.nuyenSuccess)}`}><span>Success swing</span><strong>{nuyenText(selectedAction.nuyenSuccess)}</strong></article>
+                <article className={`money-swing ${nuyenTone(selectedAction.nuyenFailure)}`}><span>Failure swing</span><strong>{nuyenText(selectedAction.nuyenFailure)}</strong></article>
+              </div>
               <button className="big-button" onClick={() => resolveAction(selectedAction)}>Roll this work step</button>
             </div>
           </>}
