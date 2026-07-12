@@ -1,0 +1,188 @@
+:root {
+  color: #f7ead6;
+  background: #120d08;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 8%, rgba(255, 129, 46, 0.30), transparent 28rem),
+    radial-gradient(circle at 85% 0%, rgba(49, 211, 138, 0.16), transparent 30rem),
+    linear-gradient(135deg, #120d08, #21160c 58%, #0c1511);
+}
+
+button,
+input,
+textarea { font: inherit; }
+button {
+  border: 1px solid rgba(255, 162, 74, 0.42);
+  background: rgba(31, 20, 10, 0.86);
+  color: #fff4df;
+  border-radius: 14px;
+  padding: 0.78rem 0.95rem;
+  cursor: pointer;
+}
+button:hover,
+button.selected { border-color: #ffad5c; box-shadow: 0 0 24px rgba(255, 130, 46, 0.22); }
+button.selected { background: rgba(255, 130, 46, 0.18); }
+input,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 173, 92, 0.30);
+  background: rgba(17, 11, 6, 0.82);
+  color: #fff8ed;
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+}
+textarea { min-height: 12rem; resize: vertical; line-height: 1.4; }
+label span,
+.kicker,
+.panel-heading,
+.job-banner span,
+.shift-card span {
+  color: #ffb86b;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 0.74rem;
+}
+
+.garage-shell { width: min(1540px, calc(100vw - 2rem)); margin: 0 auto; padding: 1.25rem 0 2.5rem; }
+.hero-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid rgba(255, 173, 92, 0.30);
+  border-radius: 30px;
+  padding: 1.3rem;
+  background:
+    linear-gradient(135deg, rgba(255, 129, 46, 0.13), rgba(49, 211, 138, 0.07)),
+    rgba(20, 13, 7, 0.90);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+h1,
+h2,
+h3 { margin: 0; color: #fff8ed; }
+h1 { font-size: clamp(2.4rem, 5vw, 5rem); line-height: 0.92; letter-spacing: -0.07em; }
+h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
+.subtitle,
+.empty,
+.footer-note { color: #c7aa88; }
+.shift-card {
+  min-width: 14rem;
+  border: 1px solid rgba(49, 211, 138, 0.34);
+  border-radius: 22px;
+  padding: 1rem;
+  background: rgba(17, 35, 25, 0.72);
+  display: grid;
+  align-content: center;
+  gap: 0.2rem;
+}
+.shift-card strong { color: #31d38a; font-size: 2rem; }
+.shift-card small { color: #98d6b8; }
+
+.job-banner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 0.8fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.job-banner article,
+.side-panel,
+.work-panel,
+.log-panel {
+  border: 1px solid rgba(255, 173, 92, 0.24);
+  border-radius: 22px;
+  background: rgba(20, 13, 7, 0.78);
+  padding: 1rem;
+}
+.job-banner strong { display: block; font-size: 1.25rem; margin: 0.25rem 0; }
+.job-banner p { color: #d8c2a5; margin: 0; line-height: 1.45; }
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 360px;
+  gap: 1rem;
+  align-items: start;
+}
+.side-panel,
+.log-panel { display: grid; gap: 0.75rem; }
+.side-panel label { display: grid; gap: 0.3rem; }
+.side-panel button { margin-top: 0.25rem; }
+
+.stage-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+.stage-track article {
+  border: 1px solid rgba(255, 173, 92, 0.22);
+  border-radius: 16px;
+  padding: 0.7rem;
+  min-height: 5rem;
+  background: rgba(17, 11, 6, 0.58);
+}
+.stage-track article.current { border-color: rgba(255, 184, 107, 0.80); background: rgba(255, 129, 46, 0.16); box-shadow: 0 0 28px rgba(255, 129, 46, 0.20); }
+.stage-track article.done { border-color: rgba(49, 211, 138, 0.55); background: rgba(49, 211, 138, 0.10); }
+.stage-track article.waiting { opacity: 0.58; }
+.stage-track span { display: block; color: #b59270; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.stage-track strong { display: block; margin-top: 0.25rem; line-height: 1.1; }
+
+.stage-card {
+  border: 1px solid rgba(255, 173, 92, 0.24);
+  border-radius: 24px;
+  padding: 1.15rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 184, 107, 0.16), transparent 24rem),
+    rgba(14, 10, 6, 0.88);
+}
+.stage-card p { color: #e7d1b1; line-height: 1.55; }
+.action-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+.action-list button { display: grid; gap: 0.35rem; text-align: left; align-content: start; }
+.action-list button span { color: #e7d1b1; line-height: 1.35; }
+.action-list button small { color: #93dcb9; }
+.roll-preview,
+.report-box,
+.feedback {
+  border: 1px solid rgba(49, 211, 138, 0.26);
+  border-radius: 18px;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(49, 211, 138, 0.07);
+}
+.big-button { width: 100%; background: linear-gradient(90deg, rgba(255, 129, 46, 0.28), rgba(49, 211, 138, 0.18)); }
+.feedback { display: grid; gap: 0.25rem; }
+.feedback.success { border-color: rgba(49, 211, 138, 0.55); box-shadow: 0 0 28px rgba(49, 211, 138, 0.16); }
+.feedback.failure { border-color: rgba(255, 95, 71, 0.65); background: rgba(255, 95, 71, 0.10); box-shadow: 0 0 28px rgba(255, 95, 71, 0.14); }
+.feedback span { color: #f2ddbf; }
+
+.log-panel { max-height: 74vh; overflow: auto; }
+.log-panel article {
+  border-left: 3px solid rgba(255, 173, 92, 0.44);
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: rgba(17, 11, 6, 0.62);
+}
+.log-panel article.success { border-left-color: rgba(49, 211, 138, 0.72); }
+.log-panel article.failure { border-left-color: rgba(255, 95, 71, 0.72); }
+.log-panel strong,
+.log-panel span,
+.log-panel small { display: block; }
+.log-panel span { color: #ffcf9b; }
+.log-panel p { color: #d8c2a5; margin: 0.35rem 0; }
+.log-panel small { color: #93dcb9; line-height: 1.35; }
+.footer-note { margin: 1rem 0 0; text-align: center; font-size: 0.85rem; }
+
+@media (max-width: 1180px) {
+  .layout-grid { grid-template-columns: 1fr; }
+  .log-panel { max-height: none; }
+}
+
+@media (max-width: 760px) {
+  .hero-panel { flex-direction: column; }
+  .job-banner { grid-template-columns: 1fr; }
+  .stage-track { grid-template-columns: 1fr; }
+}
