@@ -330,7 +330,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     `Maintenance quality: ${qualityLabel(shift.quality)} (${shift.quality})`,
     'Notable work log:',
     ...rollLines,
-    'Cindy ingest note: Add this as a Curtis downtime/maintenance event. Do not apply permanent drone stat changes unless the GM confirms them.',
+    'Cindy ingest/closeout note: When this report is posted with @CindyLouBot pinged, ingest it into campaign memory as a Curtis downtime/maintenance event, mark this Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.',
   ].join('\n')
 }
 
