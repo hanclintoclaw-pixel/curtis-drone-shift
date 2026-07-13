@@ -102,28 +102,28 @@ const seedSkills: SkillProfile = {
 }
 
 const tutorialJob: JobProfile = {
-  id: 'tutorial-1-buzz-rotor-hum',
-  title: 'Tutorial 1: Buzz Has a Bad Hum',
-  asset: 'Buzz - generic surveillance drone',
-  customer: 'Taco, technically, because it is making the prep table vibrate',
+  id: 'tutorial-2-grandpa-back-step-rattle',
+  title: 'Tutorial 2: Grandpa\'s Back-Step Rattle',
+  asset: 'Grandpa - shop truck / mobile family heirloom',
+  customer: 'Taco, because the rattle sounds like a spoon in the dishwasher every time Grandpa backs up',
   risk: 'low',
-  hook: 'Buzz comes off the shelf with a faint rotor hum, a greasy dust ring under one duct, and a battery clip that has seen better days.',
-  baseline: 'Expected outcome is break-even: clean the assembly, stabilize the clip, and decide whether anything is worth salvaging.',
+  hook: 'Grandpa coughs into reverse with a dry little buzz behind the dwarf-height control panel, one loose amber marker light, and a suspicious curl of electrical tape under the dash.',
+  baseline: 'Tutorial 1 rotates out as Discarded: no change, no nuyen movement, no drone or vehicle state change, no penalty. Tutorial 2 should stay near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
       title: 'Intake the work order',
-      station: 'Bench 1 - orange vise',
-      description: 'Set Buzz on the bench, isolate the noise, and decide whether this is a quick maintenance ticket or a parts sink.',
+      station: 'Driver footwell',
+      description: 'Safe Grandpa, confirm the reverse-light circuit is dead, and make sure the rattle is not hiding a bigger electrical problem.',
       actions: [
         {
-          label: 'Log symptoms and safe the drone',
-          detail: 'Power down, tag the battery, and note the vibration before opening the shell.',
+          label: 'Chock, tag, and listen twice',
+          detail: 'Kill accessory power, chock the wheels, and capture the rattle before any panels come off.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fault is bounded before anything gets worse.',
-          onFailure: 'The symptoms are logged, but the first pass misses a loose clip.',
+          onSuccess: 'The noisy zone is bounded before the dash gets opened.',
+          onFailure: 'The truck is safe, but one brittle trim clip gets sacrificed to the shop floor spirits.',
           nuyenSuccess: 0,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -133,19 +133,19 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Diagnose the vibration',
-      station: 'Magnifier lamp',
-      description: 'Trace the hum through the duct, rotor, battery clip, and sensor boot before committing parts.',
+      title: 'Diagnose the back-step buzz',
+      station: 'Under-dash flashlight',
+      description: 'Trace the reverse-light feed, marker lamp ground, and the old relay bracket that sounds like it wants a record deal.',
       actions: [
         {
-          label: 'Run a careful bench diagnosis',
-          detail: 'Use Curtis-style patience: meter, magnifier, spin test, then a low-power sensor sweep.',
+          label: 'Meter the reverse-light path',
+          detail: 'Check continuity, wiggle the harness, and mark the exact bracket that chatters under vibration.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'The culprit is a warped rotor shim plus a cracked battery-retainer tab.',
-          onFailure: 'The rotor shim is found, but the battery clip damage hides until the test run.',
-          nuyenSuccess: 25,
+          onSuccess: 'The culprit is a loose relay bracket and one corroded marker-light ground.',
+          onFailure: 'The relay bracket is found, but the ground fault hides until the test roll.',
+          nuyenSuccess: 20,
           nuyenFailure: -20,
           qualitySuccess: 2,
           qualityFailure: -1,
@@ -154,54 +154,41 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Repair or scrounge',
-      station: 'Parts bins',
-      description: 'Decide whether to burn fresh parts or salvage something out of Taco\'s suspiciously useful junk drawer.',
+      title: 'Pad and rewire the bracket',
+      station: 'Taco\'s parts drawer',
+      description: 'Use grommets, heat-shrink, and a fresh ground lug to quiet the bracket without turning this into a full dash teardown.',
       actions: [
         {
-          label: 'Scrounge a usable shim and clip',
-          detail: 'Dig through bins, trim a donor clip, and spend as little real nuyen as possible.',
+          label: 'Install the cheap clean fix',
+          detail: 'Crimp the ground, sleeve the rub point, and pad the bracket with something better than mystery foam.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'A donor shim and clip fit with only a little filing.',
-          onFailure: 'The donor clip works, but only after buying a small fresh connector pack.',
-          nuyenSuccess: 60,
-          nuyenFailure: -45,
-          qualitySuccess: 1,
-          qualityFailure: 0,
-        },
-        {
-          label: 'Use fresh parts and keep it clean',
-          detail: 'Spend more now for a tidy repair and fewer mysteries later.',
-          skill: 'electronicsBR',
-          targetNumber: 3,
-          requiredSuccesses: 1,
-          onSuccess: 'The fresh connector and shim seat cleanly.',
-          onFailure: 'The parts fit, but a brittle tab snaps during reassembly.',
-          nuyenSuccess: -20,
-          nuyenFailure: -75,
+          onSuccess: 'The bracket sits quiet and the reverse-light feed has a clean ground again.',
+          onFailure: 'The fix works, but a cracked connector shell forces a little parts-counter run.',
+          nuyenSuccess: -25,
+          nuyenFailure: -60,
           qualitySuccess: 2,
-          qualityFailure: -1,
+          qualityFailure: 0,
         },
       ],
     },
     {
       id: 'test',
-      title: 'Test run',
-      station: 'Alley hover box',
-      description: 'Give Buzz a low-altitude run behind Taco\'s, watch vibration, and listen for anything uglier than normal drone whining.',
+      title: 'Reverse-lot test',
+      station: 'Behind Taco\'s',
+      description: 'Back Grandpa over the cracked asphalt, watch the marker light, and listen for the difference between fixed and merely embarrassed.',
       actions: [
         {
-          label: 'Run the cautious hover test',
-          detail: 'Short bursts, low ceiling, no heroics, no rotor confetti.',
-          skill: 'rotorAircraftBR',
+          label: 'Run the slow back-step loop',
+          detail: 'Reverse, brake, bump the curb cut, and check whether the light stays steady without the dash buzzing.',
+          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Buzz holds steady and the hum drops to normal tiny-angry-fan levels.',
-          onFailure: 'The hum is improved but still present under throttle.',
-          nuyenSuccess: 35,
-          nuyenFailure: -25,
+          onSuccess: 'Grandpa backs clean, the marker light holds, and Taco stops making that face.',
+          onFailure: 'The rattle is mostly gone, but the marker light flickers once under hard brake.',
+          nuyenSuccess: 45,
+          nuyenFailure: -15,
           qualitySuccess: 2,
           qualityFailure: -1,
         },
@@ -215,12 +202,12 @@ const tutorialJob: JobProfile = {
       actions: [
         {
           label: 'Write the maintenance note',
-          detail: 'Summarize the repair in a way future Curtis can understand after sleep deprivation and fryer smoke.',
+          detail: 'Note the relay bracket, ground lug, and whether Grandpa needs GM attention later.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
           onSuccess: 'The report is clean, actionable, and easy for Cindy to ingest.',
-          onFailure: 'The report is good enough, but leaves one follow-up question for the GM.',
+          onFailure: 'The report is good enough, but leaves one follow-up question about the flicker for the GM.',
           nuyenSuccess: 10,
           nuyenFailure: 0,
           qualitySuccess: 1,
@@ -344,6 +331,7 @@ function App() {
   const currentStage = job.stages.find((stage) => stage.id === shift.currentStageId) ?? job.stages[0]
   const selectedAction = currentStage.actions[selectedActionIndex] ?? currentStage.actions[0]
   const isComplete = shift.completedStageIds.includes('closeout')
+  const tutorialLabel = job.title.split(':')[0]
   const report = useMemo(() => buildReport(job, shift), [job, shift])
 
   useEffect(() => {
@@ -419,8 +407,8 @@ function App() {
       <div className="hero-stats">
         <div className="shift-card">
           <span>Today's ticket</span>
-          <strong>Tutorial 1</strong>
-          <small>No cron yet. Manual test build only.</small>
+          <strong>{tutorialLabel}</strong>
+          <small>Daily prototype rotation. Missed prior tickets discard cleanly.</small>
         </div>
         <div className={`money-card ${nuyenTone(shift.nuyenDelta)}`}>
           <span>Running total</span>
@@ -455,7 +443,7 @@ function App() {
           <span>{skillLabels[skill]}</span>
           <input type="number" min="0" value={skills[skill]} onChange={(event) => setSkill(skill, Number(event.target.value))} />
         </label>)}
-        <button onClick={resetShift}>Reset Tutorial 1</button>
+        <button onClick={resetShift}>Reset {tutorialLabel}</button>
       </aside>
 
       <section className="work-panel">
@@ -514,7 +502,7 @@ function App() {
       </aside>
     </section>
 
-    <footer className="footer-note">Build {__SOURCE_COMMIT__} - first draft mockup. No daily cron and no automatic canonical drone changes.</footer>
+    <footer className="footer-note">Build {__SOURCE_COMMIT__} - daily prototype. Missed work orders discard with no penalty; no automatic canonical drone or vehicle changes.</footer>
   </main>
 }
 
