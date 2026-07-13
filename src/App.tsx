@@ -82,6 +82,7 @@ interface RollFeedback {
 }
 
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
+const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 
 const skillLabels: Record<keyof SkillProfile, string> = {
   electronics: 'Electronics',
@@ -308,7 +309,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     : ['No rolls recorded yet.']
 
   return [
-    '@CindyLouBot CURTIS DRONE SHIFT REPORT',
+    `${CINDY_LOU_BOT_MENTION} CURTIS DRONE SHIFT REPORT`,
     `Job: ${job.title}`,
     `Asset: ${job.asset}`,
     `Customer/context: ${job.customer}`,
@@ -317,7 +318,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     `Maintenance quality: ${qualityLabel(shift.quality)} (${shift.quality})`,
     'Notable work log:',
     ...rollLines,
-    'Cindy ingest/closeout note: When this report is posted with @CindyLouBot pinged, ingest it into campaign memory as a Curtis downtime/maintenance event, mark this Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.',
+    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, ingest it into campaign memory as a Curtis downtime/maintenance event, mark this Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.`,
   ].join('\n')
 }
 
