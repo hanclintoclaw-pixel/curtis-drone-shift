@@ -27,6 +27,7 @@ interface JobAction {
   nuyenFailure: number
   qualitySuccess: number
   qualityFailure: number
+  effectNote?: string
 }
 
 interface JobStage {
@@ -60,7 +61,18 @@ interface LogEntry {
   outcome: 'success' | 'failure'
   nuyenDelta: number
   qualityDelta: number
+  effectNote?: string
   note: string
+}
+
+interface ActionRuntime {
+  targetNumber: number
+  requiredSuccesses: number
+  nuyenSuccess: number
+  nuyenFailure: number
+  qualitySuccess: number
+  qualityFailure: number
+  modifierNote?: string
 }
 
 interface ShiftState {
@@ -103,30 +115,30 @@ const seedSkills: SkillProfile = {
 }
 
 const tutorialJob: JobProfile = {
-  id: 'tutorial-3-belmont-track-tension-creep',
-  title: 'Tutorial 3: Belmont\'s Track-Tension Creep',
-  asset: 'Belmont - tracked drone / shop hauler',
-  customer: 'Taco, because Belmont is leaving little rubber commas across the back hall like it is signing receipts',
+  id: 'tutorial-4-mr-cleans-screw-snack-rattle',
+  title: 'Tutorial 4: Mr. Clean\'s Screw-Snack Rattle',
+  asset: 'Mr. Clean - shop sweeper drone / proud goblin of lost hardware',
+  customer: 'Taco, because the sweeper keeps clinking like it swallowed a socket and is waiting for applause',
   risk: 'low',
-  hook: 'Belmont rolls fine until it turns left, then the right track gives a dry little chirp, drops a curl of black dust, and acts like the kitchen tile personally insulted it.',
-  baseline: 'Tutorial 2 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 3 stays near break-even unless Curtis chooses to submit the final report.',
+  hook: 'Mr. Clean still sweeps the back room, but every tight turn makes a bright little tick-tick-clang from under the belly pan, and the dust bin has one lonely screw sitting in it like evidence.',
+  baseline: 'Tutorial 3 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 4 stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Intake the tread complaint',
-      station: 'Back hall tile',
-      description: 'Safe Belmont, sweep the rubber dust, and confirm the chirp is track tension instead of a motor controller getting dramatic.',
+      title: 'Intake the clink complaint',
+      station: 'Taco\'s mop closet',
+      description: 'Safe Mr. Clean, empty the dust bin, and confirm the noise is trapped hardware instead of a brush motor eating itself.',
       actions: [
         {
-          label: 'Tag, lift, and roll by hand',
-          detail: 'Power Belmont down, get the track clear of the tile, and feel for a tight spot before tools touch the idler.',
+          label: 'Power down and shake-test gently',
+          detail: 'Kill the drive, pull the bin, and tilt the chassis just enough to hear where the loose metal rolls.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The chirp is bounded to the right-side idler run before the track comes off.',
-          onFailure: 'Belmont is safe, but Curtis has to replace one chewed rubber pad from the spare bin.',
+          onSuccess: 'The clink is bounded to the belly-pan channel before Curtis starts opening panels.',
+          onFailure: 'Mr. Clean is safe, but Curtis cracks a brittle bin latch and spends a little shop plastic fixing it.',
           nuyenSuccess: 0,
-          nuyenFailure: -10,
+          nuyenFailure: -15,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -134,20 +146,20 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Diagnose the creeping tension',
-      station: 'Milk-crate work stand',
-      description: 'Check the idler cam, drive sprocket teeth, and the grit-packed adjuster screw that smells faintly like fryer oil.',
+      title: 'Map the screw trail',
+      station: 'Receipt-paper work mat',
+      description: 'Trace the screw path through the dust chute, brush guard, and belly-pan ribs before it chews up a harness.',
       actions: [
         {
-          label: 'Gauge the idler and sprocket',
-          detail: 'Measure track sag, inspect the adjuster threads, and mark whether the chirp is grit, stretch, or a bent bracket.',
+          label: 'Probe the chute and brush guard',
+          detail: 'Use a flashlight, inspection mirror, and one suspiciously clean chopstick to find where the loose screw is hiding.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'The culprit is a grit-packed adjuster screw and one cheap washer walking sideways under load.',
-          onFailure: 'The adjuster fault is found late after wasting time chasing sprocket ghosts.',
-          nuyenSuccess: 15,
-          nuyenFailure: -20,
+          onSuccess: 'Curtis spots the missing brush-guard screw and the dust-packed channel it has been rattling through.',
+          onFailure: 'The screw is found late after Curtis wastes time cleaning three innocent dust baffles.',
+          nuyenSuccess: 10,
+          nuyenFailure: -25,
           qualitySuccess: 2,
           qualityFailure: -1,
         },
@@ -155,41 +167,56 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Scrounge the shim stack',
-      station: 'Coffee can of almost-washers',
-      description: 'Find a clean spacer and rubber pad without buying a full track kit for a problem the size of Taco\'s patience.',
+      title: 'Choose the retrieval plan',
+      station: 'Magnet wand vs nut-driver tray',
+      description: 'Decide whether to fish the screw out fast or open the belly pan properly. The choice changes the calibration test later.',
       actions: [
         {
-          label: 'Sort a clean shim and pad',
-          detail: 'Match the washer thickness, trim a fresh pad, and throw away the pieces that look like they came off a lawn chair.',
+          label: 'Fish it with a flex magnet',
+          detail: 'Snake the magnet through the chute and try to pull the screw without taking the whole underside apart.',
           skill: 'electronicsBR',
-          targetNumber: 4,
+          targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The spare-bin parts are clean enough to save a small purchase.',
-          onFailure: 'The bin is mostly lies today, so Curtis burns a few nuyen on fresh small hardware.',
-          nuyenSuccess: 35,
-          nuyenFailure: -25,
+          onSuccess: 'The magnet coughs up the screw, plus two shiny pennies Taco swears were not in the robot.',
+          onFailure: 'The screw comes out, but so does enough mystery grit that Curtis burns extra cleaner and patience.',
+          nuyenSuccess: 45,
+          nuyenFailure: -20,
           qualitySuccess: 1,
           qualityFailure: 0,
+          effectNote: 'Follow-up: the fast magnet retrieval leaves hidden grit risk; Calibration TN +1 and the final report notes the improvised pull.',
+        },
+        {
+          label: 'Open the belly pan properly',
+          detail: 'Put Mr. Clean on the crate stand, pull the underside panel, and clean the channel while the screw is exposed.',
+          skill: 'carBR',
+          targetNumber: 4,
+          requiredSuccesses: 1,
+          onSuccess: 'The screw is recovered cleanly and the belly-pan ribs get a proper wipe-down while they are open.',
+          onFailure: 'One panel tab is mean about it, so Curtis spends on fresh clips before closing the chassis.',
+          nuyenSuccess: -25,
+          nuyenFailure: -55,
+          qualitySuccess: 2,
+          qualityFailure: 0,
+          effectNote: 'Follow-up: the proper teardown clears hidden grit; Calibration TN -1 and the final report notes a clean belly-pan inspection.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Reset the track run',
+      title: 'Re-seat the brush guard',
       station: 'Greasy bench mat',
-      description: 'Clean the adjuster, set the shim stack, tension the right track, and keep the left side honest so Belmont does not crab-walk into the salsa crates.',
+      description: 'Replace the screw, snug the brush guard, and test whether the earlier retrieval choice left the drive channel fussy.',
       actions: [
         {
-          label: 'Clean, shim, and tension',
-          detail: 'Back the adjuster out, scrub the threads, set the shim, and tension the track until the sag looks boring.',
-          skill: 'carBR',
+          label: 'Snug, spin, and listen',
+          detail: 'Re-seat the guard, spin the brush by hand, and listen for any leftover tick before Mr. Clean touches the floor.',
+          skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Belmont sits square, rolls smooth, and no longer writes rubber punctuation on the tile.',
-          onFailure: 'The track runs, but the adjuster fights back and eats extra shop consumables.',
-          nuyenSuccess: -30,
-          nuyenFailure: -55,
+          onSuccess: 'The brush guard sits tight and the channel spins quiet enough to bore a sensible mechanic.',
+          onFailure: 'The guard seats, but Curtis burns another strip of foam tape chasing one last buzz.',
+          nuyenSuccess: -10,
+          nuyenFailure: -35,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -197,19 +224,19 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Tile-loop test and closeout',
-      station: 'Taco\'s back hall',
-      description: 'Run Belmont through a slow figure-eight, check for fresh dust, and write the maintenance note before Taco makes it carry onions.',
+      title: 'Sweep-loop closeout',
+      station: 'Dining room after the lunch rush',
+      description: 'Run Mr. Clean through a slow sweep loop, check the bin for fresh hardware, and write the note before Taco asks why the floor is cleaner than the register.',
       actions: [
         {
-          label: 'Run the clean tile loop',
-          detail: 'Test forward, turn left, turn right, and log whether the track stays quiet under shop-floor load.',
+          label: 'Run the no-clink sweep loop',
+          detail: 'Sweep the back-room tile, take two tight turns, and confirm the bin contains dust instead of more confessions.',
           skill: 'carBR',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Belmont earns a tiny shop-credit bump, and Cindy has a tidy maintenance event to ingest.',
-          onFailure: 'The report is usable, but flags a mild follow-up squeak for GM review if anyone cares later.',
-          nuyenSuccess: 40,
+          onSuccess: 'The report is clean, Taco tosses Curtis a small shop-credit bump, and Cindy has a tidy maintenance event to ingest.',
+          onFailure: 'The report is usable, but flags a mild follow-up rattle for GM review if anyone cares later.',
+          nuyenSuccess: 50,
           nuyenFailure: -10,
           qualitySuccess: 1,
           qualityFailure: 0,
@@ -282,6 +309,38 @@ function qualityLabel(quality: number) {
   return 'Needs GM review'
 }
 
+function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState): ActionRuntime {
+  const runtime: ActionRuntime = {
+    targetNumber: action.targetNumber,
+    requiredSuccesses: action.requiredSuccesses,
+    nuyenSuccess: action.nuyenSuccess,
+    nuyenFailure: action.nuyenFailure,
+    qualitySuccess: action.qualitySuccess,
+    qualityFailure: action.qualityFailure,
+  }
+
+  if (stageId !== 'test') return runtime
+
+  const usedMagnet = shift.log.some((entry) => entry.action === 'Fish it with a flex magnet')
+  const openedPan = shift.log.some((entry) => entry.action === 'Open the belly pan properly')
+  if (usedMagnet) {
+    return {
+      ...runtime,
+      targetNumber: runtime.targetNumber + 1,
+      modifierNote: 'Fast magnet retrieval is in effect: calibration TN +1 for hidden grit risk.',
+    }
+  }
+  if (openedPan) {
+    return {
+      ...runtime,
+      targetNumber: Math.max(2, runtime.targetNumber - 1),
+      modifierNote: 'Proper belly-pan teardown is in effect: calibration TN -1 for a clean channel.',
+    }
+  }
+
+  return runtime
+}
+
 function loadShift(): ShiftState {
   const stored = localStorage.getItem(STORAGE_KEY)
   if (!stored) return freshShift(tutorialJob)
@@ -307,6 +366,9 @@ function buildReport(job: JobProfile, shift: ShiftState) {
   const rollLines = shift.log.length
     ? shift.log.map((entry, index) => `${index + 1}. ${entry.stage}: ${entry.successes}/${entry.requiredSuccesses} success(es) with ${entry.skill} vs TN ${entry.targetNumber}; ${entry.outcome}; ${nuyenText(entry.nuyenDelta)}; ${entry.note}`)
     : ['No rolls recorded yet.']
+  const effectLines = shift.log
+    .filter((entry) => entry.effectNote)
+    .map((entry) => `- ${entry.action}: ${entry.effectNote}`)
 
   return [
     `${CINDY_LOU_BOT_MENTION} CURTIS DRONE SHIFT REPORT`,
@@ -318,6 +380,8 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     `Maintenance quality: ${qualityLabel(shift.quality)} (${shift.quality})`,
     'Notable work log:',
     ...rollLines,
+    'Selected tradeoffs / follow-up effects:',
+    ...(effectLines.length ? effectLines : ['- None selected yet.']),
     `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, ingest it into campaign memory as a Curtis downtime/maintenance event, mark this Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.`,
   ].join('\n')
 }
@@ -331,6 +395,7 @@ function App() {
   const job = jobs.find((candidate) => candidate.id === shift.jobId) ?? tutorialJob
   const currentStage = job.stages.find((stage) => stage.id === shift.currentStageId) ?? job.stages[0]
   const selectedAction = currentStage.actions[selectedActionIndex] ?? currentStage.actions[0]
+  const selectedRuntime = actionRuntime(selectedAction, currentStage.id, shift)
   const isComplete = shift.completedStageIds.includes('closeout')
   const tutorialLabel = job.title.split(':')[0]
   const report = useMemo(() => buildReport(job, shift), [job, shift])
@@ -349,26 +414,29 @@ function App() {
 
   function resolveAction(action: JobAction) {
     if (isComplete) return
+    const runtime = actionRuntime(action, currentStage.id, shift)
     const dicePool = skills[action.skill]
-    const dice = rollDice(dicePool, action.targetNumber)
-    const successes = successesFor(dice, action.targetNumber)
-    const passed = successes >= action.requiredSuccesses
-    const nuyenDelta = passed ? action.nuyenSuccess : action.nuyenFailure
-    const qualityDelta = passed ? action.qualitySuccess : action.qualityFailure
+    const dice = rollDice(dicePool, runtime.targetNumber)
+    const successes = successesFor(dice, runtime.targetNumber)
+    const passed = successes >= runtime.requiredSuccesses
+    const nuyenDelta = passed ? runtime.nuyenSuccess : runtime.nuyenFailure
+    const qualityDelta = passed ? runtime.qualitySuccess : runtime.qualityFailure
     const next = nextStageId(job, currentStage.id)
+    const note = [passed ? action.onSuccess : action.onFailure, runtime.modifierNote].filter(Boolean).join(' ')
     const entry: LogEntry = {
       id: `log-${Date.now()}`,
       stage: currentStage.title,
       action: action.label,
       skill: skillLabels[action.skill],
-      targetNumber: action.targetNumber,
+      targetNumber: runtime.targetNumber,
       dice,
       successes,
-      requiredSuccesses: action.requiredSuccesses,
+      requiredSuccesses: runtime.requiredSuccesses,
       outcome: passed ? 'success' : 'failure',
       nuyenDelta,
       qualityDelta,
-      note: passed ? action.onSuccess : action.onFailure,
+      effectNote: action.effectNote,
+      note,
     }
 
     setShift((current) => ({
@@ -384,7 +452,7 @@ function App() {
       id: entry.id,
       tone: passed ? 'success' : 'failure',
       title: passed ? 'Clean work' : 'Complication',
-      detail: `${successes}/${action.requiredSuccesses} success(es). ${entry.note}`,
+      detail: `${successes}/${runtime.requiredSuccesses} success(es). ${entry.note}`,
     })
   }
 
@@ -466,18 +534,22 @@ function App() {
 
           {!isComplete && <>
             <div className="action-list">
-              {currentStage.actions.map((action, index) => <button key={action.label} className={selectedActionIndex === index ? 'selected' : ''} onClick={() => setSelectedActionIndex(index)}>
-                <strong>{action.label}</strong>
-                <span>{action.detail}</span>
-                <small>{skillLabels[action.skill]} {skills[action.skill]} vs TN {action.targetNumber}; need {action.requiredSuccesses}+ success(es)</small>
-              </button>)}
+              {currentStage.actions.map((action, index) => {
+                const runtime = actionRuntime(action, currentStage.id, shift)
+                return <button key={action.label} className={selectedActionIndex === index ? 'selected' : ''} onClick={() => setSelectedActionIndex(index)}>
+                  <strong>{action.label}</strong>
+                  <span>{action.detail}</span>
+                  {action.effectNote && <span>{action.effectNote}</span>}
+                  <small>{skillLabels[action.skill]} {skills[action.skill]} vs TN {runtime.targetNumber}; need {runtime.requiredSuccesses}+ success(es)</small>
+                </button>
+              })}
             </div>
             <div className="roll-preview">
               <h3>{selectedAction.label}</h3>
-              <p>Roll {skills[selectedAction.skill]} dice vs TN {selectedAction.targetNumber}. This step changes the running total immediately after the roll.</p>
+              <p>Roll {skills[selectedAction.skill]} dice vs TN {selectedRuntime.targetNumber}. This step changes the running total immediately after the roll.{selectedRuntime.modifierNote ? ` ${selectedRuntime.modifierNote}` : ''}</p>
               <div className="swing-grid">
-                <article className={`money-swing ${nuyenTone(selectedAction.nuyenSuccess)}`}><span>Success swing</span><strong>{nuyenText(selectedAction.nuyenSuccess)}</strong></article>
-                <article className={`money-swing ${nuyenTone(selectedAction.nuyenFailure)}`}><span>Failure swing</span><strong>{nuyenText(selectedAction.nuyenFailure)}</strong></article>
+                <article className={`money-swing ${nuyenTone(selectedRuntime.nuyenSuccess)}`}><span>Success swing</span><strong>{nuyenText(selectedRuntime.nuyenSuccess)}</strong></article>
+                <article className={`money-swing ${nuyenTone(selectedRuntime.nuyenFailure)}`}><span>Failure swing</span><strong>{nuyenText(selectedRuntime.nuyenFailure)}</strong></article>
               </div>
               <button className="big-button" onClick={() => resolveAction(selectedAction)}>Roll this work step</button>
             </div>
