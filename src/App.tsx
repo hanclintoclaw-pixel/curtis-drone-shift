@@ -115,30 +115,30 @@ const seedSkills: SkillProfile = {
 }
 
 const tutorialJob: JobProfile = {
-  id: 'tutorial-4-mr-cleans-screw-snack-rattle',
-  title: 'Tutorial 4: Mr. Clean\'s Screw-Snack Rattle',
-  asset: 'Mr. Clean - shop sweeper drone / proud goblin of lost hardware',
-  customer: 'Taco, because the sweeper keeps clinking like it swallowed a socket and is waiting for applause',
+  id: 'tutorial-5-waddles-fuzzy-sensor-sneezes',
+  title: 'Tutorial 5: Waddles\' Fuzzy Sensor Sneezes',
+  asset: 'Waddles - fur-skinned companion drone with one offended proximity sensor',
+  customer: 'Taco, after Waddles backed into a chair twice and then stared at it like the chair started the fight',
   risk: 'low',
-  hook: 'Mr. Clean still sweeps the back room, but every tight turn makes a bright little tick-tick-clang from under the belly pan, and the dust bin has one lonely screw sitting in it like evidence.',
-  baseline: 'Tutorial 3 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 4 stays near break-even unless Curtis chooses to submit the final report.',
+  hook: 'Waddles is mobile and mostly adorable, but the left-side rangefinder keeps twitching under the synthetic fur with a tiny electric sneeze every time it sees chrome, chair legs, or Taco\'s keys.',
+  baseline: 'Tutorial 4 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 5 stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Intake the clink complaint',
-      station: 'Taco\'s mop closet',
-      description: 'Safe Mr. Clean, empty the dust bin, and confirm the noise is trapped hardware instead of a brush motor eating itself.',
+      title: 'Intake the sensor sneeze',
+      station: 'Taco\'s booth bench',
+      description: 'Power-safe Waddles, brush the fur away from the sensor pod, and confirm this is a rangefinder problem instead of a drive hiccup.',
       actions: [
         {
-          label: 'Power down and shake-test gently',
-          detail: 'Kill the drive, pull the bin, and tilt the chassis just enough to hear where the loose metal rolls.',
+          label: 'Safe the pod and wiggle-test',
+          detail: 'Kill motion assist, comb back the synthetic fur, and wiggle the left sensor pod without letting Waddles bite the screwdriver.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The clink is bounded to the belly-pan channel before Curtis starts opening panels.',
-          onFailure: 'Mr. Clean is safe, but Curtis cracks a brittle bin latch and spends a little shop plastic fixing it.',
+          onSuccess: 'Curtis isolates the twitch to the left rangefinder pod before opening anything expensive.',
+          onFailure: 'Waddles is safe, but Curtis spends a little tape and patience re-seating a fur seam he tugged too hard.',
           nuyenSuccess: 0,
-          nuyenFailure: -15,
+          nuyenFailure: -20,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -146,18 +146,18 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Map the screw trail',
-      station: 'Receipt-paper work mat',
-      description: 'Trace the screw path through the dust chute, brush guard, and belly-pan ribs before it chews up a harness.',
+      title: 'Find the fuzzy blind spot',
+      station: 'Napkin-draped counter mat',
+      description: 'Check the lens, gasket, and connector for fur lint, hot-sauce vapor, or a loose contact hiding under the mascot skin.',
       actions: [
         {
-          label: 'Probe the chute and brush guard',
-          detail: 'Use a flashlight, inspection mirror, and one suspiciously clean chopstick to find where the loose screw is hiding.',
+          label: 'Run a close sensor diagnosis',
+          detail: 'Use a flashlight, sensor readout, and one extremely judgmental cotton swab to find the dirty edge of the problem.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'Curtis spots the missing brush-guard screw and the dust-packed channel it has been rattling through.',
-          onFailure: 'The screw is found late after Curtis wastes time cleaning three innocent dust baffles.',
+          onSuccess: 'Curtis catches a lint-packed micro-gasket shadowing the rangefinder lens at just the wrong angle.',
+          onFailure: 'The fault shows up late after Curtis cleans two innocent contacts and burns through extra swabs.',
           nuyenSuccess: 10,
           nuyenFailure: -25,
           qualitySuccess: 2,
@@ -167,56 +167,56 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the retrieval plan',
-      station: 'Magnet wand vs nut-driver tray',
-      description: 'Decide whether to fish the screw out fast or open the belly pan properly. The choice changes the calibration test later.',
+      title: 'Choose the seal fix',
+      station: 'Lens wipes vs parts drawer',
+      description: 'Decide whether to reuse the cleaned gasket or spend for a fresh micro-gasket. The choice changes the sensor sweep later.',
       actions: [
         {
-          label: 'Fish it with a flex magnet',
-          detail: 'Snake the magnet through the chute and try to pull the screw without taking the whole underside apart.',
+          label: 'Reuse the cleaned gasket',
+          detail: 'Lift the gasket, clean the lint shadow, and put the old seal back in with a tiny dab of removable tack.',
           skill: 'electronicsBR',
-          targetNumber: 5,
-          requiredSuccesses: 1,
-          onSuccess: 'The magnet coughs up the screw, plus two shiny pennies Taco swears were not in the robot.',
-          onFailure: 'The screw comes out, but so does enough mystery grit that Curtis burns extra cleaner and patience.',
-          nuyenSuccess: 45,
-          nuyenFailure: -20,
-          qualitySuccess: 1,
-          qualityFailure: 0,
-          effectNote: 'Follow-up: the fast magnet retrieval leaves hidden grit risk; Calibration TN +1 and the final report notes the improvised pull.',
-        },
-        {
-          label: 'Open the belly pan properly',
-          detail: 'Put Mr. Clean on the crate stand, pull the underside panel, and clean the channel while the screw is exposed.',
-          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The screw is recovered cleanly and the belly-pan ribs get a proper wipe-down while they are open.',
-          onFailure: 'One panel tab is mean about it, so Curtis spends on fresh clips before closing the chassis.',
-          nuyenSuccess: -25,
-          nuyenFailure: -55,
-          qualitySuccess: 2,
+          onSuccess: 'The old gasket cleans up well enough to reuse, saving parts money and leaving only a small lint-risk note.',
+          onFailure: 'The gasket works, but Curtis uses extra wipes and tack getting it to sit flat again.',
+          nuyenSuccess: 40,
+          nuyenFailure: -15,
+          qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: the proper teardown clears hidden grit; Calibration TN -1 and the final report notes a clean belly-pan inspection.',
+          effectNote: 'Follow-up: reused gasket leaves lint-shadow risk; Sensor Sweep TN +1 and the final report notes the thrifty reuse.',
+        },
+        {
+          label: 'Install a fresh micro-gasket',
+          detail: 'Pull a fresh gasket from the little parts drawer and clean the lens seat before closing the fur seam.',
+          skill: 'electronicsBR',
+          targetNumber: 4,
+          requiredSuccesses: 1,
+          onSuccess: 'The fresh gasket seats cleanly and the lens well looks too professional for Taco\'s counter.',
+          onFailure: 'The gasket seats, but Curtis sacrifices one tiny spare while learning which side is secretly up.',
+          nuyenSuccess: -45,
+          nuyenFailure: -80,
+          qualitySuccess: 2,
+          qualityFailure: 1,
+          effectNote: 'Follow-up: fresh gasket gives a clean seal; Sensor Sweep TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Re-seat the brush guard',
-      station: 'Greasy bench mat',
-      description: 'Replace the screw, snug the brush guard, and test whether the earlier retrieval choice left the drive channel fussy.',
+      title: 'Sensor sweep test',
+      station: 'Chair-leg obstacle lane',
+      description: 'Run Waddles past chrome, chair legs, and Taco\'s keys to see whether the earlier gasket choice leaves the rangefinder fussy.',
       actions: [
         {
-          label: 'Snug, spin, and listen',
-          detail: 'Re-seat the guard, spin the brush by hand, and listen for any leftover tick before Mr. Clean touches the floor.',
-          skill: 'electronicsBR',
+          label: 'Sweep the left-side rangefinder',
+          detail: 'Walk Waddles through a slow fan sweep and watch for the little electric sneeze on shiny targets.',
+          skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The brush guard sits tight and the channel spins quiet enough to bore a sensible mechanic.',
-          onFailure: 'The guard seats, but Curtis burns another strip of foam tape chasing one last buzz.',
-          nuyenSuccess: -10,
-          nuyenFailure: -35,
+          onSuccess: 'The rangefinder stops sneezing and Waddles avoids every chair leg with smug little dignity.',
+          onFailure: 'The sweep passes well enough, but Curtis spends extra cleaner chasing one last chrome-triggered twitch.',
+          nuyenSuccess: 0,
+          nuyenFailure: -30,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -224,19 +224,19 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Sweep-loop closeout',
-      station: 'Dining room after the lunch rush',
-      description: 'Run Mr. Clean through a slow sweep loop, check the bin for fresh hardware, and write the note before Taco asks why the floor is cleaner than the register.',
+      title: 'Mascot closeout',
+      station: 'Dining room chair maze',
+      description: 'Send Waddles through the chair maze, check that the fur seam stays neat, and write the note before Taco puts a tiny bandanna on the patient.',
       actions: [
         {
-          label: 'Run the no-clink sweep loop',
-          detail: 'Sweep the back-room tile, take two tight turns, and confirm the bin contains dust instead of more confessions.',
-          skill: 'carBR',
+          label: 'Run the no-sneeze chair loop',
+          detail: 'Let Waddles waddle two tight turns, avoid one chrome stool, and finish with the sensor log clean enough for Cindy.',
+          skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Taco tosses Curtis a small shop-credit bump, and Cindy has a tidy maintenance event to ingest.',
-          onFailure: 'The report is usable, but flags a mild follow-up rattle for GM review if anyone cares later.',
-          nuyenSuccess: 50,
+          onSuccess: 'The report is clean, Taco throws in a small shop-credit thank-you, and Cindy has a tidy maintenance event to ingest.',
+          onFailure: 'The report is usable, but flags a mild follow-up sensor twitch for GM review if anyone cares later.',
+          nuyenSuccess: 45,
           nuyenFailure: -10,
           qualitySuccess: 1,
           qualityFailure: 0,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const usedMagnet = shift.log.some((entry) => entry.action === 'Fish it with a flex magnet')
-  const openedPan = shift.log.some((entry) => entry.action === 'Open the belly pan properly')
-  if (usedMagnet) {
+  const reusedGasket = shift.log.some((entry) => entry.action === 'Reuse the cleaned gasket')
+  const freshGasket = shift.log.some((entry) => entry.action === 'Install a fresh micro-gasket')
+  if (reusedGasket) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Fast magnet retrieval is in effect: calibration TN +1 for hidden grit risk.',
+      modifierNote: 'Reused gasket is in effect: sensor sweep TN +1 for lint-shadow risk.',
     }
   }
-  if (openedPan) {
+  if (freshGasket) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Proper belly-pan teardown is in effect: calibration TN -1 for a clean channel.',
+      modifierNote: 'Fresh micro-gasket is in effect: sensor sweep TN -1 for a clean seal.',
     }
   }
 
