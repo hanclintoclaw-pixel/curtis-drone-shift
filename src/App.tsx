@@ -115,28 +115,28 @@ const seedSkills: SkillProfile = {
 }
 
 const tutorialJob: JobProfile = {
-  id: 'tutorial-5-waddles-fuzzy-sensor-sneezes',
-  title: 'Tutorial 5: Waddles\' Fuzzy Sensor Sneezes',
-  asset: 'Waddles - fur-skinned companion drone with one offended proximity sensor',
-  customer: 'Taco, after Waddles backed into a chair twice and then stared at it like the chair started the fight',
+  id: 'tutorial-6-buzz-battery-bay-bellyache',
+  title: 'Tutorial 6: Buzz\'s Battery-Bay Bellyache',
+  asset: 'Buzz - light VTOL surveillance drone with a fussy battery latch and one coffee-ring inspection mat',
+  customer: 'Taco, after Buzz chirped low-pack warning at half charge and made the prep counter smell faintly like warm plastic',
   risk: 'low',
-  hook: 'Waddles is mobile and mostly adorable, but the left-side rangefinder keeps twitching under the synthetic fur with a tiny electric sneeze every time it sees chrome, chair legs, or Taco\'s keys.',
-  baseline: 'Tutorial 4 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 5 stays near break-even unless Curtis chooses to submit the final report.',
+  hook: 'Buzz still flies, but the battery bay gives a sad little click on takeoff and the pack wiggles just enough to make the warning light blink when somebody slams the freezer door.',
+  baseline: 'Tutorial 5 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 6 stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Intake the sensor sneeze',
-      station: 'Taco\'s booth bench',
-      description: 'Power-safe Waddles, brush the fur away from the sensor pod, and confirm this is a rangefinder problem instead of a drive hiccup.',
+      title: 'Safe the warm-pack chirp',
+      station: 'Prep counter landing pad',
+      description: 'Power down Buzz, pull the pack, and confirm the chirp is a battery-bay contact problem instead of a swollen cell or flight-control panic.',
       actions: [
         {
-          label: 'Safe the pod and wiggle-test',
-          detail: 'Kill motion assist, comb back the synthetic fur, and wiggle the left sensor pod without letting Waddles bite the screwdriver.',
+          label: 'Power down and sniff-check the pack',
+          detail: 'Kill rotors, bag the pack on the mat, and check for heat, puffing, or that bad sweet-plastic smell before touching the latch.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis isolates the twitch to the left rangefinder pod before opening anything expensive.',
-          onFailure: 'Waddles is safe, but Curtis spends a little tape and patience re-seating a fur seam he tugged too hard.',
+          onSuccess: 'Curtis rules out cell swelling and keeps the job in cheap latch-and-contact territory.',
+          onFailure: 'The pack is safe, but Curtis burns a few test leads and a thermal strip proving it the cautious way.',
           nuyenSuccess: 0,
           nuyenFailure: -20,
           qualitySuccess: 1,
@@ -146,18 +146,18 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Find the fuzzy blind spot',
-      station: 'Napkin-draped counter mat',
-      description: 'Check the lens, gasket, and connector for fur lint, hot-sauce vapor, or a loose contact hiding under the mascot skin.',
+      title: 'Find the bad click',
+      station: 'Magnifier and taco tray',
+      description: 'Inspect the latch tooth, spring tab, and power contacts for grit, bent brass, or a tiny crack hiding under yesterday\'s dust.',
       actions: [
         {
-          label: 'Run a close sensor diagnosis',
-          detail: 'Use a flashlight, sensor readout, and one extremely judgmental cotton swab to find the dirty edge of the problem.',
+          label: 'Trace the latch contact path',
+          detail: 'Use a magnifier and continuity probe while Buzz sits upside down looking deeply embarrassed.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'Curtis catches a lint-packed micro-gasket shadowing the rangefinder lens at just the wrong angle.',
-          onFailure: 'The fault shows up late after Curtis cleans two innocent contacts and burns through extra swabs.',
+          onSuccess: 'Curtis catches a bent brass contact and a hairline latch burr before either turns into an expensive pack drop.',
+          onFailure: 'The fault shows up late after Curtis cleans two innocent rails and donates extra contact swabs to the cause.',
           nuyenSuccess: 10,
           nuyenFailure: -25,
           qualitySuccess: 2,
@@ -167,54 +167,54 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the seal fix',
-      station: 'Lens wipes vs parts drawer',
-      description: 'Decide whether to reuse the cleaned gasket or spend for a fresh micro-gasket. The choice changes the sensor sweep later.',
+      title: 'Choose the latch fix',
+      station: 'Spare-bin clip vs fresh latch',
+      description: 'Decide whether to bend and shim the old latch or spend for a fresh latch clip. The choice changes the hover-shake test later.',
       actions: [
         {
-          label: 'Reuse the cleaned gasket',
-          detail: 'Lift the gasket, clean the lint shadow, and put the old seal back in with a tiny dab of removable tack.',
+          label: 'Bend and shim the old latch',
+          detail: 'Reform the brass contact, file the burr, and tuck in a thin spare-bin shim so the pack seats with a cleaner click.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The old gasket cleans up well enough to reuse, saving parts money and leaving only a small lint-risk note.',
-          onFailure: 'The gasket works, but Curtis uses extra wipes and tack getting it to sit flat again.',
-          nuyenSuccess: 40,
+          onSuccess: 'The old latch takes the bend and saves parts money, though Curtis marks it as a shimmed contact in the note.',
+          onFailure: 'The shim works, but Curtis spends extra tape and a replacement screw after the first bend fights back.',
+          nuyenSuccess: 45,
           nuyenFailure: -15,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: reused gasket leaves lint-shadow risk; Sensor Sweep TN +1 and the final report notes the thrifty reuse.',
+          effectNote: 'Follow-up: shimmed latch leaves vibration risk; Hover-Shake Test TN +1 and the final report notes the thrift fix.',
         },
         {
-          label: 'Install a fresh micro-gasket',
-          detail: 'Pull a fresh gasket from the little parts drawer and clean the lens seat before closing the fur seam.',
+          label: 'Install a fresh latch clip',
+          detail: 'Use the new latch clip, clean both rails, and seat the pack until the click sounds like it belongs in a manual.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh gasket seats cleanly and the lens well looks too professional for Taco\'s counter.',
-          onFailure: 'The gasket seats, but Curtis sacrifices one tiny spare while learning which side is secretly up.',
+          onSuccess: 'The fresh clip snaps in cleanly and Buzz gets a battery bay that no longer argues with gravity.',
+          onFailure: 'The clip seats, but Curtis sacrifices one tiny spring and some pride finding the right angle.',
           nuyenSuccess: -45,
-          nuyenFailure: -80,
+          nuyenFailure: -85,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh gasket gives a clean seal; Sensor Sweep TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh latch clip stabilizes the pack; Hover-Shake Test TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Sensor sweep test',
-      station: 'Chair-leg obstacle lane',
-      description: 'Run Waddles past chrome, chair legs, and Taco\'s keys to see whether the earlier gasket choice leaves the rangefinder fussy.',
+      title: 'Hover-shake test',
+      station: 'Freezer-door vibration lane',
+      description: 'Run Buzz through a low hover while Taco bumps the freezer door, then watch whether the battery warning blinks under vibration.',
       actions: [
         {
-          label: 'Sweep the left-side rangefinder',
-          detail: 'Walk Waddles through a slow fan sweep and watch for the little electric sneeze on shiny targets.',
-          skill: 'electronics',
+          label: 'Run the freezer-door hover check',
+          detail: 'Hold Buzz in a cautious hover, tap the counter, bump the freezer door, and watch the pack telemetry like it owes money.',
+          skill: 'rotorAircraftBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The rangefinder stops sneezing and Waddles avoids every chair leg with smug little dignity.',
-          onFailure: 'The sweep passes well enough, but Curtis spends extra cleaner chasing one last chrome-triggered twitch.',
+          onSuccess: 'Buzz holds telemetry steady through the vibration check and stops chirping at every kitchen thump.',
+          onFailure: 'The check passes well enough, but Curtis spends extra foam and cleaner chasing one last warning-light flicker.',
           nuyenSuccess: 0,
           nuyenFailure: -30,
           qualitySuccess: 2,
@@ -224,18 +224,18 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Mascot closeout',
-      station: 'Dining room chair maze',
-      description: 'Send Waddles through the chair maze, check that the fur seam stays neat, and write the note before Taco puts a tiny bandanna on the patient.',
+      title: 'Flight-note closeout',
+      station: 'Doorway hover lane',
+      description: 'Run one short doorway hover, verify the latch click after landing, and write the maintenance note before Taco starts calling Buzz a drama queen.',
       actions: [
         {
-          label: 'Run the no-sneeze chair loop',
-          detail: 'Let Waddles waddle two tight turns, avoid one chrome stool, and finish with the sensor log clean enough for Cindy.',
+          label: 'Log the clean latch landing',
+          detail: 'Finish with a low doorway hover, pack re-seat check, and a report tidy enough for Cindy to ingest without guessing.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Taco throws in a small shop-credit thank-you, and Cindy has a tidy maintenance event to ingest.',
-          onFailure: 'The report is usable, but flags a mild follow-up sensor twitch for GM review if anyone cares later.',
+          onSuccess: 'The report is clean, Taco adds a small shop-credit thank-you, and Buzz is ready for routine light surveillance again.',
+          onFailure: 'The report is usable, but flags a mild latch-watch note for GM review if Buzz gets shaken hard later.',
           nuyenSuccess: 45,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const reusedGasket = shift.log.some((entry) => entry.action === 'Reuse the cleaned gasket')
-  const freshGasket = shift.log.some((entry) => entry.action === 'Install a fresh micro-gasket')
-  if (reusedGasket) {
+  const shimmedLatch = shift.log.some((entry) => entry.action === 'Bend and shim the old latch')
+  const freshLatch = shift.log.some((entry) => entry.action === 'Install a fresh latch clip')
+  if (shimmedLatch) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Reused gasket is in effect: sensor sweep TN +1 for lint-shadow risk.',
+      modifierNote: 'Shimmed latch is in effect: hover-shake TN +1 for vibration risk.',
     }
   }
-  if (freshGasket) {
+  if (freshLatch) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh micro-gasket is in effect: sensor sweep TN -1 for a clean seal.',
+      modifierNote: 'Fresh latch clip is in effect: hover-shake TN -1 for a clean pack seat.',
     }
   }
 
