@@ -115,28 +115,28 @@ const seedSkills: SkillProfile = {
 }
 
 const tutorialJob: JobProfile = {
-  id: 'tutorial-6-buzz-battery-bay-bellyache',
-  title: 'Tutorial 6: Buzz\'s Battery-Bay Bellyache',
-  asset: 'Buzz - light VTOL surveillance drone with a fussy battery latch and one coffee-ring inspection mat',
-  customer: 'Taco, after Buzz chirped low-pack warning at half charge and made the prep counter smell faintly like warm plastic',
+  id: 'tutorial-7-the-finishers-feed-path-flour-cough',
+  title: "Tutorial 7: The Finisher's Feed-Path Flour Cough",
+  asset: 'The Finisher - shop utility drone with a grit-sneezing feed path, dusty rollers, and one smug tray sensor',
+  customer: 'Taco, after The Finisher coughed tortilla flour through its feed slot and started double-feeding shop labels',
   risk: 'low',
-  hook: 'Buzz still flies, but the battery bay gives a sad little click on takeoff and the pack wiggles just enough to make the warning light blink when somebody slams the freezer door.',
-  baseline: 'Tutorial 5 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 6 stays near break-even unless Curtis chooses to submit the final report.',
+  hook: 'The Finisher still runs, but every third label comes out crooked with a pale flour ghost on the backing paper and the feed motor makes a tiny annoyed wheeze.',
+  baseline: 'Tutorial 6 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 7 stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Safe the warm-pack chirp',
-      station: 'Prep counter landing pad',
-      description: 'Power down Buzz, pull the pack, and confirm the chirp is a battery-bay contact problem instead of a swollen cell or flight-control panic.',
+      title: 'Safe the flour cough',
+      station: 'Countertop dust mat',
+      description: 'Power down The Finisher, pull the label spool, and make sure the feed cough is dust and roller slip instead of a hot motor or jammed cutter.',
       actions: [
         {
-          label: 'Power down and sniff-check the pack',
-          detail: 'Kill rotors, bag the pack on the mat, and check for heat, puffing, or that bad sweet-plastic smell before touching the latch.',
+          label: 'Kill power and clear the paper path',
+          detail: 'Pop the service hatch, lift the label spool, and brush out enough tortilla flour to make Taco deny everything.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis rules out cell swelling and keeps the job in cheap latch-and-contact territory.',
-          onFailure: 'The pack is safe, but Curtis burns a few test leads and a thermal strip proving it the cautious way.',
+          onSuccess: 'Curtis confirms the motor is cool and keeps the ticket in cheap cleaning-and-roller territory.',
+          onFailure: 'The motor is fine, but Curtis sacrifices a dust sleeve and a few labels proving the cutter is not the culprit.',
           nuyenSuccess: 0,
           nuyenFailure: -20,
           qualitySuccess: 1,
@@ -146,18 +146,18 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Find the bad click',
-      station: 'Magnifier and taco tray',
-      description: 'Inspect the latch tooth, spring tab, and power contacts for grit, bent brass, or a tiny crack hiding under yesterday\'s dust.',
+      title: 'Find the double-feed gremlin',
+      station: 'Magnifier over the feed throat',
+      description: 'Inspect the pickup roller, tray sensor, and feed rail for flour glaze, adhesive fuzz, or one bent guide tooth pretending to be innocent.',
       actions: [
         {
-          label: 'Trace the latch contact path',
-          detail: 'Use a magnifier and continuity probe while Buzz sits upside down looking deeply embarrassed.',
+          label: 'Probe the tray sensor and roller bite',
+          detail: 'Run a slow manual feed while watching the tray sensor flicker and checking whether the roller grabs or just polishes the label backing.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'Curtis catches a bent brass contact and a hairline latch burr before either turns into an expensive pack drop.',
-          onFailure: 'The fault shows up late after Curtis cleans two innocent rails and donates extra contact swabs to the cause.',
+          onSuccess: 'Curtis catches a flour-glazed pickup roller before it can blame the tray sensor.',
+          onFailure: 'The fault shows up late after Curtis cleans one innocent sensor window and spends extra swabs on adhesive fuzz.',
           nuyenSuccess: 10,
           nuyenFailure: -25,
           qualitySuccess: 2,
@@ -167,54 +167,54 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the latch fix',
-      station: 'Spare-bin clip vs fresh latch',
-      description: 'Decide whether to bend and shim the old latch or spend for a fresh latch clip. The choice changes the hover-shake test later.',
+      title: 'Choose the roller fix',
+      station: 'Spare-bin rubber vs fresh roller',
+      description: 'Decide whether to clean and reuse the old pickup roller or spend for a fresh one. The choice changes the label-feed test later.',
       actions: [
         {
-          label: 'Bend and shim the old latch',
-          detail: 'Reform the brass contact, file the burr, and tuck in a thin spare-bin shim so the pack seats with a cleaner click.',
+          label: 'Clean and reuse the pickup roller',
+          detail: 'De-glaze the old rubber, dress the feed rail, and save parts money with a careful scrub and a little shop patience.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The old latch takes the bend and saves parts money, though Curtis marks it as a shimmed contact in the note.',
-          onFailure: 'The shim works, but Curtis spends extra tape and a replacement screw after the first bend fights back.',
-          nuyenSuccess: 45,
+          onSuccess: 'The old roller regains enough bite to feed cleanly, though Curtis marks it as a reused rubber part.',
+          onFailure: 'The roller improves, but Curtis spends extra cleaner and a sacrificial label strip getting it to behave.',
+          nuyenSuccess: 55,
           nuyenFailure: -15,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: shimmed latch leaves vibration risk; Hover-Shake Test TN +1 and the final report notes the thrift fix.',
+          effectNote: 'Follow-up: reused roller leaves slip risk; Label-Feed Test TN +1 and the final report notes the thrift fix.',
         },
         {
-          label: 'Install a fresh latch clip',
-          detail: 'Use the new latch clip, clean both rails, and seat the pack until the click sounds like it belongs in a manual.',
+          label: 'Install a fresh pickup roller',
+          detail: 'Use a new roller, wipe the feed rail clean, and set the tray pressure so the label stack stops acting haunted.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh clip snaps in cleanly and Buzz gets a battery bay that no longer argues with gravity.',
-          onFailure: 'The clip seats, but Curtis sacrifices one tiny spring and some pride finding the right angle.',
+          onSuccess: 'The fresh roller seats cleanly and gives The Finisher a feed bite that sounds factory-adjacent.',
+          onFailure: 'The roller seats, but Curtis loses time chasing one tiny pressure spring across the mat.',
           nuyenSuccess: -45,
           nuyenFailure: -85,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh latch clip stabilizes the pack; Hover-Shake Test TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh pickup roller stabilizes the feed path; Label-Feed Test TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Hover-shake test',
-      station: 'Freezer-door vibration lane',
-      description: 'Run Buzz through a low hover while Taco bumps the freezer door, then watch whether the battery warning blinks under vibration.',
+      title: 'Label-feed test',
+      station: 'Ten-label taco run',
+      description: 'Run ten cheap shop labels through The Finisher while Taco taps the counter and watches for double-feeds, skew, or flour ghosts.',
       actions: [
         {
-          label: 'Run the freezer-door hover check',
-          detail: 'Hold Buzz in a cautious hover, tap the counter, bump the freezer door, and watch the pack telemetry like it owes money.',
-          skill: 'rotorAircraftBR',
+          label: 'Run the ten-label feed check',
+          detail: 'Feed a short label run, tap the counter, and watch the tray sensor trace like it owes Curtis an apology.',
+          skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Buzz holds telemetry steady through the vibration check and stops chirping at every kitchen thump.',
-          onFailure: 'The check passes well enough, but Curtis spends extra foam and cleaner chasing one last warning-light flicker.',
+          onSuccess: 'The Finisher feeds the test stack straight and stops coughing flour ghosts into the labels.',
+          onFailure: 'The check passes well enough, but Curtis burns extra labels and cleaner chasing one last tiny skew.',
           nuyenSuccess: 0,
           nuyenFailure: -30,
           qualitySuccess: 2,
@@ -224,18 +224,18 @@ const tutorialJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Flight-note closeout',
-      station: 'Doorway hover lane',
-      description: 'Run one short doorway hover, verify the latch click after landing, and write the maintenance note before Taco starts calling Buzz a drama queen.',
+      title: 'Shop-label closeout',
+      station: 'Receipt tape and service note',
+      description: 'Print one final shop label, confirm the feed rail stays clean, and write the maintenance note before Taco starts calling it haunted machinery.',
       actions: [
         {
-          label: 'Log the clean latch landing',
-          detail: 'Finish with a low doorway hover, pack re-seat check, and a report tidy enough for Cindy to ingest without guessing.',
+          label: 'Log the clean label run',
+          detail: 'Finish with a clean label, a wiped feed throat, and a report tidy enough for Cindy to ingest without guessing.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Taco adds a small shop-credit thank-you, and Buzz is ready for routine light surveillance again.',
-          onFailure: 'The report is usable, but flags a mild latch-watch note for GM review if Buzz gets shaken hard later.',
+          onSuccess: 'The report is clean, Taco adds a small shop-credit thank-you, and The Finisher is ready for boring label duty again.',
+          onFailure: 'The report is usable, but flags a mild feed-watch note for GM review if The Finisher sees more flour dust.',
           nuyenSuccess: 45,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const shimmedLatch = shift.log.some((entry) => entry.action === 'Bend and shim the old latch')
-  const freshLatch = shift.log.some((entry) => entry.action === 'Install a fresh latch clip')
-  if (shimmedLatch) {
+  const reusedRoller = shift.log.some((entry) => entry.action === 'Clean and reuse the pickup roller')
+  const freshRoller = shift.log.some((entry) => entry.action === 'Install a fresh pickup roller')
+  if (reusedRoller) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Shimmed latch is in effect: hover-shake TN +1 for vibration risk.',
+      modifierNote: 'Reused pickup roller is in effect: label-feed TN +1 for slip risk.',
     }
   }
-  if (freshLatch) {
+  if (freshRoller) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh latch clip is in effect: hover-shake TN -1 for a clean pack seat.',
+      modifierNote: 'Fresh pickup roller is in effect: label-feed TN -1 for a clean feed bite.',
     }
   }
 
@@ -382,7 +382,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'Selected tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, ingest it into campaign memory as a Curtis downtime/maintenance event, mark this Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.`,
+    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as a Curtis downtime/maintenance event, close/mark this active Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.`,
   ].join('\n')
 }
 
