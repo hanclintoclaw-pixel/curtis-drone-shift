@@ -114,14 +114,14 @@ const seedSkills: SkillProfile = {
   negotiation: 2,
 }
 
-const tutorialJob: JobProfile = {
-  id: 'tutorial-8-buzzs-battery-clip-jiggle',
-  title: "Tutorial 8: Buzz's Battery Clip Jiggle",
+const activeJob: JobProfile = {
+  id: 'buzzs-battery-clip-jiggle',
+  title: "Buzz's Battery Clip Jiggle",
   asset: 'Buzz - small scout drone with a rattly battery latch, nervous contact tabs, and one tiny plastic clip that has opinions',
   customer: 'Curtis field-prep bench, after Buzz chirped low-power twice while sitting perfectly still beside a half-eaten Taco shop receipt',
   risk: 'low',
   hook: 'Buzz powers up fine, but the battery pack gives a dry little tick when the shell is tapped, and the contact trace flickers like it is blinking Morse code for tighten me.',
-  baseline: 'Tutorial 7 rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. Tutorial 8 stays near break-even unless Curtis chooses to submit the final report.',
+  baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
@@ -246,7 +246,7 @@ const tutorialJob: JobProfile = {
   ],
 }
 
-const jobs = [tutorialJob]
+const jobs = [activeJob]
 
 function freshShift(job: JobProfile): ShiftState {
   return {
@@ -343,12 +343,12 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
 function loadShift(): ShiftState {
   const stored = localStorage.getItem(STORAGE_KEY)
-  if (!stored) return freshShift(tutorialJob)
+  if (!stored) return freshShift(activeJob)
   try {
     const parsed = JSON.parse(stored) as Partial<ShiftState>
-    if (parsed.version === 1 && parsed.jobId === tutorialJob.id && parsed.currentStageId) {
+    if (parsed.version === 1 && parsed.jobId === activeJob.id && parsed.currentStageId) {
       return {
-        ...freshShift(tutorialJob),
+        ...freshShift(activeJob),
         ...parsed,
         completedStageIds: parsed.completedStageIds ?? [],
         log: parsed.log ?? [],
@@ -356,9 +356,9 @@ function loadShift(): ShiftState {
       }
     }
   } catch {
-    // Fall through to a clean tutorial shift.
+    // Fall through to a clean shift.
   }
-  return freshShift(tutorialJob)
+  return freshShift(activeJob)
 }
 
 function buildReport(job: JobProfile, shift: ShiftState) {
@@ -392,12 +392,12 @@ function App() {
   const [selectedActionIndex, setSelectedActionIndex] = useState(0)
   const [feedback, setFeedback] = useState<RollFeedback | undefined>()
 
-  const job = jobs.find((candidate) => candidate.id === shift.jobId) ?? tutorialJob
+  const job = jobs.find((candidate) => candidate.id === shift.jobId) ?? activeJob
   const currentStage = job.stages.find((stage) => stage.id === shift.currentStageId) ?? job.stages[0]
   const selectedAction = currentStage.actions[selectedActionIndex] ?? currentStage.actions[0]
   const selectedRuntime = actionRuntime(selectedAction, currentStage.id, shift)
   const isComplete = shift.completedStageIds.includes('closeout')
-  const tutorialLabel = job.title.split(':')[0]
+  const ticketLabel = 'Active shift'
   const report = useMemo(() => buildReport(job, shift), [job, shift])
 
   useEffect(() => {
@@ -457,7 +457,7 @@ function App() {
   }
 
   function resetShift() {
-    setShift(freshShift(tutorialJob))
+    setShift(freshShift(activeJob))
     setFeedback(undefined)
   }
 
@@ -476,7 +476,7 @@ function App() {
       <div className="hero-stats">
         <div className="shift-card">
           <span>Today's ticket</span>
-          <strong>{tutorialLabel}</strong>
+          <strong>{ticketLabel}</strong>
           <small>Daily prototype rotation. Missed prior tickets discard cleanly.</small>
         </div>
         <div className={`money-card ${nuyenTone(shift.nuyenDelta)}`}>
@@ -512,7 +512,7 @@ function App() {
           <span>{skillLabels[skill]}</span>
           <input type="number" min="0" value={skills[skill]} onChange={(event) => setSkill(skill, Number(event.target.value))} />
         </label>)}
-        <button onClick={resetShift}>Reset {tutorialLabel}</button>
+        <button onClick={resetShift}>Reset shift</button>
       </aside>
 
       <section className="work-panel">
@@ -529,7 +529,7 @@ function App() {
         <article className="stage-card">
           <p className="kicker">Current station</p>
           <h2>{isComplete ? 'Ticket closed' : currentStage.title}</h2>
-          <p>{isComplete ? 'The tutorial maintenance ticket is ready to export for Cindy/GM review.' : currentStage.description}</p>
+          <p>{isComplete ? 'The maintenance ticket is ready to export for Cindy/GM review.' : currentStage.description}</p>
           {feedback && <div key={feedback.id} className={`feedback ${feedback.tone}`}><strong>{feedback.title}</strong><span>{feedback.detail}</span></div>}
 
           {!isComplete && <>
