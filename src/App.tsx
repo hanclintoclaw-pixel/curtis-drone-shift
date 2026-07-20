@@ -115,30 +115,30 @@ const seedSkills: SkillProfile = {
 }
 
 const activeJob: JobProfile = {
-  id: 'buzzs-battery-clip-jiggle',
-  title: "Buzz's Battery Clip Jiggle",
-  asset: 'Buzz - small scout drone with a rattly battery latch, nervous contact tabs, and one tiny plastic clip that has opinions',
-  customer: 'Curtis field-prep bench, after Buzz chirped low-power twice while sitting perfectly still beside a half-eaten Taco shop receipt',
+  id: 'tacos-cooler-fan-chirp',
+  title: "Taco's Cooler Fan Chirp",
+  asset: "Taco's walk-in cooler fan - countertop control lead, tired sleeve bearing, and a cowling that sings like a mad cricket",
+  customer: 'Taco shop back room, after the walk-in cooler started squealing every time the compressor kicked on behind the salsa buckets',
   risk: 'low',
-  hook: 'Buzz powers up fine, but the battery pack gives a dry little tick when the shell is tapped, and the contact trace flickers like it is blinking Morse code for tighten me.',
+  hook: 'The cooler is still cold, but the fan gives a thin little chirp under load, the kind that makes Taco glare at the ceiling like it owes him rent.',
   baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Safe the jittery pack',
-      station: 'Anti-static bench pad',
-      description: 'Power Buzz down, pull the battery pack, and confirm the latch rattle is not heat swelling, cracked casing, or mystery sauce in the contacts.',
+      title: 'Kill power and clear the shelf',
+      station: 'Cooler cutoff and towel stack',
+      description: 'Lock out the cooler fan, move the sauce tubs, and make sure Curtis is dealing with a bearing chirp instead of wet wiring or a dying compressor.',
       actions: [
         {
-          label: 'Depower Buzz and inspect the pack bay',
-          detail: 'Pop the hatch, sniff-test the pack like a responsible gremlin, and wipe the contacts before Taco can ask why drones need napkins.',
+          label: 'Safe the fan and inspect the control lead',
+          detail: 'Cut power, tag the switch, and check for damp contacts before Taco turns a cooler problem into a shop-floor lightning lesson.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis confirms the pack is cool, clean, and safe enough for a latch-side repair.',
-          onFailure: 'The pack is safe, but Curtis burns a contact wipe and a spare foam pad proving the battery is not swollen.',
+          onSuccess: 'Curtis confirms the lead is dry, the fan is isolated, and the squeal is mechanical instead of spicy electrical nonsense.',
+          onFailure: 'The fan is safe, but Curtis burns a shop towel and a replacement spade cover proving the wet spot is just condensation.',
           nuyenSuccess: 0,
-          nuyenFailure: -15,
+          nuyenFailure: -10,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -146,18 +146,18 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Find the contact blink',
-      station: 'Magnifier and continuity lead',
-      description: 'Check latch tension, contact spring pressure, and the tiny guide nub that keeps pretending it was not bent by somebody with thumbs.',
+      title: 'Trace the cooler chirp',
+      station: 'Milk crate and stethoscope probe',
+      description: 'Spin the fan by hand, listen near the motor shell, and separate a tired bearing from a bent cowling tab before Curtis starts buying parts.',
       actions: [
         {
-          label: 'Probe latch tension and contact pressure',
-          detail: 'Tap the shell while watching continuity so Curtis can catch the blink before Buzz tries to blame ghosts in the bench light.',
+          label: 'Pinpoint the bearing squeal',
+          detail: 'Use the probe, a finger spin, and one deeply suspicious look at the cowling screw that keeps backing itself out.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'Curtis catches the weak latch bite and a tired contact spring before either one becomes a field problem.',
-          onFailure: 'The blink shows up late after Curtis retensions one innocent contact and spends extra tape marking the actual weak spot.',
+          onSuccess: 'Curtis catches the dry sleeve bearing early and finds the cowling tab before it starts shaving the fan blade.',
+          onFailure: 'The chirp hides until Curtis cleans one innocent bracket and spends extra tape marking the real rub point.',
           nuyenSuccess: 10,
           nuyenFailure: -25,
           qualitySuccess: 2,
@@ -167,56 +167,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the latch fix',
-      station: 'Shim stock vs fresh latch',
-      description: 'Decide whether to shim the existing latch or spend for a fresh clip. The choice changes the vibration test later.',
+      title: 'Choose the bearing fix',
+      station: 'Salvage drawer vs parts kit',
+      description: 'Decide whether to fit a clean salvaged sleeve bushing or spend for a fresh bearing kit. The choice changes the cooler-load spin test later.',
       actions: [
         {
-          label: 'Shim the existing battery clip',
-          detail: 'Trim a thin plastic shim, dress the latch face, and save parts money with a repair that looks humble but holds square.',
+          label: 'Fit a salvaged sleeve bushing',
+          detail: 'Clean up a donor bushing from the junk drawer, dress the shaft, and save parts money with a fix that needs a careful final spin.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The shim tightens the latch and keeps Buzz from clicking like a cicada in a coffee can.',
-          onFailure: 'The shim holds, but Curtis wastes one cut and a strip of foam getting the pressure even.',
-          nuyenSuccess: 45,
+          onSuccess: 'The salvaged bushing seats square and the fan stops doing its mad cricket impression on the bench.',
+          onFailure: 'The bushing works, but Curtis trashes one donor sleeve and has to polish the shaft longer than anyone should have to.',
+          nuyenSuccess: 60,
           nuyenFailure: -20,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: shimmed latch saves parts money but leaves field-jiggle risk; vibration hover TN +1 and the final report notes the thrift fix.',
+          effectNote: 'Follow-up: salvaged bushing saves parts money but adds cooler-load spin test TN +1 and the final report notes the thrift fit.',
         },
         {
-          label: 'Install a fresh battery latch',
-          detail: 'Use a new clip, set the spring pressure cleanly, and retire the old latch before it teaches Buzz bad habits.',
+          label: 'Install a fresh bearing kit',
+          detail: 'Spend for the sealed kit, square the mount, and retire the old sleeve before it teaches the whole cooler to whistle.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh latch snaps in clean and makes the pack feel boring in the best possible way.',
-          onFailure: 'The latch seats, but Curtis loses a tiny spring once and pays the shop swear-jar tax in replacement bits.',
-          nuyenSuccess: -55,
-          nuyenFailure: -90,
+          onSuccess: 'The fresh bearing seats clean and makes the fan sound boring in the best possible way.',
+          onFailure: 'The kit works, but one cheap clip bends and Curtis has to open the second little bag of parts.',
+          nuyenSuccess: -45,
+          nuyenFailure: -85,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh latch stabilizes the pack bay; vibration hover TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh bearing kit stabilizes the fan; cooler-load spin test TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Vibration hover test',
-      station: 'Milk-crate hover lane',
-      description: 'Run Buzz at a safe low hover over a milk crate and tap the shell to see whether the pack contact stays steady under shop-floor buzz.',
+      title: 'Cooler-load spin test',
+      station: 'Walk-in door propped with a mop bucket',
+      description: 'Run the fan under compressor load, listen for chirp return, and make sure the airflow stays steady without turning the salsa shelf into a wind tunnel.',
       actions: [
         {
-          label: 'Run the low hover contact check',
-          detail: 'Spin up just enough lift to shake the shell, then watch the contact trace like it owes Curtis rent.',
+          label: 'Run the chilled airflow check',
+          detail: 'Kick the compressor on, watch the fan draw, and listen for the tiny squeal that thinks it can hide under refrigeration noise.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Buzz holds clean contact through the hover and stops blinking low-power warnings at perfectly rude moments.',
-          onFailure: 'The check passes well enough, but Curtis spends extra bench time damping one last case tick.',
+          onSuccess: 'The fan holds a steady spin under load and the cooler quits auditioning for haunted kitchen duty.',
+          onFailure: 'The check passes well enough, but Curtis spends extra bench time damping one last cowling tick.',
           nuyenSuccess: 0,
-          nuyenFailure: -30,
+          nuyenFailure: -35,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -224,19 +224,19 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Pack-bay closeout',
-      station: 'Bench log and yellow paint pen',
-      description: 'Mark the pack orientation, write the maintenance note, and make sure the next battery swap does not undo Curtis by lunchtime.',
+      title: 'Receipt and shop-credit note',
+      station: 'Grease pencil and register tape',
+      description: 'Write the cooler note, tape the date inside the service panel, and make sure Taco knows this was maintenance, not magic.',
       actions: [
         {
-          label: 'Log the latch fix and mark the pack',
-          detail: 'Add a tiny paint mark, note the latch work, and produce a report tidy enough for Cindy to ingest without guessing.',
+          label: 'Log the fan fix and collect shop credit',
+          detail: 'Mark the service panel, note the parts choice, and produce a report tidy enough for Cindy to ingest without guessing.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Buzz gets a neat pack mark, and Taco tosses Curtis a small shop-credit thank-you for preventing future counter drama.',
-          onFailure: 'The report is usable, but flags a mild watch note if Buzz chirps again under rough handling.',
-          nuyenSuccess: 40,
+          onSuccess: 'The report is clean, the panel gets a neat service mark, and Taco kicks in a small shop-credit thank-you for keeping the salsa cold.',
+          onFailure: 'The report is usable, but flags a mild watch note if the cooler chirps again under dinner-rush load.',
+          nuyenSuccess: 45,
           nuyenFailure: -10,
           qualitySuccess: 1,
           qualityFailure: 0,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const shimmedLatch = shift.log.some((entry) => entry.action === 'Shim the existing battery clip')
-  const freshLatch = shift.log.some((entry) => entry.action === 'Install a fresh battery latch')
-  if (shimmedLatch) {
+  const salvagedBushing = shift.log.some((entry) => entry.action === 'Fit a salvaged sleeve bushing')
+  const freshBearing = shift.log.some((entry) => entry.action === 'Install a fresh bearing kit')
+  if (salvagedBushing) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Shimmed battery clip is in effect: vibration hover TN +1 for field-jiggle risk.',
+      modifierNote: 'Salvaged sleeve bushing is in effect: cooler-load spin test TN +1 for thrift-fit fussiness.',
     }
   }
-  if (freshLatch) {
+  if (freshBearing) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh battery latch is in effect: vibration hover TN -1 for a stable pack bay.',
+      modifierNote: 'Fresh bearing kit is in effect: cooler-load spin test TN -1 for a stable fan mount.',
     }
   }
 
