@@ -115,28 +115,28 @@ const seedSkills: SkillProfile = {
 }
 
 const activeJob: JobProfile = {
-  id: 'tacos-cooler-fan-chirp',
-  title: "Taco's Cooler Fan Chirp",
-  asset: "Taco's walk-in cooler fan - countertop control lead, tired sleeve bearing, and a cowling that sings like a mad cricket",
-  customer: 'Taco shop back room, after the walk-in cooler started squealing every time the compressor kicked on behind the salsa buckets',
+  id: 'waddles-mud-flap-chirp',
+  title: "Waddles' Mud-Flap Chirp",
+  asset: "Waddles' rear mud-flap hinge strip, sensor-fur edge, and one tiny grit-packed hinge pin that chirps every third waddle",
+  customer: 'Taco shop wash sink, after Waddles came back from a puddle patrol sounding like a squeeze toy with opinions',
   risk: 'low',
-  hook: 'The cooler is still cold, but the fan gives a thin little chirp under load, the kind that makes Taco glare at the ceiling like it owes him rent.',
+  hook: "Waddles is moving fine, but the back mud-flap chirps when the synthetic fur gets damp, and Taco says it sounds like somebody stepping on a haunted chew toy behind the counter.",
   baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Kill power and clear the shelf',
-      station: 'Cooler cutoff and towel stack',
-      description: 'Lock out the cooler fan, move the sauce tubs, and make sure Curtis is dealing with a bearing chirp instead of wet wiring or a dying compressor.',
+      title: 'Dry the flap and safe the fur edge',
+      station: 'Wash sink and towel hook',
+      description: 'Power Waddles down, blot the synthetic fur edge, and make sure the chirp is a hinge complaint instead of a damp sensor lead.',
       actions: [
         {
-          label: 'Safe the fan and inspect the control lead',
-          detail: 'Cut power, tag the switch, and check for damp contacts before Taco turns a cooler problem into a shop-floor lightning lesson.',
+          label: 'Safe Waddles and inspect the rear lead',
+          detail: 'Pull the pack, dry the fur seam, and check the little tail-end sensor lead before Curtis starts blaming innocent plastic.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis confirms the lead is dry, the fan is isolated, and the squeal is mechanical instead of spicy electrical nonsense.',
-          onFailure: 'The fan is safe, but Curtis burns a shop towel and a replacement spade cover proving the wet spot is just condensation.',
+          onSuccess: 'Curtis confirms the lead is dry, the pack is safe, and the chirp is mechanical instead of a wet-electronics tantrum.',
+          onFailure: 'Waddles is safe, but Curtis sacrifices a shop towel and one tiny heat-shrink sleeve proving the damp spot is only splashback.',
           nuyenSuccess: 0,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -146,20 +146,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Trace the cooler chirp',
-      station: 'Milk crate and stethoscope probe',
-      description: 'Spin the fan by hand, listen near the motor shell, and separate a tired bearing from a bent cowling tab before Curtis starts buying parts.',
+      title: 'Find the third-step squeak',
+      station: 'Milk crate gait stand',
+      description: 'Cycle the rear flap by hand, tug the fur seam, and separate a bad hinge pin from a rubbing mud-flap edge.',
       actions: [
         {
-          label: 'Pinpoint the bearing squeal',
-          detail: 'Use the probe, a finger spin, and one deeply suspicious look at the cowling screw that keeps backing itself out.',
-          skill: 'electronics',
+          label: 'Trace the hinge chirp',
+          detail: 'Walk the flap through its travel and listen for the tiny grit squeal that only shows up when Waddles pretends to be dignified.',
+          skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 2,
-          onSuccess: 'Curtis catches the dry sleeve bearing early and finds the cowling tab before it starts shaving the fan blade.',
-          onFailure: 'The chirp hides until Curtis cleans one innocent bracket and spends extra tape marking the real rub point.',
-          nuyenSuccess: 10,
-          nuyenFailure: -25,
+          onSuccess: 'Curtis catches the grit-packed hinge pin and the fur rub before either one chews the flap edge worse.',
+          onFailure: 'The squeak hides until Curtis cleans one innocent bracket and burns extra swabs finding the real hinge pin.',
+          nuyenSuccess: 15,
+          nuyenFailure: -20,
           qualitySuccess: 2,
           qualityFailure: -1,
         },
@@ -167,56 +167,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the bearing fix',
-      station: 'Salvage drawer vs parts kit',
-      description: 'Decide whether to fit a clean salvaged sleeve bushing or spend for a fresh bearing kit. The choice changes the cooler-load spin test later.',
+      title: 'Choose the flap hinge fix',
+      station: 'Scrap strip vs fresh hinge tape',
+      description: 'Decide whether to trim and reuse the existing hinge strip or spend for a fresh strip. The choice changes the puddle-waddle gait check later.',
       actions: [
         {
-          label: 'Fit a salvaged sleeve bushing',
-          detail: 'Clean up a donor bushing from the junk drawer, dress the shaft, and save parts money with a fix that needs a careful final spin.',
-          skill: 'electronicsBR',
+          label: 'Trim and reuse the hinge strip',
+          detail: 'Dress the old strip, polish the hinge pin, and save parts money with a thrift fit that needs a fussier wet-gait check.',
+          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The salvaged bushing seats square and the fan stops doing its mad cricket impression on the bench.',
-          onFailure: 'The bushing works, but Curtis trashes one donor sleeve and has to polish the shaft longer than anyone should have to.',
-          nuyenSuccess: 60,
+          onSuccess: 'The old strip trims clean, the hinge pin stops squeaking on the bench, and Waddles looks unfairly proud of the economy fix.',
+          onFailure: 'The thrift fix works, but Curtis wastes a strip of foam tape and a replacement washer getting the flap pressure even.',
+          nuyenSuccess: 55,
           nuyenFailure: -20,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: salvaged bushing saves parts money but adds cooler-load spin test TN +1 and the final report notes the thrift fit.',
+          effectNote: 'Follow-up: reused hinge strip saves parts money but adds puddle-waddle gait check TN +1 and the final report notes the thrift fit.',
         },
         {
-          label: 'Install a fresh bearing kit',
-          detail: 'Spend for the sealed kit, square the mount, and retire the old sleeve before it teaches the whole cooler to whistle.',
-          skill: 'electronicsBR',
+          label: 'Install fresh hinge tape',
+          detail: 'Spend for the clean strip, square the flap edge, and make Waddles boringly quiet before the next wet floor patrol.',
+          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh bearing seats clean and makes the fan sound boring in the best possible way.',
-          onFailure: 'The kit works, but one cheap clip bends and Curtis has to open the second little bag of parts.',
-          nuyenSuccess: -45,
-          nuyenFailure: -85,
+          onSuccess: 'The fresh strip seats clean, the flap swings square, and the only noise left is Taco asking why the robot gets better tape than the chairs.',
+          onFailure: 'The fresh strip works, but one adhesive edge folds on itself and Curtis has to open the backup length.',
+          nuyenSuccess: -40,
+          nuyenFailure: -75,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh bearing kit stabilizes the fan; cooler-load spin test TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh hinge tape stabilizes the flap; puddle-waddle gait check TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Cooler-load spin test',
-      station: 'Walk-in door propped with a mop bucket',
-      description: 'Run the fan under compressor load, listen for chirp return, and make sure the airflow stays steady without turning the salsa shelf into a wind tunnel.',
+      title: 'Puddle-waddle gait check',
+      station: 'Rubber mat and splash pan',
+      description: 'Mist the flap edge, walk Waddles over the rubber mat, and make sure the chirp does not come back when the mud-flap flexes wet.',
       actions: [
         {
-          label: 'Run the chilled airflow check',
-          detail: 'Kick the compressor on, watch the fan draw, and listen for the tiny squeal that thinks it can hide under refrigeration noise.',
-          skill: 'electronicsBR',
+          label: 'Run the wet-flap gait test',
+          detail: "Mist the hinge, cycle the flap, and listen for the third-step squeak trying to hide under Waddles' little rubber-foot shuffle.",
+          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fan holds a steady spin under load and the cooler quits auditioning for haunted kitchen duty.',
-          onFailure: 'The check passes well enough, but Curtis spends extra bench time damping one last cowling tick.',
-          nuyenSuccess: 0,
-          nuyenFailure: -35,
+          onSuccess: 'Waddles waddles wet and quiet, which is the rare kind of shop sentence that counts as good news.',
+          onFailure: 'The test passes well enough, but Curtis spends extra bench time damping one last flap tick before Taco hears it.',
+          nuyenSuccess: 10,
+          nuyenFailure: -30,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -224,18 +224,18 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Receipt and shop-credit note',
-      station: 'Grease pencil and register tape',
-      description: 'Write the cooler note, tape the date inside the service panel, and make sure Taco knows this was maintenance, not magic.',
+      title: 'Fur brush and shop note',
+      station: 'Grease pencil and lint roller',
+      description: 'Brush the damp fur edge, mark the hinge service date, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
       actions: [
         {
-          label: 'Log the fan fix and collect shop credit',
-          detail: 'Mark the service panel, note the parts choice, and produce a report tidy enough for Cindy to ingest without guessing.',
+          label: 'Log the flap fix and collect shop credit',
+          detail: 'Note the hinge choice, brush the fur seam, and write the kind of report that keeps tiny robot squeaks from becoming folklore.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, the panel gets a neat service mark, and Taco kicks in a small shop-credit thank-you for keeping the salsa cold.',
-          onFailure: 'The report is usable, but flags a mild watch note if the cooler chirps again under dinner-rush load.',
+          onSuccess: 'The report is clean, Waddles gets a tidy fur brush-out, and Taco kicks in a small shop-credit thank-you for ending the haunted chew-toy noise.',
+          onFailure: 'The report is usable, but flags a mild watch note if the flap chirps again after the next wet-floor patrol.',
           nuyenSuccess: 45,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const salvagedBushing = shift.log.some((entry) => entry.action === 'Fit a salvaged sleeve bushing')
-  const freshBearing = shift.log.some((entry) => entry.action === 'Install a fresh bearing kit')
-  if (salvagedBushing) {
+  const reusedHingeStrip = shift.log.some((entry) => entry.action === 'Trim and reuse the hinge strip')
+  const freshHingeTape = shift.log.some((entry) => entry.action === 'Install fresh hinge tape')
+  if (reusedHingeStrip) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Salvaged sleeve bushing is in effect: cooler-load spin test TN +1 for thrift-fit fussiness.',
+      modifierNote: 'Reused hinge strip is in effect: puddle-waddle gait check TN +1 for thrift-fit fussiness.',
     }
   }
-  if (freshBearing) {
+  if (freshHingeTape) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh bearing kit is in effect: cooler-load spin test TN -1 for a stable fan mount.',
+      modifierNote: 'Fresh hinge tape is in effect: puddle-waddle gait check TN -1 for a stable flap edge.',
     }
   }
 
