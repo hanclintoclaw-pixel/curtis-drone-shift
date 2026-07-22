@@ -115,28 +115,28 @@ const seedSkills: SkillProfile = {
 }
 
 const activeJob: JobProfile = {
-  id: 'waddles-mud-flap-chirp',
-  title: "Waddles' Mud-Flap Chirp",
-  asset: "Waddles' rear mud-flap hinge strip, sensor-fur edge, and one tiny grit-packed hinge pin that chirps every third waddle",
-  customer: 'Taco shop wash sink, after Waddles came back from a puddle patrol sounding like a squeeze toy with opinions',
+  id: 'buzz-battery-clip-jiggle',
+  title: "Buzz's Battery Clip Jiggle",
+  asset: "Buzz's left-side battery tray clip, tired spring tab, and one suspicious smear of taco-grease dust under the latch",
+  customer: 'Taco shop prep counter, after Buzz buzzed fine but clicked every time the fridge compressor kicked on',
   risk: 'low',
-  hook: "Waddles is moving fine, but the back mud-flap chirps when the synthetic fur gets damp, and Taco says it sounds like somebody stepping on a haunted chew toy behind the counter.",
+  hook: "Buzz still powers up, but the battery tray gives a dry little click under vibration, like a grasshopper trapped in a cash register. Taco wants it quiet before the dinner rush starts blaming the drone for every weird kitchen noise.",
   baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Dry the flap and safe the fur edge',
-      station: 'Wash sink and towel hook',
-      description: 'Power Waddles down, blot the synthetic fur edge, and make sure the chirp is a hinge complaint instead of a damp sensor lead.',
+      title: 'Safe Buzz and check the tray latch',
+      station: 'Prep counter towel pad',
+      description: 'Power Buzz down, pull the pack, and confirm the click is a loose clip instead of a battery swell or cracked tray rail.',
       actions: [
         {
-          label: 'Safe Waddles and inspect the rear lead',
-          detail: 'Pull the pack, dry the fur seam, and check the little tail-end sensor lead before Curtis starts blaming innocent plastic.',
+          label: 'Pull the pack and inspect the latch gap',
+          detail: 'Kill power, wipe the tray edge, and measure how much the spring tab lifts when the pack gets a fingertip wiggle.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis confirms the lead is dry, the pack is safe, and the chirp is mechanical instead of a wet-electronics tantrum.',
-          onFailure: 'Waddles is safe, but Curtis sacrifices a shop towel and one tiny heat-shrink sleeve proving the damp spot is only splashback.',
+          onSuccess: 'Curtis confirms the pack is safe, the cells are not swelling, and the latch gap is the noisy culprit.',
+          onFailure: 'The pack is safe, but Curtis burns a spare insulation dot and extra wipe-down proving the tray is dirty instead of dangerous.',
           nuyenSuccess: 0,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -146,20 +146,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Find the third-step squeak',
-      station: 'Milk crate gait stand',
-      description: 'Cycle the rear flap by hand, tug the fur seam, and separate a bad hinge pin from a rubbing mud-flap edge.',
+      title: 'Trace the fridge-rattle click',
+      station: 'Milk crate vibration stand',
+      description: 'Set Buzz on a soft crate, tap the tray rail, and find whether the click comes from the spring tab or a tray screw backing out.',
       actions: [
         {
-          label: 'Trace the hinge chirp',
-          detail: 'Walk the flap through its travel and listen for the tiny grit squeal that only shows up when Waddles pretends to be dignified.',
-          skill: 'carBR',
+          label: 'Run a careful latch rattle check',
+          detail: 'Tap the rail, press the clip, and listen for the click that only shows up when the kitchen starts humming.',
+          skill: 'electronicsBR',
           targetNumber: 5,
-          requiredSuccesses: 2,
-          onSuccess: 'Curtis catches the grit-packed hinge pin and the fur rub before either one chews the flap edge worse.',
-          onFailure: 'The squeak hides until Curtis cleans one innocent bracket and burns extra swabs finding the real hinge pin.',
+          requiredSuccesses: 1,
+          onSuccess: 'Curtis catches the weak spring tab and a loose tray screw before either one can chew the plastic slot.',
+          onFailure: 'The click plays hide-and-seek until Curtis opens a fresh screw packet and wastes a few shop minutes finding the spring tab.',
           nuyenSuccess: 15,
-          nuyenFailure: -20,
+          nuyenFailure: -25,
           qualitySuccess: 2,
           qualityFailure: -1,
         },
@@ -167,54 +167,54 @@ const activeJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the flap hinge fix',
-      station: 'Scrap strip vs fresh hinge tape',
-      description: 'Decide whether to trim and reuse the existing hinge strip or spend for a fresh strip. The choice changes the puddle-waddle gait check later.',
+      title: 'Choose the clip fix',
+      station: 'Needle-nose pliers vs parts drawer',
+      description: 'Decide whether to tune the old spring ears or install a fresh clip. The choice changes the vibration test later.',
       actions: [
         {
-          label: 'Trim and reuse the hinge strip',
-          detail: 'Dress the old strip, polish the hinge pin, and save parts money with a thrift fit that needs a fussier wet-gait check.',
-          skill: 'carBR',
+          label: 'Crimp the existing clip ears',
+          detail: 'Bend the old spring ears back into shape, clean the tray groove, and save parts money with a fussier fit.',
+          skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The old strip trims clean, the hinge pin stops squeaking on the bench, and Waddles looks unfairly proud of the economy fix.',
-          onFailure: 'The thrift fix works, but Curtis wastes a strip of foam tape and a replacement washer getting the flap pressure even.',
-          nuyenSuccess: 55,
-          nuyenFailure: -20,
+          onSuccess: 'The original clip snaps tight again, and Buzz stops clicking on the bench without needing a new part.',
+          onFailure: 'The thrift fix holds, but Curtis cracks open a backup screw and heat-shrink sleeve getting the pressure even.',
+          nuyenSuccess: 50,
+          nuyenFailure: -15,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: reused hinge strip saves parts money but adds puddle-waddle gait check TN +1 and the final report notes the thrift fit.',
+          effectNote: 'Follow-up: crimped old clip saves parts money but adds vibration test TN +1 and the final report notes the thrift fit.',
         },
         {
-          label: 'Install fresh hinge tape',
-          detail: 'Spend for the clean strip, square the flap edge, and make Waddles boringly quiet before the next wet floor patrol.',
-          skill: 'carBR',
+          label: 'Install a fresh spring clip',
+          detail: 'Spend for a clean latch clip, square the tray rail, and make the battery pack boringly snug.',
+          skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh strip seats clean, the flap swings square, and the only noise left is Taco asking why the robot gets better tape than the chairs.',
-          onFailure: 'The fresh strip works, but one adhesive edge folds on itself and Curtis has to open the backup length.',
-          nuyenSuccess: -40,
-          nuyenFailure: -75,
+          onSuccess: 'The fresh clip seats clean, the pack locks snug, and Taco immediately asks if all things can be made that quiet.',
+          onFailure: 'The fresh clip works, but one tiny retaining screw vanishes into the prep-counter shadow realm before Curtis finds the spare.',
+          nuyenSuccess: -35,
+          nuyenFailure: -70,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh hinge tape stabilizes the flap; puddle-waddle gait check TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh spring clip stabilizes the tray; vibration test TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Puddle-waddle gait check',
-      station: 'Rubber mat and splash pan',
-      description: 'Mist the flap edge, walk Waddles over the rubber mat, and make sure the chirp does not come back when the mud-flap flexes wet.',
+      title: 'Countertop vibration test',
+      station: 'Fridge-side rubber mat',
+      description: 'Seat the pack, simulate kitchen vibration, and make sure the tray stays quiet when Buzz gets bumped around the prep area.',
       actions: [
         {
-          label: 'Run the wet-flap gait test',
-          detail: "Mist the hinge, cycle the flap, and listen for the third-step squeak trying to hide under Waddles' little rubber-foot shuffle.",
-          skill: 'carBR',
+          label: 'Run the clip-buzz vibration test',
+          detail: 'Cycle power, tap the tray rail, and listen for the little battery-clip click trying to sneak back in under the fridge hum.',
+          skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Waddles waddles wet and quiet, which is the rare kind of shop sentence that counts as good news.',
-          onFailure: 'The test passes well enough, but Curtis spends extra bench time damping one last flap tick before Taco hears it.',
+          onSuccess: 'Buzz stays powered and quiet through the test, which makes the fridge the loudest thing in the kitchen again.',
+          onFailure: 'The test passes well enough, but Curtis spends extra bench time damping one last tray tick before Taco hears it.',
           nuyenSuccess: 10,
           nuyenFailure: -30,
           qualitySuccess: 2,
@@ -224,19 +224,19 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Fur brush and shop note',
-      station: 'Grease pencil and lint roller',
-      description: 'Brush the damp fur edge, mark the hinge service date, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
+      title: 'Brush the tray and write the ticket',
+      station: 'Grease pencil and parts tin',
+      description: 'Mark the latch service, brush out the tray groove, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
       actions: [
         {
-          label: 'Log the flap fix and collect shop credit',
-          detail: 'Note the hinge choice, brush the fur seam, and write the kind of report that keeps tiny robot squeaks from becoming folklore.',
+          label: 'Log the battery clip fix and collect shop credit',
+          detail: 'Note the clip choice, close the parts tin, and write the kind of report that keeps mystery kitchen clicks from becoming folklore.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Waddles gets a tidy fur brush-out, and Taco kicks in a small shop-credit thank-you for ending the haunted chew-toy noise.',
-          onFailure: 'The report is usable, but flags a mild watch note if the flap chirps again after the next wet-floor patrol.',
-          nuyenSuccess: 45,
+          onSuccess: 'The report is clean, Buzz is quiet, and Taco kicks in a small shop-credit thank-you for ending the cash-register grasshopper noise.',
+          onFailure: 'The report is usable, but flags a mild watch note if the tray click comes back after the next busy kitchen shift.',
+          nuyenSuccess: 40,
           nuyenFailure: -10,
           qualitySuccess: 1,
           qualityFailure: 0,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const reusedHingeStrip = shift.log.some((entry) => entry.action === 'Trim and reuse the hinge strip')
-  const freshHingeTape = shift.log.some((entry) => entry.action === 'Install fresh hinge tape')
-  if (reusedHingeStrip) {
+  const crimpedClip = shift.log.some((entry) => entry.action === 'Crimp the existing clip ears')
+  const freshClip = shift.log.some((entry) => entry.action === 'Install a fresh spring clip')
+  if (crimpedClip) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Reused hinge strip is in effect: puddle-waddle gait check TN +1 for thrift-fit fussiness.',
+      modifierNote: 'Crimped old clip is in effect: vibration test TN +1 for thrift-fit fussiness.',
     }
   }
-  if (freshHingeTape) {
+  if (freshClip) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh hinge tape is in effect: puddle-waddle gait check TN -1 for a stable flap edge.',
+      modifierNote: 'Fresh spring clip is in effect: vibration test TN -1 for a stable tray latch.',
     }
   }
 
