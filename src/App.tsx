@@ -115,28 +115,28 @@ const seedSkills: SkillProfile = {
 }
 
 const activeJob: JobProfile = {
-  id: 'buzz-battery-clip-jiggle',
-  title: "Buzz's Battery Clip Jiggle",
-  asset: "Buzz's left-side battery tray clip, tired spring tab, and one suspicious smear of taco-grease dust under the latch",
-  customer: 'Taco shop prep counter, after Buzz buzzed fine but clicked every time the fridge compressor kicked on',
+  id: 'tacos-walk-in-fan-chirp',
+  title: "Taco's Walk-In Fan Chirp",
+  asset: "Taco's walk-in cooler fan guard, two tired rubber grommets, and a condensation-dusted quick connector",
+  customer: 'Taco shop cold room, after the fan started chirping every time the door got slammed during prep rush',
   risk: 'low',
-  hook: "Buzz still powers up, but the battery tray gives a dry little click under vibration, like a grasshopper trapped in a cash register. Taco wants it quiet before the dinner rush starts blaming the drone for every weird kitchen noise.",
+  hook: "The cooler fan still spins, but it lets out a tiny rubbery chirp after every door slam, like a mouse trying to back-up beep. Taco wants Curtis to make it boring again before the lunch rush starts treating the walk-in like a haunted appliance.",
   baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Safe Buzz and check the tray latch',
-      station: 'Prep counter towel pad',
-      description: 'Power Buzz down, pull the pack, and confirm the click is a loose clip instead of a battery swell or cracked tray rail.',
+      title: 'Tag the breaker and safe the fan',
+      station: 'Cooler door stool',
+      description: 'Kill power, tag the switch, and confirm the chirp is not coming from a fan blade scraping the guard.',
       actions: [
         {
-          label: 'Pull the pack and inspect the latch gap',
-          detail: 'Kill power, wipe the tray edge, and measure how much the spring tab lifts when the pack gets a fingertip wiggle.',
+          label: 'Lock out the fan and inspect the guard gap',
+          detail: 'Tag the breaker, spin the fan by hand, and check whether the guard or blade has started kissing anything expensive.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis confirms the pack is safe, the cells are not swelling, and the latch gap is the noisy culprit.',
-          onFailure: 'The pack is safe, but Curtis burns a spare insulation dot and extra wipe-down proving the tray is dirty instead of dangerous.',
+          onSuccess: 'Curtis confirms the blade path is clear and the noise is vibration, not a fan trying to machine its own guard.',
+          onFailure: 'The fan is safe, but Curtis burns extra gloves and a wipe-down chasing one innocent splash mark across the guard.',
           nuyenSuccess: 0,
           nuyenFailure: -10,
           qualitySuccess: 1,
@@ -146,18 +146,18 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Trace the fridge-rattle click',
-      station: 'Milk crate vibration stand',
-      description: 'Set Buzz on a soft crate, tap the tray rail, and find whether the click comes from the spring tab or a tray screw backing out.',
+      title: 'Find the chirp source',
+      station: 'Milk crate fan stand',
+      description: 'Check the fan mount, connector, and guard screws to prove whether the sound is rubber grommet squeak or an electrical connector buzz.',
       actions: [
         {
-          label: 'Run a careful latch rattle check',
-          detail: 'Tap the rail, press the clip, and listen for the click that only shows up when the kitchen starts humming.',
+          label: 'Trace the door-slam vibration path',
+          detail: 'Tap the frame, flex the fan mount, and listen for the chirp that only appears when Taco treats the door like it owes him money.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis catches the weak spring tab and a loose tray screw before either one can chew the plastic slot.',
-          onFailure: 'The click plays hide-and-seek until Curtis opens a fresh screw packet and wastes a few shop minutes finding the spring tab.',
+          onSuccess: 'Curtis pins the chirp to two flattened grommets and a connector clip that needs cleaning before it grows opinions.',
+          onFailure: 'The chirp hides until Curtis spends extra cleaner and one spare screw proving the connector is only dusty, not failing.',
           nuyenSuccess: 15,
           nuyenFailure: -25,
           qualitySuccess: 2,
@@ -167,56 +167,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the clip fix',
-      station: 'Needle-nose pliers vs parts drawer',
-      description: 'Decide whether to tune the old spring ears or install a fresh clip. The choice changes the vibration test later.',
+      title: 'Choose the grommet fix',
+      station: 'Rubber bin vs parts drawer',
+      description: 'Decide whether to trim and reuse the tired rubber or install fresh anti-vibe grommets. The choice changes the door-slam test later.',
       actions: [
         {
-          label: 'Crimp the existing clip ears',
-          detail: 'Bend the old spring ears back into shape, clean the tray groove, and save parts money with a fussier fit.',
+          label: 'Trim and reuse the old grommets',
+          detail: 'Square the flattened rubber, clean the mount pocket, and save parts money with a fussier fit.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The original clip snaps tight again, and Buzz stops clicking on the bench without needing a new part.',
-          onFailure: 'The thrift fix holds, but Curtis cracks open a backup screw and heat-shrink sleeve getting the pressure even.',
-          nuyenSuccess: 50,
+          onSuccess: 'The reused grommets seat evenly, the mount stops squeaking on the bench, and the parts drawer stays closed.',
+          onFailure: 'The thrift fix holds, but Curtis spends extra tape and a backup screw getting the pressure even.',
+          nuyenSuccess: 55,
           nuyenFailure: -15,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: crimped old clip saves parts money but adds vibration test TN +1 and the final report notes the thrift fit.',
+          effectNote: 'Follow-up: reused old grommets save parts money but add door-slam spin test TN +1 and the final report notes the thrift fit.',
         },
         {
-          label: 'Install a fresh spring clip',
-          detail: 'Spend for a clean latch clip, square the tray rail, and make the battery pack boringly snug.',
+          label: 'Install fresh anti-vibe grommets',
+          detail: 'Spend for new rubber, square the fan mount, and make the cooler sound as dull as health-code paperwork.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh clip seats clean, the pack locks snug, and Taco immediately asks if all things can be made that quiet.',
-          onFailure: 'The fresh clip works, but one tiny retaining screw vanishes into the prep-counter shadow realm before Curtis finds the spare.',
-          nuyenSuccess: -35,
-          nuyenFailure: -70,
+          onSuccess: 'The fresh grommets seat clean, the mount goes boringly quiet, and Taco asks if Curtis can do that to the ice machine next.',
+          onFailure: 'The fresh grommets work, but one tiny washer vanishes under the cooler shelf before Curtis finds a spare.',
+          nuyenSuccess: -40,
+          nuyenFailure: -80,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh spring clip stabilizes the tray; vibration test TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh anti-vibe grommets stabilize the mount; door-slam spin test TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Countertop vibration test',
-      station: 'Fridge-side rubber mat',
-      description: 'Seat the pack, simulate kitchen vibration, and make sure the tray stays quiet when Buzz gets bumped around the prep area.',
+      title: 'Door-slam spin test',
+      station: 'Cooler threshold rubber mat',
+      description: 'Power the fan, cycle the cooler door, and make sure the mount stays quiet when the kitchen starts shaking the frame again.',
       actions: [
         {
-          label: 'Run the clip-buzz vibration test',
-          detail: 'Cycle power, tap the tray rail, and listen for the little battery-clip click trying to sneak back in under the fridge hum.',
+          label: 'Run the cooler fan door-slam test',
+          detail: 'Cycle power, thump the frame, and listen for the chirp trying to sneak back under the cooler fan hum.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Buzz stays powered and quiet through the test, which makes the fridge the loudest thing in the kitchen again.',
-          onFailure: 'The test passes well enough, but Curtis spends extra bench time damping one last tray tick before Taco hears it.',
-          nuyenSuccess: 10,
-          nuyenFailure: -30,
+          onSuccess: 'The fan runs quiet through the test, leaving the cooler compressor as the only thing in the room with a speaking part.',
+          onFailure: 'The test passes well enough, but Curtis spends extra bench time damping one last squeak before Taco hears it.',
+          nuyenSuccess: 20,
+          nuyenFailure: -25,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -224,20 +224,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Brush the tray and write the ticket',
-      station: 'Grease pencil and parts tin',
-      description: 'Mark the latch service, brush out the tray groove, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
+      title: 'Wipe the guard and write the ticket',
+      station: 'Grease pencil and receipt spike',
+      description: 'Clean the guard, note the grommet choice, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
       actions: [
         {
-          label: 'Log the battery clip fix and collect shop credit',
-          detail: 'Note the clip choice, close the parts tin, and write the kind of report that keeps mystery kitchen clicks from becoming folklore.',
+          label: 'Log the cooler fan fix and collect shop credit',
+          detail: 'Note the grommet choice, wipe the guard, and write the kind of report that keeps haunted-appliance rumors from becoming lore.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Buzz is quiet, and Taco kicks in a small shop-credit thank-you for ending the cash-register grasshopper noise.',
-          onFailure: 'The report is usable, but flags a mild watch note if the tray click comes back after the next busy kitchen shift.',
-          nuyenSuccess: 40,
-          nuyenFailure: -10,
+          onSuccess: 'The report is clean, the cooler is quiet, and Taco kicks in a small shop-credit thank-you for de-haunting the walk-in.',
+          onFailure: 'The report is usable, but flags a mild watch note if the chirp comes back after the next prep rush.',
+          nuyenSuccess: 50,
+          nuyenFailure: -5,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const crimpedClip = shift.log.some((entry) => entry.action === 'Crimp the existing clip ears')
-  const freshClip = shift.log.some((entry) => entry.action === 'Install a fresh spring clip')
-  if (crimpedClip) {
+  const reusedGrommets = shift.log.some((entry) => entry.action === 'Trim and reuse the old grommets')
+  const freshGrommets = shift.log.some((entry) => entry.action === 'Install fresh anti-vibe grommets')
+  if (reusedGrommets) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Crimped old clip is in effect: vibration test TN +1 for thrift-fit fussiness.',
+      modifierNote: 'Reused old grommets are in effect: door-slam spin test TN +1 for thrift-fit fussiness.',
     }
   }
-  if (freshClip) {
+  if (freshGrommets) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh spring clip is in effect: vibration test TN -1 for a stable tray latch.',
+      modifierNote: 'Fresh anti-vibe grommets are in effect: door-slam spin test TN -1 for a stable fan mount.',
     }
   }
 
