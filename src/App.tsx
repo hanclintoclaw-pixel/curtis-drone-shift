@@ -115,30 +115,30 @@ const seedSkills: SkillProfile = {
 }
 
 const activeJob: JobProfile = {
-  id: 'tacos-walk-in-fan-chirp',
-  title: "Taco's Walk-In Fan Chirp",
-  asset: "Taco's walk-in cooler fan guard, two tired rubber grommets, and a condensation-dusted quick connector",
-  customer: 'Taco shop cold room, after the fan started chirping every time the door got slammed during prep rush',
+  id: 'grandpas-glovebox-ground-hum',
+  title: "Grandpa's Glovebox Ground Hum",
+  asset: "Grandpa's glovebox relay strip, a dusty dash-cam pigtail, and one suspect ground strap tucked behind the trim",
+  customer: 'Grandpa, after the dash cam started humming through the cabin speaker whenever the glovebox light came on',
   risk: 'low',
-  hook: "The cooler fan still spins, but it lets out a tiny rubbery chirp after every door slam, like a mouse trying to back-up beep. Taco wants Curtis to make it boring again before the lunch rush starts treating the walk-in like a haunted appliance.",
+  hook: "Grandpa is not broken, exactly, but the glovebox light now makes the dash-cam speaker hum like it knows a secret. Taco wants Curtis to quiet the little electrical ghost before somebody blames the car for singing backup.",
   baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
   stages: [
     {
       id: 'intake',
-      title: 'Tag the breaker and safe the fan',
-      station: 'Cooler door stool',
-      description: 'Kill power, tag the switch, and confirm the chirp is not coming from a fan blade scraping the guard.',
+      title: 'Safe the dash feed',
+      station: 'Passenger footwell mat',
+      description: 'Pop the glovebox, isolate the accessory feed, and confirm the hum is annoying instead of dangerous.',
       actions: [
         {
-          label: 'Lock out the fan and inspect the guard gap',
-          detail: 'Tag the breaker, spin the fan by hand, and check whether the guard or blade has started kissing anything expensive.',
+          label: 'Pull the accessory fuse and inspect the pigtail',
+          detail: 'Kill the dash-cam feed, check for hot insulation, and make sure the glovebox light is not sharing power like a bad roommate.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis confirms the blade path is clear and the noise is vibration, not a fan trying to machine its own guard.',
-          onFailure: 'The fan is safe, but Curtis burns extra gloves and a wipe-down chasing one innocent splash mark across the guard.',
+          onSuccess: 'Curtis confirms the circuit is safe and the hum is a grounding nuisance, not a melt-the-dash problem.',
+          onFailure: 'The circuit is safe, but Curtis donates a spare blade fuse and extra tape to the cause before the pigtail behaves.',
           nuyenSuccess: 0,
-          nuyenFailure: -10,
+          nuyenFailure: -15,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -146,19 +146,19 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Find the chirp source',
-      station: 'Milk crate fan stand',
-      description: 'Check the fan mount, connector, and guard screws to prove whether the sound is rubber grommet squeak or an electrical connector buzz.',
+      title: 'Trace the hum path',
+      station: 'Glovebox hinge line',
+      description: 'Follow the dash-cam ground, relay strip, and glovebox lamp return to find where the noise is sneaking into the speaker.',
       actions: [
         {
-          label: 'Trace the door-slam vibration path',
-          detail: 'Tap the frame, flex the fan mount, and listen for the chirp that only appears when Taco treats the door like it owes him money.',
+          label: 'Probe the shared ground return',
+          detail: 'Meter the relay strip, wiggle the lamp lead, and listen for the hum changing pitch when the glovebox switch clicks.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis pins the chirp to two flattened grommets and a connector clip that needs cleaning before it grows opinions.',
-          onFailure: 'The chirp hides until Curtis spends extra cleaner and one spare screw proving the connector is only dusty, not failing.',
-          nuyenSuccess: 15,
+          onSuccess: 'Curtis catches the shared return path and marks the exact ring terminal making the dash cam hum along with the glovebox lamp.',
+          onFailure: 'The hum makes Curtis chase one innocent relay socket before the real tired ground strap gives itself away.',
+          nuyenSuccess: 10,
           nuyenFailure: -25,
           qualitySuccess: 2,
           qualityFailure: -1,
@@ -167,56 +167,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Choose the grommet fix',
-      station: 'Rubber bin vs parts drawer',
-      description: 'Decide whether to trim and reuse the tired rubber or install fresh anti-vibe grommets. The choice changes the door-slam test later.',
+      title: 'Choose the ground strap fix',
+      station: 'Crimp tray vs salvage tin',
+      description: 'Decide whether to braid a cleaned salvage strap or spend for fresh ring terminals. The choice changes the accessory-load test later.',
       actions: [
         {
-          label: 'Trim and reuse the old grommets',
-          detail: 'Square the flattened rubber, clean the mount pocket, and save parts money with a fussier fit.',
+          label: 'Clean and braid a salvage ground strap',
+          detail: 'Scrub a donor strap from the salvage tin, braid it tidy, and save parts money with a thriftier fit behind the glovebox.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The reused grommets seat evenly, the mount stops squeaking on the bench, and the parts drawer stays closed.',
-          onFailure: 'The thrift fix holds, but Curtis spends extra tape and a backup screw getting the pressure even.',
-          nuyenSuccess: 55,
-          nuyenFailure: -15,
+          onSuccess: 'The salvage strap crimps clean, the return path gets shorter, and the parts drawer stays blessedly shut.',
+          onFailure: 'The thrift strap works, but Curtis burns extra heat-shrink and a backup screw getting the contact patch clean.',
+          nuyenSuccess: 60,
+          nuyenFailure: -20,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: reused old grommets save parts money but add door-slam spin test TN +1 and the final report notes the thrift fit.',
+          effectNote: 'Follow-up: salvage ground strap saves parts money but adds accessory-load test TN +1 and the final report notes the thrift fit.',
         },
         {
-          label: 'Install fresh anti-vibe grommets',
-          detail: 'Spend for new rubber, square the fan mount, and make the cooler sound as dull as health-code paperwork.',
+          label: 'Install fresh ring terminals',
+          detail: 'Spend for new terminals, cut the crusty end back, and make the ground path boring enough for a shop manual.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh grommets seat clean, the mount goes boringly quiet, and Taco asks if Curtis can do that to the ice machine next.',
-          onFailure: 'The fresh grommets work, but one tiny washer vanishes under the cooler shelf before Curtis finds a spare.',
-          nuyenSuccess: -40,
-          nuyenFailure: -80,
+          onSuccess: 'The fresh terminals bite cleanly, the ground path tests dull, and Grandpa stops trying to be a harmonica.',
+          onFailure: 'The fresh terminals work, but one tiny screw dives behind the kick panel and demands a replacement.',
+          nuyenSuccess: -45,
+          nuyenFailure: -85,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh anti-vibe grommets stabilize the mount; door-slam spin test TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: fresh ring terminals stabilize the ground path; accessory-load test TN -1 and the final report notes the paid parts.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Door-slam spin test',
-      station: 'Cooler threshold rubber mat',
-      description: 'Power the fan, cycle the cooler door, and make sure the mount stays quiet when the kitchen starts shaking the frame again.',
+      title: 'Accessory-load test',
+      station: 'Driver seat with knees sideways',
+      description: 'Power the dash cam, cycle the glovebox lamp, and make sure the cabin speaker stays quiet under normal accessory load.',
       actions: [
         {
-          label: 'Run the cooler fan door-slam test',
-          detail: 'Cycle power, thump the frame, and listen for the chirp trying to sneak back under the cooler fan hum.',
+          label: 'Run the glovebox light and dash-cam load test',
+          detail: 'Cycle the accessory feed, open and close the glovebox, and listen for any last hum trying to ride the speaker line.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fan runs quiet through the test, leaving the cooler compressor as the only thing in the room with a speaking part.',
-          onFailure: 'The test passes well enough, but Curtis spends extra bench time damping one last squeak before Taco hears it.',
-          nuyenSuccess: 20,
-          nuyenFailure: -25,
+          onSuccess: 'The speaker stays quiet through the test, and the glovebox light goes back to its proper job of illuminating old receipts.',
+          onFailure: 'The test passes well enough, but Curtis spends extra wrap and cleaner damping one last little buzz under the dash.',
+          nuyenSuccess: 25,
+          nuyenFailure: -30,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -224,19 +224,19 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Wipe the guard and write the ticket',
-      station: 'Grease pencil and receipt spike',
-      description: 'Clean the guard, note the grommet choice, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
+      title: 'Tie the loom and write the ticket',
+      station: 'Zip-tie cup holder',
+      description: 'Secure the glovebox loom, note the ground-strap choice, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
       actions: [
         {
-          label: 'Log the cooler fan fix and collect shop credit',
-          detail: 'Note the grommet choice, wipe the guard, and write the kind of report that keeps haunted-appliance rumors from becoming lore.',
+          label: 'Log the ground hum fix and collect shop credit',
+          detail: 'Tie the loom, note the chosen ground fix, and write the kind of report that keeps Grandpa out of the backup-vocal business.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, the cooler is quiet, and Taco kicks in a small shop-credit thank-you for de-haunting the walk-in.',
-          onFailure: 'The report is usable, but flags a mild watch note if the chirp comes back after the next prep rush.',
-          nuyenSuccess: 50,
+          onSuccess: 'The report is clean, Grandpa is quiet, and Taco kicks in a small shop-credit thank-you for exorcising the glovebox gremlin.',
+          onFailure: 'The report is usable, but flags a mild watch note if the hum returns after the next accessory add-on.',
+          nuyenSuccess: 45,
           nuyenFailure: -5,
           qualitySuccess: 1,
           qualityFailure: 0,
@@ -321,20 +321,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const reusedGrommets = shift.log.some((entry) => entry.action === 'Trim and reuse the old grommets')
-  const freshGrommets = shift.log.some((entry) => entry.action === 'Install fresh anti-vibe grommets')
-  if (reusedGrommets) {
+  const salvageGround = shift.log.some((entry) => entry.action === 'Clean and braid a salvage ground strap')
+  const freshTerminals = shift.log.some((entry) => entry.action === 'Install fresh ring terminals')
+  if (salvageGround) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Reused old grommets are in effect: door-slam spin test TN +1 for thrift-fit fussiness.',
+      modifierNote: 'Salvage ground strap is in effect: accessory-load test TN +1 for thrift-fit fussiness.',
     }
   }
-  if (freshGrommets) {
+  if (freshTerminals) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh anti-vibe grommets are in effect: door-slam spin test TN -1 for a stable fan mount.',
+      modifierNote: 'Fresh ring terminals are in effect: accessory-load test TN -1 for a stable ground path.',
     }
   }
 
