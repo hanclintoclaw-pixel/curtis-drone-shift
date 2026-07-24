@@ -93,8 +93,19 @@ interface RollFeedback {
   detail: string
 }
 
+interface ProjectStep {
+  day: number
+  title: string
+  status: 'active' | 'waiting' | 'final'
+}
+
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
+const PROJECT_NAME = 'Curtis Backpack Arms Build'
+const PROJECT_DAY = 1
+const PROJECT_TOTAL_DAYS = 14
+const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
+const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 
 const skillLabels: Record<keyof SkillProfile, string> = {
   electronics: 'Electronics',
@@ -114,20 +125,37 @@ const seedSkills: SkillProfile = {
   negotiation: 2,
 }
 
+const projectSteps: ProjectStep[] = [
+  { day: 1, title: 'Load-path sketch and material coupons', status: 'active' },
+  { day: 2, title: 'Backplate and hip-belt skeleton', status: 'waiting' },
+  { day: 3, title: 'Folded-profile dummy pack', status: 'waiting' },
+  { day: 4, title: 'Arm segment pattern', status: 'waiting' },
+  { day: 5, title: 'Root joint cluster', status: 'waiting' },
+  { day: 6, title: 'Retraction rails and lock detents', status: 'waiting' },
+  { day: 7, title: 'Actuator test mule', status: 'waiting' },
+  { day: 8, title: 'Power and control trunk', status: 'waiting' },
+  { day: 9, title: 'Quick-change wrist sockets', status: 'waiting' },
+  { day: 10, title: 'Single-arm lift and tool test', status: 'waiting' },
+  { day: 11, title: 'Three-arm side assembly', status: 'waiting' },
+  { day: 12, title: 'Mirror-side replication', status: 'waiting' },
+  { day: 13, title: 'Wear test and snag test', status: 'waiting' },
+  { day: 14, title: 'Final acceptance and usage guide', status: 'final' },
+]
+
 const activeJob: JobProfile = {
   id: 'backpack-arms-load-path-coupons',
   title: 'Backpack Arms Load-Path Coupons',
-  asset: "Curtis's proposed six-arm retractable backpack rig: a compact backplate, shoulder/hip harness, six folded arm channels, and first lightweight metal samples",
-  customer: 'Curtis, starting the wearable backpack-arms project from the attached six-arm concept sketch',
+  asset: "Curtis's GM-approved six-arm retractable backpack rig: compact backplate, shoulder/hip harness, six folded arm channels, first lightweight metal coupons, and project budget ledger",
+  customer: 'Curtis, starting Day 1 of the 14-day Backpack Arms diversion track from the attached six-arm concept sketch',
   risk: 'shop mess',
-  hook: 'Curtis is not building combat spider arms in one afternoon. Today is the sane first step: prove the load path, pick metal coupons light enough to wear, and make sure the whole contraption folds into something closer to a backpack than a kitchen chandelier.',
-  baseline: 'This begins the Backpack Arms Build plan. Missed prior work orders still discard cleanly with no change, no nuyen movement, no drone state change, and no penalty. This phase only creates design notes and test coupons; no permanent equipment, combat, or stat benefit applies unless the GM approves the completed rig.',
+  hook: 'Curtis is not building combat spider arms in one afternoon. Day 1 is the expensive, sensible part: prove the load path, buy or salvage metal worth trusting, and make sure the future rig folds into something closer to a backpack than a kitchen chandelier.',
+  baseline: 'GM-approved 14-day diversion track. Missed prior work orders still discard cleanly with no change, no nuyen movement, no drone state change, and no penalty. This phase creates design notes, material coupons, and the first project-spend entry; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis\'s page and usage guide.',
   stages: [
     {
       id: 'intake',
       title: 'Define the carry envelope',
       station: 'Cardboard pattern table',
-      description: 'Map the folded backpack outline, harness contact points, and safe clearance around Curtis before any metal gets cut.',
+      description: 'Map the folded backpack outline, harness contact points, and safe clearance around Curtis before any serious metal gets cut.',
       actions: [
         {
           label: 'Trace the folded six-arm silhouette',
@@ -136,9 +164,9 @@ const activeJob: JobProfile = {
           targetNumber: 4,
           requiredSuccesses: 1,
           onSuccess: 'Curtis gets a believable folded envelope: three arm channels per side, a central spine plate, and hip-belt clearance that does not fight Grandpa\'s seat.',
-          onFailure: 'The first pattern is too wide, so Curtis trims the outer channels and burns extra shop board before the pack stops looking like a coat rack with ambitions.',
-          nuyenSuccess: 0,
-          nuyenFailure: -15,
+          onFailure: 'The first pattern is too wide, so Curtis trims the outer channels and buys extra shop board before the pack stops looking like a coat rack with ambitions.',
+          nuyenSuccess: -50,
+          nuyenFailure: -125,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -158,8 +186,8 @@ const activeJob: JobProfile = {
           requiredSuccesses: 1,
           onSuccess: 'Curtis spots the ugly truth early: the root joints need a rigid spine and hip belt, not just heroic shoulder straps and optimism.',
           onFailure: 'The math catches up late, after Curtis redraws one pretty-but-useless shoulder-only mount and mutters at the torque board.',
-          nuyenSuccess: 0,
-          nuyenFailure: -25,
+          nuyenSuccess: -100,
+          nuyenFailure: -250,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -169,35 +197,35 @@ const activeJob: JobProfile = {
       id: 'repair',
       title: 'Choose first metal coupons',
       station: 'Salvage bin vs parts terminal',
-      description: 'Pick the first lightweight metal path. Salvage keeps the cost down but may be fussier; paid alloy is cleaner but hurts the ledger.',
+      description: 'Pick the first lightweight metal path. Salvage keeps the bill smaller but risks fussy testing; documented alloy hurts now but can save pain later.',
       actions: [
         {
           label: 'Use aircraft aluminum salvage coupons',
-          detail: 'Cut test strips from aircraft aluminum scrap and drone-arm offcuts, then label the grain direction and bend-risk spots.',
+          detail: 'Buy and cut tested aircraft aluminum scrap and drone-arm offcuts, then label the grain direction and bend-risk spots.',
           skill: 'negotiation',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The salvage pile coughs up enough clean aluminum coupon stock to test a lightweight rail without buying the shiny stuff yet.',
+          onSuccess: 'The salvage lot coughs up enough clean aluminum coupon stock to test a lightweight rail without buying the most painful shiny stuff yet.',
           onFailure: 'The salvage stock is usable, but Curtis has to overbuy bushings and cut around two mystery holes that were definitely not structural blessings.',
-          nuyenSuccess: 40,
-          nuyenFailure: -30,
+          nuyenSuccess: -450,
+          nuyenFailure: -900,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: aircraft aluminum salvage keeps project cost down but adds rail coupon bend-test TN +1 for thrift-stock uncertainty.',
+          effectNote: 'Project choice: aircraft aluminum salvage keeps Day 1 cheaper but adds rail coupon bend-test TN +1 and may push later rework if quality stays low.',
         },
         {
           label: 'Order titanium alloy tube samples',
-          detail: 'Buy a small tube-and-flat-bar sample set suitable for a wearable backplate rail and future arm-segment tests.',
+          detail: 'Buy a documented tube-and-flat-bar sample set suitable for wearable backplate rails and future arm-segment tests.',
           skill: 'negotiation',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis finds a small titanium sample lot that is not cheap, but it is straight, documented, and light enough to take seriously.',
+          onSuccess: 'Curtis finds a titanium sample lot that is not cheap, but it is straight, documented, and light enough to take seriously.',
           onFailure: 'The samples arrive with one odd length and ugly shipping fees, but the alloy paperwork is real and the test pieces are worth cutting.',
-          nuyenSuccess: -80,
-          nuyenFailure: -130,
+          nuyenSuccess: -1600,
+          nuyenFailure: -2200,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: titanium alloy samples cost more now but lower rail coupon bend-test TN -1 for documented lightweight stock.',
+          effectNote: 'Project choice: titanium alloy samples cost more now but lower rail coupon bend-test TN -1 and set up cleaner lightweight-frame options later.',
         },
       ],
     },
@@ -215,8 +243,8 @@ const activeJob: JobProfile = {
           requiredSuccesses: 1,
           onSuccess: 'The coupon flexes predictably and gives Curtis a first usable rail profile for the backpack spine.',
           onFailure: 'The coupon survives, but Curtis has to soften one bend radius and mark a no-drill zone before trusting the profile.',
-          nuyenSuccess: 15,
-          nuyenFailure: -40,
+          nuyenSuccess: -75,
+          nuyenFailure: -250,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -226,18 +254,18 @@ const activeJob: JobProfile = {
       id: 'closeout',
       title: 'Write the phase-one spec',
       station: 'Coffee-stained build notebook',
-      description: 'Record the folded envelope, selected material path, load rail result, and next build phase so the daily Drone Shift chain can keep moving.',
+      description: 'Record the folded envelope, selected material path, load rail result, spend total, and next build phase so the 14-day Drone Shift chain can keep moving.',
       actions: [
         {
-          label: 'Log the Backpack Arms phase-one sheet',
-          detail: 'Write the first build note: folded size, six-arm channel assumptions, material choice, test result, and next step for the backplate skeleton.',
+          label: 'Log the Backpack Arms Day 1 sheet',
+          detail: 'Write the first build note: folded size, six-arm channel assumptions, material choice, test result, spend total, and Day 2 backplate-skeleton trigger.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
           onSuccess: 'The project sheet is clean enough that future work orders can build from it instead of rediscovering the same sharp-edged mistakes.',
           onFailure: 'The sheet is usable, but Curtis flags one measurement for recheck before the backplate skeleton gets cut.',
-          nuyenSuccess: 20,
-          nuyenFailure: -10,
+          nuyenSuccess: -25,
+          nuyenFailure: -100,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -372,6 +400,9 @@ function buildReport(job: JobProfile, shift: ShiftState) {
   return [
     `${CINDY_LOU_BOT_MENTION} CURTIS DRONE SHIFT REPORT`,
     `Job: ${job.title}`,
+    `Project track: ${PROJECT_NAME} day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}`,
+    `Project page: ${PROJECT_PAGE_URL}`,
+    `Project budget note: ${PROJECT_BUDGET_NOTE}`,
     `Asset: ${job.asset}`,
     `Customer/context: ${job.customer}`,
     `Status: ${finalStatus}`,
@@ -381,7 +412,8 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'Selected tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as a Curtis downtime/build event, close/mark this active Drone Shift Work Order as Job Completed, and do not apply permanent drone, vehicle, equipment, combat, or stat changes unless the GM confirms them.`,
+    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}, apply the nuyen delta as project spend, append the result to the project page progress log, close/mark this active Drone Shift Work Order as Job Completed, and set the next daily update to day ${PROJECT_DAY + 1}: Backplate and hip-belt skeleton. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
+    `Final-track trigger: On day ${PROJECT_TOTAL_DAYS} completion, update Curtis's page with the finalized Backpack Arms gear entry and add a usage guide covering deployment, folded carry, tool sockets, combat limits, maintenance, and any GM-approved SR3 rules effects.`,
   ].join('\n')
 }
 
@@ -498,10 +530,24 @@ function App() {
         <p>{job.baseline}</p>
       </article>
       <article className={`ledger-card ${nuyenTone(shift.nuyenDelta)}`}>
-        <span>Shop ledger</span>
+        <span>Project spend</span>
         <strong>{nuyenText(shift.nuyenDelta)}</strong>
         <p>{nuyenLabel(shift.nuyenDelta)} · {qualityLabel(shift.quality)} · quality {shift.quality}</p>
       </article>
+    </section>
+
+    <section className="project-panel">
+      <div>
+        <span className="kicker">GM-approved diversion track</span>
+        <h2>{PROJECT_NAME}</h2>
+        <p>{PROJECT_BUDGET_NOTE} Day {PROJECT_DAY} is active now; day {PROJECT_TOTAL_DAYS} finalizes only after GM acceptance and Curtis-page gear/usage-guide updates.</p>
+      </div>
+      <div className="project-steps">
+        {projectSteps.map((step) => <article key={step.day} className={step.status}>
+          <span>Day {step.day}</span>
+          <strong>{step.title}</strong>
+        </article>)}
+      </div>
     </section>
 
     <section className="layout-grid">
@@ -574,7 +620,7 @@ function App() {
       </aside>
     </section>
 
-    <footer className="footer-note">Build {__SOURCE_COMMIT__} - daily prototype. Missed work orders discard with no penalty; no automatic canonical drone or vehicle changes.</footer>
+    <footer className="footer-note">Build {__SOURCE_COMMIT__} - 14-day Backpack Arms diversion track. Missed work orders discard with no penalty; no permanent gear, combat, or stat effects until GM final acceptance.</footer>
   </main>
 }
 

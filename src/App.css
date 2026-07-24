@@ -243,3 +243,59 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
   .hero-stats, .job-banner, .swing-grid { grid-template-columns: 1fr; }
   .stage-track { grid-template-columns: 1fr; }
 }
+
+.project-panel {
+  border: 1px solid rgba(49, 211, 138, 0.28);
+  border-radius: 24px;
+  margin: 1rem 0;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(49, 211, 138, 0.15), transparent 22rem),
+    rgba(12, 24, 18, 0.78);
+}
+.project-panel h2 { margin: 0.2rem 0 0.4rem; }
+.project-panel p { color: #d8c2a5; line-height: 1.5; margin: 0; }
+.project-steps {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+.project-steps article {
+  border: 1px solid rgba(255, 173, 92, 0.22);
+  border-radius: 14px;
+  padding: 0.65rem;
+  min-height: 5.2rem;
+  background: rgba(17, 11, 6, 0.54);
+}
+.project-steps article.active {
+  border-color: rgba(49, 211, 138, 0.75);
+  background: rgba(49, 211, 138, 0.14);
+  box-shadow: 0 0 28px rgba(49, 211, 138, 0.16);
+}
+.project-steps article.final {
+  border-color: rgba(255, 184, 107, 0.68);
+  background: rgba(255, 129, 46, 0.12);
+}
+.project-steps span {
+  display: block;
+  color: #ffb86b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+}
+.project-steps strong {
+  display: block;
+  margin-top: 0.25rem;
+  line-height: 1.12;
+  color: #fff4df;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 1180px) {
+  .project-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .project-steps { grid-template-columns: 1fr; }
+}
