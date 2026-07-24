@@ -97,6 +97,9 @@ interface ProjectStep {
   day: number
   title: string
   status: 'active' | 'waiting' | 'final'
+  choicePressure: string
+  spendBand: string
+  carryForward: string
 }
 
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
@@ -104,6 +107,8 @@ const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
 const PROJECT_DAY = 1
 const PROJECT_TOTAL_DAYS = 14
+const NEXT_PROJECT_DAY = PROJECT_DAY + 1
+const NEXT_PROJECT_PHASE = 'Backplate and hip-belt skeleton'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 
@@ -126,20 +131,20 @@ const seedSkills: SkillProfile = {
 }
 
 const projectSteps: ProjectStep[] = [
-  { day: 1, title: 'Load-path sketch and material coupons', status: 'active' },
-  { day: 2, title: 'Backplate and hip-belt skeleton', status: 'waiting' },
-  { day: 3, title: 'Folded-profile dummy pack', status: 'waiting' },
-  { day: 4, title: 'Arm segment pattern', status: 'waiting' },
-  { day: 5, title: 'Root joint cluster', status: 'waiting' },
-  { day: 6, title: 'Retraction rails and lock detents', status: 'waiting' },
-  { day: 7, title: 'Actuator test mule', status: 'waiting' },
-  { day: 8, title: 'Power and control trunk', status: 'waiting' },
-  { day: 9, title: 'Quick-change wrist sockets', status: 'waiting' },
-  { day: 10, title: 'Single-arm lift and tool test', status: 'waiting' },
-  { day: 11, title: 'Three-arm side assembly', status: 'waiting' },
-  { day: 12, title: 'Mirror-side replication', status: 'waiting' },
-  { day: 13, title: 'Wear test and snag test', status: 'waiting' },
-  { day: 14, title: 'Final acceptance and usage guide', status: 'final' },
+  { day: 1, title: 'Load-path sketch and material coupons', status: 'active', choicePressure: 'salvage aluminum vs documented titanium samples', spendBand: '700-2,925¥', carryForward: 'material choice modifies Day 2/4 rail and frame tests' },
+  { day: 2, title: 'Backplate and hip-belt skeleton', status: 'waiting', choicePressure: 'cheap welded spine vs modular machined frame', spendBand: '1,500-4,500¥', carryForward: 'frame approach modifies folded-pack fit and load transfer' },
+  { day: 3, title: 'Folded-profile dummy pack', status: 'waiting', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'folded profile affects snag tests and repair access' },
+  { day: 4, title: 'Arm segment pattern', status: 'waiting', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'link style affects reach/load and fatigue checks' },
+  { day: 5, title: 'Root joint cluster', status: 'waiting', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'root joint quality affects all later arm alignment' },
+  { day: 6, title: 'Retraction rails and lock detents', status: 'waiting', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'lock choice affects deployment safety and combat approval' },
+  { day: 7, title: 'Actuator test mule', status: 'waiting', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'actuator choice defines power/control work' },
+  { day: 8, title: 'Power and control trunk', status: 'waiting', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'control style affects safety cutoffs and failure behavior' },
+  { day: 9, title: 'Quick-change wrist sockets', status: 'waiting', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'socket standard defines end-effector limits' },
+  { day: 10, title: 'Single-arm lift and tool test', status: 'waiting', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'safe load rating informs final guide' },
+  { day: 11, title: 'Three-arm side assembly', status: 'waiting', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'side balance affects mirror-side replication' },
+  { day: 12, title: 'Mirror-side replication', status: 'waiting', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'symmetry affects wear/snag final tests' },
+  { day: 13, title: 'Wear test and snag test', status: 'waiting', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'wear findings become final limitations' },
+  { day: 14, title: 'Final acceptance and usage guide', status: 'final', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'accepted result updates Curtis page with final gear and usage guide' },
 ]
 
 const activeJob: JobProfile = {
@@ -412,7 +417,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'Selected tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}, apply the nuyen delta as project spend, append the result to the project page progress log, close/mark this active Drone Shift Work Order as Job Completed, and set the next daily update to day ${PROJECT_DAY + 1}: Backplate and hip-belt skeleton. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
+    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}, apply the nuyen delta as project spend, append the result to the project page progress log, close/mark this active Drone Shift Work Order as Job Completed, and set the next daily update to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
     `Final-track trigger: On day ${PROJECT_TOTAL_DAYS} completion, update Curtis's page with the finalized Backpack Arms gear entry and add a usage guide covering deployment, folded carry, tool sockets, combat limits, maintenance, and any GM-approved SR3 rules effects.`,
   ].join('\n')
 }
@@ -542,10 +547,25 @@ function App() {
         <h2>{PROJECT_NAME}</h2>
         <p>{PROJECT_BUDGET_NOTE} Day {PROJECT_DAY} is active now; day {PROJECT_TOTAL_DAYS} finalizes only after GM acceptance and Curtis-page gear/usage-guide updates.</p>
       </div>
+      <div className="project-trigger-grid">
+        <article>
+          <span>Daily closeout trigger</span>
+          <strong>Post report to advance the build</strong>
+          <p>Cindy should append the day result to the project log, apply the spend delta, preserve the carry-forward hook, and rotate the next update to Day {NEXT_PROJECT_DAY}: {NEXT_PROJECT_PHASE}.</p>
+        </article>
+        <article>
+          <span>Final trigger</span>
+          <strong>Day {PROJECT_TOTAL_DAYS} writes Curtis's gear entry</strong>
+          <p>Final acceptance must update Curtis's page with the finished Backpack Arms rig, total spend, usage guide, limitations, allowed end effectors, and GM-approved SR3 effects.</p>
+        </article>
+      </div>
       <div className="project-steps">
         {projectSteps.map((step) => <article key={step.day} className={step.status}>
           <span>Day {step.day}</span>
           <strong>{step.title}</strong>
+          <small>{step.choicePressure}</small>
+          <em>{step.spendBand}</em>
+          <p>{step.carryForward}</p>
         </article>)}
       </div>
     </section>

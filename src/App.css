@@ -255,19 +255,23 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
 }
 .project-panel h2 { margin: 0.2rem 0 0.4rem; }
 .project-panel p { color: #d8c2a5; line-height: 1.5; margin: 0; }
+.project-trigger-grid,
 .project-steps {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 0.55rem;
   margin-top: 1rem;
 }
+.project-trigger-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.project-steps { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.project-trigger-grid article,
 .project-steps article {
   border: 1px solid rgba(255, 173, 92, 0.22);
   border-radius: 14px;
   padding: 0.65rem;
-  min-height: 5.2rem;
   background: rgba(17, 11, 6, 0.54);
 }
+.project-trigger-grid article { min-height: 6.5rem; }
+.project-steps article { min-height: 11.5rem; }
 .project-steps article.active {
   border-color: rgba(49, 211, 138, 0.75);
   background: rgba(49, 211, 138, 0.14);
@@ -277,6 +281,7 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
   border-color: rgba(255, 184, 107, 0.68);
   background: rgba(255, 129, 46, 0.12);
 }
+.project-trigger-grid span,
 .project-steps span {
   display: block;
   color: #ffb86b;
@@ -284,6 +289,7 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
   letter-spacing: 0.08em;
   font-size: 0.68rem;
 }
+.project-trigger-grid strong,
 .project-steps strong {
   display: block;
   margin-top: 0.25rem;
@@ -291,11 +297,27 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
   color: #fff4df;
   font-size: 0.86rem;
 }
+.project-trigger-grid strong { font-size: 1rem; }
+.project-steps small {
+  display: block;
+  color: #e7d1b1;
+  line-height: 1.25;
+  margin-top: 0.5rem;
+}
+.project-steps em {
+  display: inline-block;
+  color: #31d38a;
+  font-style: normal;
+  font-weight: 800;
+  margin-top: 0.45rem;
+}
+.project-steps p { font-size: 0.78rem; margin-top: 0.45rem; }
 
 @media (max-width: 1180px) {
   .project-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
+  .project-trigger-grid,
   .project-steps { grid-template-columns: 1fr; }
 }
