@@ -115,28 +115,28 @@ const seedSkills: SkillProfile = {
 }
 
 const activeJob: JobProfile = {
-  id: 'grandpas-glovebox-ground-hum',
-  title: "Grandpa's Glovebox Ground Hum",
-  asset: "Grandpa's glovebox relay strip, a dusty dash-cam pigtail, and one suspect ground strap tucked behind the trim",
-  customer: 'Grandpa, after the dash cam started humming through the cabin speaker whenever the glovebox light came on',
-  risk: 'low',
-  hook: "Grandpa is not broken, exactly, but the glovebox light now makes the dash-cam speaker hum like it knows a secret. Taco wants Curtis to quiet the little electrical ghost before somebody blames the car for singing backup.",
-  baseline: 'The prior work order rotates out cleanly: completed reports stay logged, and any untouched copy is Discarded with no change, no nuyen movement, no drone state change, and no penalty. This shift stays near break-even unless Curtis chooses to submit the final report.',
+  id: 'backpack-arms-load-path-coupons',
+  title: 'Backpack Arms Load-Path Coupons',
+  asset: "Curtis's proposed six-arm retractable backpack rig: a compact backplate, shoulder/hip harness, six folded arm channels, and first lightweight metal samples",
+  customer: 'Curtis, starting the wearable backpack-arms project from the attached six-arm concept sketch',
+  risk: 'shop mess',
+  hook: 'Curtis is not building combat spider arms in one afternoon. Today is the sane first step: prove the load path, pick metal coupons light enough to wear, and make sure the whole contraption folds into something closer to a backpack than a kitchen chandelier.',
+  baseline: 'This begins the Backpack Arms Build plan. Missed prior work orders still discard cleanly with no change, no nuyen movement, no drone state change, and no penalty. This phase only creates design notes and test coupons; no permanent equipment, combat, or stat benefit applies unless the GM approves the completed rig.',
   stages: [
     {
       id: 'intake',
-      title: 'Safe the dash feed',
-      station: 'Passenger footwell mat',
-      description: 'Pop the glovebox, isolate the accessory feed, and confirm the hum is annoying instead of dangerous.',
+      title: 'Define the carry envelope',
+      station: 'Cardboard pattern table',
+      description: 'Map the folded backpack outline, harness contact points, and safe clearance around Curtis before any metal gets cut.',
       actions: [
         {
-          label: 'Pull the accessory fuse and inspect the pigtail',
-          detail: 'Kill the dash-cam feed, check for hot insulation, and make sure the glovebox light is not sharing power like a bad roommate.',
-          skill: 'electronics',
+          label: 'Trace the folded six-arm silhouette',
+          detail: 'Use the concept sketch, cardboard ribs, and Curtis-scale measurements to mark where six folded arms can sit without smacking doors, seats, or his own head.',
+          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis confirms the circuit is safe and the hum is a grounding nuisance, not a melt-the-dash problem.',
-          onFailure: 'The circuit is safe, but Curtis donates a spare blade fuse and extra tape to the cause before the pigtail behaves.',
+          onSuccess: 'Curtis gets a believable folded envelope: three arm channels per side, a central spine plate, and hip-belt clearance that does not fight Grandpa\'s seat.',
+          onFailure: 'The first pattern is too wide, so Curtis trims the outer channels and burns extra shop board before the pack stops looking like a coat rack with ambitions.',
           nuyenSuccess: 0,
           nuyenFailure: -15,
           qualitySuccess: 1,
@@ -146,77 +146,77 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Trace the hum path',
-      station: 'Glovebox hinge line',
-      description: 'Follow the dash-cam ground, relay strip, and glovebox lamp return to find where the noise is sneaking into the speaker.',
+      title: 'Find the load path',
+      station: 'Grease-pencil torque board',
+      description: 'Estimate where tool loads and recoil-like snags will try to twist the rig, then route that force into the waist belt instead of Curtis\'s spine.',
       actions: [
         {
-          label: 'Probe the shared ground return',
-          detail: 'Meter the relay strip, wiggle the lamp lead, and listen for the hum changing pitch when the glovebox switch clicks.',
+          label: 'Run the shoulder-to-hip load sketch',
+          detail: 'Mark root-joint torque, arm reach, backplate leverage, and the hip-belt transfer line before choosing the first metal coupons.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis catches the shared return path and marks the exact ring terminal making the dash cam hum along with the glovebox lamp.',
-          onFailure: 'The hum makes Curtis chase one innocent relay socket before the real tired ground strap gives itself away.',
-          nuyenSuccess: 10,
+          onSuccess: 'Curtis spots the ugly truth early: the root joints need a rigid spine and hip belt, not just heroic shoulder straps and optimism.',
+          onFailure: 'The math catches up late, after Curtis redraws one pretty-but-useless shoulder-only mount and mutters at the torque board.',
+          nuyenSuccess: 0,
           nuyenFailure: -25,
           qualitySuccess: 2,
-          qualityFailure: -1,
+          qualityFailure: 0,
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Choose the ground strap fix',
-      station: 'Crimp tray vs salvage tin',
-      description: 'Decide whether to braid a cleaned salvage strap or spend for fresh ring terminals. The choice changes the accessory-load test later.',
+      title: 'Choose first metal coupons',
+      station: 'Salvage bin vs parts terminal',
+      description: 'Pick the first lightweight metal path. Salvage keeps the cost down but may be fussier; paid alloy is cleaner but hurts the ledger.',
       actions: [
         {
-          label: 'Clean and braid a salvage ground strap',
-          detail: 'Scrub a donor strap from the salvage tin, braid it tidy, and save parts money with a thriftier fit behind the glovebox.',
-          skill: 'electronicsBR',
+          label: 'Use aircraft aluminum salvage coupons',
+          detail: 'Cut test strips from aircraft aluminum scrap and drone-arm offcuts, then label the grain direction and bend-risk spots.',
+          skill: 'negotiation',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The salvage strap crimps clean, the return path gets shorter, and the parts drawer stays blessedly shut.',
-          onFailure: 'The thrift strap works, but Curtis burns extra heat-shrink and a backup screw getting the contact patch clean.',
-          nuyenSuccess: 60,
-          nuyenFailure: -20,
+          onSuccess: 'The salvage pile coughs up enough clean aluminum coupon stock to test a lightweight rail without buying the shiny stuff yet.',
+          onFailure: 'The salvage stock is usable, but Curtis has to overbuy bushings and cut around two mystery holes that were definitely not structural blessings.',
+          nuyenSuccess: 40,
+          nuyenFailure: -30,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Follow-up: salvage ground strap saves parts money but adds accessory-load test TN +1 and the final report notes the thrift fit.',
+          effectNote: 'Follow-up: aircraft aluminum salvage keeps project cost down but adds rail coupon bend-test TN +1 for thrift-stock uncertainty.',
         },
         {
-          label: 'Install fresh ring terminals',
-          detail: 'Spend for new terminals, cut the crusty end back, and make the ground path boring enough for a shop manual.',
-          skill: 'electronicsBR',
-          targetNumber: 4,
+          label: 'Order titanium alloy tube samples',
+          detail: 'Buy a small tube-and-flat-bar sample set suitable for a wearable backplate rail and future arm-segment tests.',
+          skill: 'negotiation',
+          targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh terminals bite cleanly, the ground path tests dull, and Grandpa stops trying to be a harmonica.',
-          onFailure: 'The fresh terminals work, but one tiny screw dives behind the kick panel and demands a replacement.',
-          nuyenSuccess: -45,
-          nuyenFailure: -85,
+          onSuccess: 'Curtis finds a small titanium sample lot that is not cheap, but it is straight, documented, and light enough to take seriously.',
+          onFailure: 'The samples arrive with one odd length and ugly shipping fees, but the alloy paperwork is real and the test pieces are worth cutting.',
+          nuyenSuccess: -80,
+          nuyenFailure: -130,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Follow-up: fresh ring terminals stabilize the ground path; accessory-load test TN -1 and the final report notes the paid parts.',
+          effectNote: 'Follow-up: titanium alloy samples cost more now but lower rail coupon bend-test TN -1 for documented lightweight stock.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Accessory-load test',
-      station: 'Driver seat with knees sideways',
-      description: 'Power the dash cam, cycle the glovebox lamp, and make sure the cabin speaker stays quiet under normal accessory load.',
+      title: 'Bend-test one load rail',
+      station: 'Bench vise with towel padding',
+      description: 'Clamp one shoulder-to-hip rail coupon and test whether the chosen metal path bends predictably instead of cracking or springing sideways.',
       actions: [
         {
-          label: 'Run the glovebox light and dash-cam load test',
-          detail: 'Cycle the accessory feed, open and close the glovebox, and listen for any last hum trying to ride the speaker line.',
-          skill: 'electronicsBR',
-          targetNumber: 4,
+          label: 'Flex the first shoulder-to-hip coupon',
+          detail: 'Load the test rail under controlled force, check twist, and decide whether this material can become the backplate spine skeleton.',
+          skill: 'carBR',
+          targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The speaker stays quiet through the test, and the glovebox light goes back to its proper job of illuminating old receipts.',
-          onFailure: 'The test passes well enough, but Curtis spends extra wrap and cleaner damping one last little buzz under the dash.',
-          nuyenSuccess: 25,
-          nuyenFailure: -30,
+          onSuccess: 'The coupon flexes predictably and gives Curtis a first usable rail profile for the backpack spine.',
+          onFailure: 'The coupon survives, but Curtis has to soften one bend radius and mark a no-drill zone before trusting the profile.',
+          nuyenSuccess: 15,
+          nuyenFailure: -40,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -224,20 +224,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Tie the loom and write the ticket',
-      station: 'Zip-tie cup holder',
-      description: 'Secure the glovebox loom, note the ground-strap choice, and produce a report tidy enough for Cindy and the GM to ingest cleanly.',
+      title: 'Write the phase-one spec',
+      station: 'Coffee-stained build notebook',
+      description: 'Record the folded envelope, selected material path, load rail result, and next build phase so the daily Drone Shift chain can keep moving.',
       actions: [
         {
-          label: 'Log the ground hum fix and collect shop credit',
-          detail: 'Tie the loom, note the chosen ground fix, and write the kind of report that keeps Grandpa out of the backup-vocal business.',
+          label: 'Log the Backpack Arms phase-one sheet',
+          detail: 'Write the first build note: folded size, six-arm channel assumptions, material choice, test result, and next step for the backplate skeleton.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The report is clean, Grandpa is quiet, and Taco kicks in a small shop-credit thank-you for exorcising the glovebox gremlin.',
-          onFailure: 'The report is usable, but flags a mild watch note if the hum returns after the next accessory add-on.',
-          nuyenSuccess: 45,
-          nuyenFailure: -5,
+          onSuccess: 'The project sheet is clean enough that future work orders can build from it instead of rediscovering the same sharp-edged mistakes.',
+          onFailure: 'The sheet is usable, but Curtis flags one measurement for recheck before the backplate skeleton gets cut.',
+          nuyenSuccess: 20,
+          nuyenFailure: -10,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -245,7 +245,6 @@ const activeJob: JobProfile = {
     },
   ],
 }
-
 const jobs = [activeJob]
 
 function freshShift(job: JobProfile): ShiftState {
@@ -321,20 +320,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const salvageGround = shift.log.some((entry) => entry.action === 'Clean and braid a salvage ground strap')
-  const freshTerminals = shift.log.some((entry) => entry.action === 'Install fresh ring terminals')
-  if (salvageGround) {
+  const aluminumCoupons = shift.log.some((entry) => entry.action === 'Use aircraft aluminum salvage coupons')
+  const titaniumSamples = shift.log.some((entry) => entry.action === 'Order titanium alloy tube samples')
+  if (aluminumCoupons) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Salvage ground strap is in effect: accessory-load test TN +1 for thrift-fit fussiness.',
+      modifierNote: 'Aircraft aluminum salvage is in effect: rail coupon bend-test TN +1 for thrift-stock uncertainty.',
     }
   }
-  if (freshTerminals) {
+  if (titaniumSamples) {
     return {
       ...runtime,
       targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Fresh ring terminals are in effect: accessory-load test TN -1 for a stable ground path.',
+      modifierNote: 'Titanium alloy samples are in effect: rail coupon bend-test TN -1 for documented lightweight stock.',
     }
   }
 
@@ -382,7 +381,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'Selected tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as a Curtis downtime/maintenance event, close/mark this active Drone Shift Work Order as Job Completed, and do not apply permanent drone stat changes unless the GM confirms them.`,
+    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as a Curtis downtime/build event, close/mark this active Drone Shift Work Order as Job Completed, and do not apply permanent drone, vehicle, equipment, combat, or stat changes unless the GM confirms them.`,
   ].join('\n')
 }
 
