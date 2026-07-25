@@ -105,10 +105,10 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 2
+const PROJECT_DAY: number = 3
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Folded-profile dummy pack'
+const NEXT_PROJECT_PHASE = 'Arm segment pattern'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 
@@ -132,8 +132,8 @@ const seedSkills: SkillProfile = {
 
 const projectSteps: ProjectStep[] = [
   { day: 1, title: 'Load-path sketch and material coupons', status: 'complete', choicePressure: 'salvage aluminum vs documented titanium samples', spendBand: '700-2,925¥', carryForward: 'completed with aircraft aluminum salvage and a usable first rail profile' },
-  { day: 2, title: 'Backplate and hip-belt skeleton', status: 'active', choicePressure: 'cheap welded spine vs modular machined frame', spendBand: '1,500-4,500¥', carryForward: 'frame approach modifies folded-pack fit and load transfer' },
-  { day: 3, title: 'Folded-profile dummy pack', status: 'waiting', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'folded profile affects snag tests and repair access' },
+  { day: 2, title: 'Backplate and hip-belt skeleton', status: 'complete', choicePressure: 'cheap welded spine vs modular machined frame', spendBand: '1,500-4,500¥', carryForward: 'completed with fixed welded aluminum spine and a later service-access warning' },
+  { day: 3, title: 'Folded-profile dummy pack', status: 'active', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'folded profile affects snag tests and repair access' },
   { day: 4, title: 'Arm segment pattern', status: 'waiting', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'link style affects reach/load and fatigue checks' },
   { day: 5, title: 'Root joint cluster', status: 'waiting', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'root joint quality affects all later arm alignment' },
   { day: 6, title: 'Retraction rails and lock detents', status: 'waiting', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'lock choice affects deployment safety and combat approval' },
@@ -148,30 +148,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-backplate-skeleton',
-  title: 'Backplate Skeleton Fit-Up',
-  asset: "Curtis's Backpack Arms rig: Day 1 aircraft aluminum salvage notes, usable shoulder-to-hip rail profile, overbought bushings, mystery-hole no-drill zones, backplate spine stock, hip-belt transfer brackets, and project budget ledger",
-  customer: 'Curtis, continuing Day 2 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-folded-dummy-pack',
+  title: 'Folded-Profile Dummy Pack',
+  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 2 backplate skeleton, hip-belt transfer brackets, Day 1 salvage rail profile, no-drill mystery-hole zones, overbought bushings, and folded-pack service-access warning",
+  customer: 'Curtis, continuing Day 3 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'Day 1 proved the rig needs a real spine and hip belt, not shoulder straps with a prayer stapled to them. Day 2 turns the salvage rail profile into a wearable skeleton, with the expensive decision right up front: weld a cheap fixed spine or buy the cleaner modular frame hardware.',
-  baseline: "GM-approved 14-day diversion track. The previous active Day 1 order was completed on the project page; any untouched prior work orders still discard cleanly with no change, no nuyen movement, no drone state change, and no penalty. This phase creates the backplate and hip-belt skeleton only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'Day 2 got the backplate skeleton hanging straight, but the cheap fixed welded spine makes the next question meaner: can the whole six-arm idea fold into a backpack shape Curtis can actually wear and service, or does it become a metal porcupine with shoulder straps?',
+  baseline: "GM-approved 14-day diversion track. The previous active Day 2 order was completed on the project page; any untouched prior work orders still discard cleanly with no change, no nuyen movement, no drone state change, and no penalty. This phase builds a folded-profile dummy pack only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Transfer the Day 1 marks',
-      station: 'Pinned pattern board',
-      description: 'Move the folded envelope, salvage-stock warnings, bushing overbuy, and no-drill mystery-hole notes onto a real backplate template before metal fitting starts.',
+      title: 'Trace the folded envelope',
+      station: 'Harness dummy and cardboard sweep arcs',
+      description: 'Carry the Day 2 backplate skeleton into a folded-pack envelope before Curtis starts hanging real arm segment patterns on it.',
       actions: [
         {
-          label: 'Map the salvage rail onto the backplate blank',
-          detail: 'Copy the usable shoulder-to-hip rail profile, three-channel-per-side folded envelope, and no-drill zones onto the spine blank and hip-belt card pattern.',
-          skill: 'carBR',
+          label: 'Map the folded six-arm parking lanes',
+          detail: 'Use cardboard sweep arcs, the fixed spine, and the no-drill zones to mark where three arms per side can nest without stabbing Curtis or blocking the hip belt.',
+          skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis transfers the Day 1 rail cleanly and keeps the mystery holes out of the load-bearing path.',
-          onFailure: 'One no-drill zone lands too close to a bracket line, so Curtis burns extra stock making the template honest before cutting anything structural.',
-          nuyenSuccess: -125,
-          nuyenFailure: -300,
+          onSuccess: 'Curtis maps believable parking lanes with the hip belt still reachable and the mystery-hole zones avoided.',
+          onFailure: 'The first sweep map crowds the hip belt, so Curtis burns extra template stock and redraws one side before the dummy pack is honest.',
+          nuyenSuccess: -75,
+          nuyenFailure: -225,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -179,77 +179,77 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Check hip-belt load transfer',
-      station: 'Torque board and harness dummy',
-      description: 'Make sure the backplate sends arm loads into the waist belt instead of twisting Curtis through the shoulders.',
+      title: 'Choose the folded profile',
+      station: 'Mockup bench and parts bins',
+      description: 'Pick whether the dummy pack stays as compact as possible or leaves more room for later service access around the fixed welded spine.',
       actions: [
         {
-          label: 'Lay out the shoulder-to-hip force triangle',
-          detail: 'Use the harness dummy, grease-pencil torque board, and overbought bushings to place the first real load-transfer brackets.',
+          label: 'Force a compact hard limit',
+          detail: 'Keep the pack tight against Curtis and make later arm segments obey the smallest folded envelope the skeleton can plausibly hold.',
+          skill: 'carBR',
+          targetNumber: 5,
+          requiredSuccesses: 1,
+          onSuccess: 'The compact limit works, giving Curtis a small pack target without immediately scraping the harness.',
+          onFailure: 'The compact limit is too mean on the first pass, so Curtis buys extra foam blocks and leaves one side flagged for recheck.',
+          nuyenSuccess: -250,
+          nuyenFailure: -550,
+          qualitySuccess: 1,
+          qualityFailure: 0,
+          effectNote: 'Project choice: compact hard limit improves carry profile but raises later service-access checks TN +1 around the fixed welded spine.',
+        },
+        {
+          label: 'Leave service-access windows',
+          detail: 'Let the dummy pack sit a little chunkier so Curtis can still reach fasteners, bushings, and future arm stops without tearing the whole rig apart.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: "The bracket geometry makes sense: the spine carries vertical load while the hip belt catches twist before it climbs into Curtis's shoulders.",
-          onFailure: 'The first bracket angle fights the harness, so Curtis buys extra spacer stock and redraws the waist-belt line.',
-          nuyenSuccess: -200,
-          nuyenFailure: -450,
+          onSuccess: 'The service windows stay reachable, making the folded pack uglier but kinder to later repair and adjustment work.',
+          onFailure: 'The service-window plan gets chunky fast, so Curtis spends extra material boxing in a lumpy but usable access path.',
+          nuyenSuccess: -500,
+          nuyenFailure: -800,
           qualitySuccess: 2,
-          qualityFailure: 0,
+          qualityFailure: 1,
+          effectNote: 'Project choice: service-access windows cost more bulk and material now but reduce later repair-access penalties from the fixed welded spine.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Choose the spine build',
-      station: 'Welder cart vs parts terminal',
-      description: 'Pick whether the Day 2 skeleton stays cheap and fixed, or costs real nuyen now for modular adjustment and cleaner later service.',
+      title: 'Build the dummy pack shell',
+      station: 'Foam board, scrap skin, and hinge tape',
+      description: 'Turn the chosen folded profile into a physical dummy pack that can be worn, snagged, opened, and argued with before real arm links are cut.',
       actions: [
         {
-          label: 'Weld a fixed aluminum spine',
-          detail: 'Use the salvage aluminum rail, shop welding time, and the overbought bushings to build a rigid backplate spine with fewer purchased parts.',
+          label: 'Build the folded shell mockup',
+          detail: 'Cut foam board, thin scrap skin, and hinge tape into a dummy backpack shell that follows the chosen folded profile and exposes the hip-belt line.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The fixed spine is cheap, stiff, and a little ugly, but it holds the first backplate geometry together.',
-          onFailure: 'The salvage rail warps just enough to need rework, extra bushings, and a longer cool-down jig before Curtis trusts it.',
-          nuyenSuccess: -1100,
-          nuyenFailure: -1700,
+          onSuccess: 'The dummy pack closes around the fixed spine and gives Curtis a real volume limit for Day 4 arm segment patterns.',
+          onFailure: 'The shell binds near the fixed spine, so Curtis spends extra scrap and leaves a service-access warning taped to the ugly corner.',
+          nuyenSuccess: -350,
+          nuyenFailure: -700,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: fixed welded aluminum spine keeps Day 2 cheaper but raises the skeleton load-transfer test TN +1 and adds a later folded-pack service-access warning.',
-        },
-        {
-          label: 'Buy modular machined frame plates',
-          detail: 'Order documented spine plates, slotted hip-belt brackets, and matched fasteners so the backplate can be adjusted before the folded dummy pack is built.',
-          skill: 'negotiation',
-          targetNumber: 5,
-          requiredSuccesses: 1,
-          onSuccess: 'Curtis finds a painful but legitimate modular frame set with straight plates, clean slots, and fasteners that do not look cursed.',
-          onFailure: 'The good plates are available only with rush fees and one mismatched bracket lot, but the documentation is strong enough to build from.',
-          nuyenSuccess: -3000,
-          nuyenFailure: -3700,
-          qualitySuccess: 3,
-          qualityFailure: 1,
-          effectNote: 'Project choice: modular machined frame plates cost more now but lower the skeleton load-transfer test TN -1 and improve later folded-pack adjustment/acceptance notes.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Hang the backplate skeleton',
-      station: 'Harness stand with sandbags',
-      description: 'Load the shoulder straps and hip belt with safe sandbag weight to see whether the skeleton transfers force without twisting or biting into the dummy.',
+      title: 'Wear and snag the dummy pack',
+      station: 'Doorframe lane and harness stand',
+      description: 'Walk the dummy pack through a basic folded-carry check and see whether it catches doorframes, blocks belt access, or torques the backplate.',
       actions: [
         {
-          label: 'Run the weighted harness hang test',
-          detail: 'Clamp the backplate skeleton to the harness stand, load it through the hip belt, and watch for twist, rail spring, and ugly pressure points.',
+          label: 'Run the folded-carry snag test',
+          detail: 'Load the dummy shell onto the harness, walk it past the doorframe lane, and check belt access, shoulder clearance, and fixed-spine service reach.',
           skill: 'carBR',
-          targetNumber: 6,
+          targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The skeleton hangs straight enough for Day 3 folded-profile work, with the Day 1 salvage uncertainty contained instead of spreading.',
-          onFailure: 'The skeleton holds, but Curtis has to mark one pressure point and one bracket for recheck before any arm-channel dummy pack gets trusted.',
-          nuyenSuccess: -125,
-          nuyenFailure: -400,
+          onSuccess: 'The dummy pack clears the doorframe lane well enough to define Day 4 link length limits without embarrassing Curtis.',
+          onFailure: 'One side clips the lane and forces extra trimming, leaving a snag-risk note for the Day 4 arm pattern.',
+          nuyenSuccess: -150,
+          nuyenFailure: -425,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -257,18 +257,18 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the skeleton spec',
-      station: 'Build notebook and parts receipts',
-      description: 'Record the frame choice, bracket geometry, load-transfer test, spend total, and Day 3 folded-profile constraints.',
+      title: 'Write the folded-profile spec',
+      station: 'Build notebook and clearance photos',
+      description: 'Record the chosen folded profile, snag-test result, service-access note, spend total, and Day 4 arm segment constraints.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 2 sheet',
-          detail: 'Write the skeleton note: fixed or modular frame, hip-belt transfer line, load-test result, service-access warning, spend total, and Day 3 folded-profile trigger.',
+          label: 'Log the Backpack Arms Day 3 sheet',
+          detail: 'Write the folded-profile note: compact or serviceable profile, dummy-pack shell dimensions, snag-test result, access warning, spend total, and Day 4 arm segment trigger.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 2 sheet is clear enough to make the folded dummy pack a real fit problem instead of a guessing contest.',
-          onFailure: 'The sheet is readable, but Curtis flags one bracket measurement for recheck before Day 3 locks in the folded profile.',
+          onSuccess: 'The Day 3 sheet is clear enough to make Day 4 arm segment lengths a real fabrication problem instead of guesswork.',
+          onFailure: 'The sheet is readable, but Curtis flags one clearance photo for recheck before Day 4 cuts real segment patterns.',
           nuyenSuccess: -50,
           nuyenFailure: -150,
           qualitySuccess: 1,
@@ -353,24 +353,27 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
   if (stageId !== 'test') return runtime
 
-  const fixedSpine = shift.log.some((entry) => entry.action === 'Weld a fixed aluminum spine')
-  const modularFrame = shift.log.some((entry) => entry.action === 'Buy modular machined frame plates')
-  if (fixedSpine) {
+  const serviceWindows = shift.log.some((entry) => entry.action === 'Leave service-access windows')
+  const compactHardLimit = shift.log.some((entry) => entry.action === 'Force a compact hard limit')
+  if (serviceWindows) {
+    return {
+      ...runtime,
+      modifierNote: 'Service-access windows are in effect: the fixed welded spine warning is contained for this folded-pack check.',
+    }
+  }
+  if (compactHardLimit) {
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Fixed welded aluminum spine is in effect: skeleton load-transfer test TN +1 for salvage-stock and service-access uncertainty.',
-    }
-  }
-  if (modularFrame) {
-    return {
-      ...runtime,
-      targetNumber: Math.max(2, runtime.targetNumber - 1),
-      modifierNote: 'Modular machined frame plates are in effect: skeleton load-transfer test TN -1 for documented adjustable hardware.',
+      modifierNote: 'Compact hard limit plus fixed welded spine is in effect: folded-pack snag/service check TN +1.',
     }
   }
 
-  return runtime
+  return {
+    ...runtime,
+    targetNumber: runtime.targetNumber + 1,
+    modifierNote: 'Fixed welded aluminum spine carry-forward is in effect: folded-pack service-access check TN +1 until Curtis designs around it.',
+  }
 }
 
 function loadShift(): ShiftState {
