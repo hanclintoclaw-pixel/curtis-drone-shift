@@ -272,6 +272,7 @@ h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -0.05em; }
 }
 .project-trigger-grid article { min-height: 6.5rem; }
 .project-steps article { min-height: 11.5rem; }
+.project-steps article.complete,
 .project-steps article.active {
   border-color: rgba(49, 211, 138, 0.75);
   background: rgba(49, 211, 138, 0.14);
