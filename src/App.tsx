@@ -105,11 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 3
+const PROJECT_DAY: number = 4
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Arm segment pattern'
+const NEXT_PROJECT_PHASE = 'Root joint cluster'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
+const PROJECT_CURRENT_SPEND = '2,900¥ logged before this work order; missed Day 3 rotated out with no spend and no penalty.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 
 const skillLabels: Record<keyof SkillProfile, string> = {
@@ -133,8 +134,8 @@ const seedSkills: SkillProfile = {
 const projectSteps: ProjectStep[] = [
   { day: 1, title: 'Load-path sketch and material coupons', status: 'complete', choicePressure: 'salvage aluminum vs documented titanium samples', spendBand: '700-2,925¥', carryForward: 'completed with aircraft aluminum salvage and a usable first rail profile' },
   { day: 2, title: 'Backplate and hip-belt skeleton', status: 'complete', choicePressure: 'cheap welded spine vs modular machined frame', spendBand: '1,500-4,500¥', carryForward: 'completed with fixed welded aluminum spine and a later service-access warning' },
-  { day: 3, title: 'Folded-profile dummy pack', status: 'active', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'folded profile affects snag tests and repair access' },
-  { day: 4, title: 'Arm segment pattern', status: 'waiting', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'link style affects reach/load and fatigue checks' },
+  { day: 3, title: 'Folded-profile dummy pack', status: 'waiting', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
+  { day: 4, title: 'Arm segment pattern', status: 'active', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'active now; link style affects reach/load and fatigue checks' },
   { day: 5, title: 'Root joint cluster', status: 'waiting', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'root joint quality affects all later arm alignment' },
   { day: 6, title: 'Retraction rails and lock detents', status: 'waiting', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'lock choice affects deployment safety and combat approval' },
   { day: 7, title: 'Actuator test mule', status: 'waiting', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'actuator choice defines power/control work' },
@@ -148,30 +149,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-folded-dummy-pack',
-  title: 'Folded-Profile Dummy Pack',
-  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 2 backplate skeleton, hip-belt transfer brackets, Day 1 salvage rail profile, no-drill mystery-hole zones, overbought bushings, and folded-pack service-access warning",
-  customer: 'Curtis, continuing Day 3 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-arm-segment-pattern',
+  title: 'Arm Segment Pattern Bench',
+  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 2 backplate skeleton, hip-belt transfer brackets, Day 1 salvage rail profile, no-drill mystery-hole zones, overbought bushings, and conservative folded-pack clearance assumptions after the untouched Day 3 dummy-pack ticket rotated out",
+  customer: 'Curtis, continuing Day 4 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'Day 2 got the backplate skeleton hanging straight, but the cheap fixed welded spine makes the next question meaner: can the whole six-arm idea fold into a backpack shape Curtis can actually wear and service, or does it become a metal porcupine with shoulder straps?',
-  baseline: "GM-approved 14-day diversion track. The previous active Day 2 order was completed on the project page; any untouched prior work orders still discard cleanly with no change, no nuyen movement, no drone state change, and no penalty. This phase builds a folded-profile dummy pack only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The Day 3 dummy-pack ticket got no closeout, so it rotates off the bench cleanly: no spend, no penalty, no secret damage. Day 4 starts with a harder fabrication choice anyway: cut light drilled link patterns that save nuyen now, or buy reinforced nested stock that makes later fatigue and load checks less ugly.',
+  baseline: "GM-approved 14-day diversion track. The previous active Day 3 order is discarded with no change, no nuyen movement, no drone state change, and no penalty. This phase patterns arm segments only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Trace the folded envelope',
-      station: 'Harness dummy and cardboard sweep arcs',
-      description: 'Carry the Day 2 backplate skeleton into a folded-pack envelope before Curtis starts hanging real arm segment patterns on it.',
+      title: 'Square the segment envelope',
+      station: 'Backplate jig and rail templates',
+      description: 'Transfer the Day 1 rail profile and Day 2 fixed spine marks into a conservative segment envelope before real link patterns get cut.',
       actions: [
         {
-          label: 'Map the folded six-arm parking lanes',
-          detail: 'Use cardboard sweep arcs, the fixed spine, and the no-drill zones to mark where three arms per side can nest without stabbing Curtis or blocking the hip belt.',
+          label: 'Lay out six arm lanes from the fixed spine',
+          detail: 'Use the backplate jig, the salvage rail profile, and the no-drill zones to mark three segment lanes per side without assuming any free folded-profile bonus from Day 3.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis maps believable parking lanes with the hip belt still reachable and the mystery-hole zones avoided.',
-          onFailure: 'The first sweep map crowds the hip belt, so Curtis burns extra template stock and redraws one side before the dummy pack is honest.',
-          nuyenSuccess: -75,
-          nuyenFailure: -225,
+          onSuccess: 'Curtis gets six believable arm lanes on paper while keeping the hip-belt brackets and mystery-hole zones out of the load path.',
+          onFailure: 'The first layout crowds one hip-belt bracket, so Curtis burns extra template stock and redraws the left-side lanes before cutting anything expensive.',
+          nuyenSuccess: -200,
+          nuyenFailure: -450,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -179,56 +180,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the folded profile',
-      station: 'Mockup bench and parts bins',
-      description: 'Pick whether the dummy pack stays as compact as possible or leaves more room for later service access around the fixed welded spine.',
+      title: 'Pick the link stock philosophy',
+      station: 'Metal rack and receipts pile',
+      description: 'Choose whether today cuts cheaper light drilled patterns or buys reinforced nested-link stock with better paperwork and fatigue margin.',
       actions: [
         {
-          label: 'Force a compact hard limit',
-          detail: 'Keep the pack tight against Curtis and make later arm segments obey the smallest folded envelope the skeleton can plausibly hold.',
+          label: 'Cut light drilled link patterns',
+          detail: 'Use cheaper aircraft-aluminum strip and aggressive drilling patterns. It saves serious nuyen now, but the later fatigue test has less margin.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The compact limit works, giving Curtis a small pack target without immediately scraping the harness.',
-          onFailure: 'The compact limit is too mean on the first pass, so Curtis buys extra foam blocks and leaves one side flagged for recheck.',
-          nuyenSuccess: -250,
-          nuyenFailure: -550,
+          onSuccess: 'The drilled pattern saves weight and keeps the spend down without cutting across the obvious stress risers.',
+          onFailure: 'Two drilled blanks oil-can under hand pressure, so Curtis scraps them and keeps the cheap route with uglier fatigue math.',
+          nuyenSuccess: -900,
+          nuyenFailure: -1300,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: compact hard limit improves carry profile but raises later service-access checks TN +1 around the fixed welded spine.',
+          effectNote: 'Project choice: light drilled links reduce immediate project spend but make the Day 4 fatigue/load test TN +1 and leave a future maintenance-inspection warning.',
         },
         {
-          label: 'Leave service-access windows',
-          detail: 'Let the dummy pack sit a little chunkier so Curtis can still reach fasteners, bushings, and future arm stops without tearing the whole rig apart.',
+          label: 'Buy reinforced nested-link stock',
+          detail: 'Pay for documented nested aluminum channel and better bushings so the segment pattern has more load margin and cleaner receipts for final acceptance.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The service windows stay reachable, making the folded pack uglier but kinder to later repair and adjustment work.',
-          onFailure: 'The service-window plan gets chunky fast, so Curtis spends extra material boxing in a lumpy but usable access path.',
-          nuyenSuccess: -500,
-          nuyenFailure: -800,
+          onSuccess: 'The reinforced stock matches the rail spacing cleanly and gives Curtis better fatigue margin before he ever mounts an actuator.',
+          onFailure: 'The reinforced lot includes two mismatched channels, so Curtis pays for replacements but still gets a documented, stronger pattern.',
+          nuyenSuccess: -1600,
+          nuyenFailure: -2600,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Project choice: service-access windows cost more bulk and material now but reduce later repair-access penalties from the fixed welded spine.',
+          effectNote: 'Project choice: reinforced nested links cost more now but reduce the Day 4 fatigue/load test TN by 1 and improve final acceptance documentation.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Build the dummy pack shell',
-      station: 'Foam board, scrap skin, and hinge tape',
-      description: 'Turn the chosen folded profile into a physical dummy pack that can be worn, snagged, opened, and argued with before real arm links are cut.',
+      title: 'Cut the segment master patterns',
+      station: 'Band saw, drill press, and deburring tray',
+      description: 'Turn the chosen stock philosophy into matched upper, middle, and wrist-link patterns for all six arms.',
       actions: [
         {
-          label: 'Build the folded shell mockup',
-          detail: 'Cut foam board, thin scrap skin, and hinge tape into a dummy backpack shell that follows the chosen folded profile and exposes the hip-belt line.',
+          label: 'Cut and deburr the paired segment masters',
+          detail: 'Cut one left/right master set for upper, middle, and wrist links, then deburr every edge so the templates can be copied without chewing bushings.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The dummy pack closes around the fixed spine and gives Curtis a real volume limit for Day 4 arm segment patterns.',
-          onFailure: 'The shell binds near the fixed spine, so Curtis spends extra scrap and leaves a service-access warning taped to the ugly corner.',
-          nuyenSuccess: -350,
-          nuyenFailure: -700,
+          onSuccess: 'The master set matches side-to-side well enough that Curtis can copy it without chasing a twist through all six arms.',
+          onFailure: 'One wrist-link master wanders at the drill press, so Curtis recuts it and marks the batch for a closer fatigue check.',
+          nuyenSuccess: -500,
+          nuyenFailure: -900,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -236,41 +237,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'test',
-      title: 'Wear and snag the dummy pack',
-      station: 'Doorframe lane and harness stand',
-      description: 'Walk the dummy pack through a basic folded-carry check and see whether it catches doorframes, blocks belt access, or torques the backplate.',
+      title: 'Choose the first reach envelope',
+      station: 'Bench load arm and fish scale',
+      description: 'Decide whether these segment patterns stay conservative for reliability or stretch for a longer useful tool reach.',
       actions: [
         {
-          label: 'Run the folded-carry snag test',
-          detail: 'Load the dummy shell onto the harness, walk it past the doorframe lane, and check belt access, shoulder clearance, and fixed-spine service reach.',
+          label: 'Set a conservative reach envelope',
+          detail: 'Limit the pattern length so the links stay well inside the measured load margin, even if the final rig gives up a little reach.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The dummy pack clears the doorframe lane well enough to define Day 4 link length limits without embarrassing Curtis.',
-          onFailure: 'One side clips the lane and forces extra trimming, leaving a snag-risk note for the Day 4 arm pattern.',
-          nuyenSuccess: -150,
-          nuyenFailure: -425,
+          onSuccess: 'The conservative envelope passes the bench load check and gives Day 5 root joints a sane alignment target.',
+          onFailure: 'The conservative envelope still flexes more than Curtis likes, so he adds gusset notes for the Day 5 root joint cluster.',
+          nuyenSuccess: -250,
+          nuyenFailure: -500,
           qualitySuccess: 2,
           qualityFailure: 0,
+          effectNote: 'Project choice: conservative reach improves reliability and should make the final usage guide stricter but easier to approve.',
+        },
+        {
+          label: 'Push a longer tool reach pattern',
+          detail: 'Stretch the middle-link pattern for better working reach. Useful later, but it asks more from the root joints and fatigue checks.',
+          skill: 'rotorAircraftBR',
+          targetNumber: 5,
+          requiredSuccesses: 1,
+          onSuccess: 'The longer pattern holds on the bench, but Curtis records a clear root-joint load warning for Day 5.',
+          onFailure: 'The long pattern flexes hard enough to need extra cross-brace notes before Curtis trusts it near a powered actuator.',
+          nuyenSuccess: -500,
+          nuyenFailure: -950,
+          qualitySuccess: 1,
+          qualityFailure: -1,
+          effectNote: 'Project choice: longer tool reach may improve final utility, but Day 5 root joint alignment/strength work must account for extra leverage.',
         },
       ],
     },
     {
       id: 'closeout',
-      title: 'Write the folded-profile spec',
-      station: 'Build notebook and clearance photos',
-      description: 'Record the chosen folded profile, snag-test result, service-access note, spend total, and Day 4 arm segment constraints.',
+      title: 'Write the segment pattern sheet',
+      station: 'Build notebook and receipt folder',
+      description: 'Record link-stock choice, reach envelope, fatigue/load result, spend total, and the Day 5 root-joint trigger.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 3 sheet',
-          detail: 'Write the folded-profile note: compact or serviceable profile, dummy-pack shell dimensions, snag-test result, access warning, spend total, and Day 4 arm segment trigger.',
+          label: 'Log the Backpack Arms Day 4 sheet',
+          detail: 'Write the arm-segment note: link stock, reach envelope, fatigue/load result, receipt quality, spend total, and root-joint alignment warnings for Day 5.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 3 sheet is clear enough to make Day 4 arm segment lengths a real fabrication problem instead of guesswork.',
-          onFailure: 'The sheet is readable, but Curtis flags one clearance photo for recheck before Day 4 cuts real segment patterns.',
-          nuyenSuccess: -50,
-          nuyenFailure: -150,
+          onSuccess: 'The Day 4 sheet is clear enough for Day 5 to build root joints around known link lengths instead of shop folklore.',
+          onFailure: 'The sheet is readable, but Curtis flags one length pair and one receipt photo for recheck before Day 5 cuts root hardware.',
+          nuyenSuccess: -100,
+          nuyenFailure: -200,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -351,29 +367,51 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  if (stageId !== 'test') return runtime
+  const lightLinks = shift.log.some((entry) => entry.action === 'Cut light drilled link patterns')
+  const reinforcedLinks = shift.log.some((entry) => entry.action === 'Buy reinforced nested-link stock')
+  const longerReach = shift.log.some((entry) => entry.action === 'Push a longer tool reach pattern')
+  const conservativeReach = shift.log.some((entry) => entry.action === 'Set a conservative reach envelope')
 
-  const serviceWindows = shift.log.some((entry) => entry.action === 'Leave service-access windows')
-  const compactHardLimit = shift.log.some((entry) => entry.action === 'Force a compact hard limit')
-  if (serviceWindows) {
-    return {
-      ...runtime,
-      modifierNote: 'Service-access windows are in effect: the fixed welded spine warning is contained for this folded-pack check.',
+  if (stageId === 'test') {
+    if (reinforcedLinks) {
+      return {
+        ...runtime,
+        targetNumber: Math.max(2, runtime.targetNumber - 1),
+        modifierNote: 'Reinforced nested links are in effect: documented stock and better bushings reduce this fatigue/load check TN by 1.',
+      }
     }
-  }
-  if (compactHardLimit) {
+    if (lightLinks) {
+      return {
+        ...runtime,
+        targetNumber: runtime.targetNumber + 1,
+        modifierNote: 'Light drilled links are in effect: cheaper aggressive drilling raises this fatigue/load check TN by 1.',
+      }
+    }
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'Compact hard limit plus fixed welded spine is in effect: folded-pack snag/service check TN +1.',
+      modifierNote: 'No link-stock choice has been logged yet; use the conservative unknown-stock fatigue TN +1 until Curtis picks a pattern.',
     }
   }
 
-  return {
-    ...runtime,
-    targetNumber: runtime.targetNumber + 1,
-    modifierNote: 'Fixed welded aluminum spine carry-forward is in effect: folded-pack service-access check TN +1 until Curtis designs around it.',
+  if (stageId === 'closeout') {
+    if (longerReach) {
+      return {
+        ...runtime,
+        targetNumber: runtime.targetNumber + 1,
+        modifierNote: 'Longer tool reach is in effect: the Day 5 root-joint warnings need cleaner documentation, raising this closeout TN by 1.',
+      }
+    }
+    if (conservativeReach) {
+      return {
+        ...runtime,
+        targetNumber: Math.max(2, runtime.targetNumber - 1),
+        modifierNote: 'Conservative reach is in effect: the root-joint target is simpler to document, reducing this closeout TN by 1.',
+      }
+    }
   }
+
+  return runtime
 }
 
 function loadShift(): ShiftState {
@@ -410,7 +448,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     `Job: ${job.title}`,
     `Project track: ${PROJECT_NAME} day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}`,
     `Project page: ${PROJECT_PAGE_URL}`,
-    `Project budget note: ${PROJECT_BUDGET_NOTE}`,
+    `Project budget note: ${PROJECT_BUDGET_NOTE} Current logged project spend before this work order: ${PROJECT_CURRENT_SPEND}`,
     `Asset: ${job.asset}`,
     `Customer/context: ${job.customer}`,
     `Status: ${finalStatus}`,
@@ -553,7 +591,7 @@ function App() {
       <div>
         <span className="kicker">GM-approved diversion track</span>
         <h2>{PROJECT_NAME}</h2>
-        <p>{PROJECT_BUDGET_NOTE} Day {PROJECT_DAY} is active now; day {PROJECT_TOTAL_DAYS} finalizes only after GM acceptance and Curtis-page gear/usage-guide updates.</p>
+        <p>{PROJECT_BUDGET_NOTE} Current logged project spend before this work order: {PROJECT_CURRENT_SPEND} Day {PROJECT_DAY} is active now; day {PROJECT_TOTAL_DAYS} finalizes only after GM acceptance and Curtis-page gear/usage-guide updates.</p>
       </div>
       <div className="project-trigger-grid">
         <article>
