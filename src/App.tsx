@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 5
+const PROJECT_DAY: number = 6
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Retraction rails and lock detents'
+const NEXT_PROJECT_PHASE = 'Actuator test mule'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '5,900¥ logged before this work order; Day 4 completed with light drilled links, conservative reach, and gusset notes for root joints.'
+const PROJECT_CURRENT_SPEND = '5,900¥ logged before this work order; Day 5 rotated out untouched with no spend, no penalty, and no carry-forward bonus.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 
 const skillLabels: Record<keyof SkillProfile, string> = {
@@ -136,8 +136,8 @@ const projectSteps: ProjectStep[] = [
   { day: 2, title: 'Backplate and hip-belt skeleton', status: 'complete', choicePressure: 'cheap welded spine vs modular machined frame', spendBand: '1,500-4,500¥', carryForward: 'completed with fixed welded aluminum spine and a later service-access warning' },
   { day: 3, title: 'Folded-profile dummy pack', status: 'waiting', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 4, title: 'Arm segment pattern', status: 'complete', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'completed with light drilled links, conservative reach, and root-joint gusset notes' },
-  { day: 5, title: 'Root joint cluster', status: 'active', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'active now; root joint quality affects all later arm alignment' },
-  { day: 6, title: 'Retraction rails and lock detents', status: 'waiting', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'lock choice affects deployment safety and combat approval' },
+  { day: 5, title: 'Root joint cluster', status: 'waiting', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
+  { day: 6, title: 'Retraction rails and lock detents', status: 'active', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'active now; lock choice affects deployment safety, Day 7 actuator setup, and final acceptance notes' },
   { day: 7, title: 'Actuator test mule', status: 'waiting', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'actuator choice defines power/control work' },
   { day: 8, title: 'Power and control trunk', status: 'waiting', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'control style affects safety cutoffs and failure behavior' },
   { day: 9, title: 'Quick-change wrist sockets', status: 'waiting', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'socket standard defines end-effector limits' },
@@ -149,30 +149,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-root-joint-cluster',
-  title: 'Root Joint Cluster',
-  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 2 backplate skeleton, Day 4 light drilled link patterns, conservative reach envelope, root-joint gusset notes, hip-belt transfer brackets, no-drill mystery-hole zones, and overbought bushings",
-  customer: 'Curtis, continuing Day 5 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-retraction-rails-lock-detents',
+  title: 'Rail Lock Detents',
+  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 4 light drilled link patterns, conservative reach envelope, hip-belt transfer brackets, no-drill mystery-hole zones, and no Day 5 root-joint bonus or penalty because the prior work order rotated out untouched",
+  customer: 'Curtis, continuing Day 6 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'Day 4 got the arm segment pattern sheet done, but the light drilled links and flexy conservative envelope leave root-joint work with less fatigue margin. Day 5 decides whether Curtis stacks salvage bearing packs cheaply or buys precision root joints that make every later arm alignment test cleaner.',
-  baseline: "GM-approved 14-day diversion track. Day 4 completed with -¥3,000 project spend, light drilled links, a future maintenance-inspection warning, conservative reach, and gusset notes for the root joints. This phase builds root-joint clusters only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The arm links have to fold into a backpack profile without rattling loose, but the rig still needs to deploy without Curtis fighting a drawer slide full of grit. Day 6 picks how expensive the lock hardware gets and whether the rails favor safe short travel or maximum tool clearance.',
+  baseline: "GM-approved 14-day diversion track. Day 5 root-joint work rotated out untouched with no spend, no penalty, and no carry-forward bonus. This phase builds retraction rails and lock detents only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Map the root-joint stations',
-      station: 'Backplate jig and segment-pattern sheet',
-      description: 'Transfer the Day 4 link lengths and gusset notes onto the backplate so each root joint starts from a known arm lane instead of a guessed pivot point.',
+      title: 'Re-square the folded rail envelope',
+      station: 'Backplate jig and cardboard backpack shell',
+      description: 'Check the folded backpack profile against Day 4 link patterns so the rails have a believable home before anyone starts drilling lock pockets.',
       actions: [
         {
-          label: 'Lay out six root-joint stations',
-          detail: 'Use the conservative reach envelope, hip-belt transfer brackets, and no-drill zones to mark three root-joint stations per side.',
+          label: 'Map the rail travel lanes',
+          detail: 'Mark three sliding lanes per side around the hip-belt brackets, no-drill zones, and conservative reach envelope.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis gets six root-joint stations marked without crowding the hip-belt brackets or the no-drill mystery-hole zones.',
-          onFailure: 'One lower station crowds a mystery-hole zone, so Curtis burns template stock and moves the pivot center before cutting metal.',
-          nuyenSuccess: -250,
-          nuyenFailure: -500,
+          onSuccess: 'Curtis gets clean rail-lane marks and keeps the folded profile from crowding the belt hardware.',
+          onFailure: 'One lower lane kisses the belt bracket, so Curtis burns template stock and re-marks the rail stop before cutting metal.',
+          nuyenSuccess: -200,
+          nuyenFailure: -450,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -180,56 +180,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the bearing philosophy',
-      station: 'Bearing drawer and receipts pile',
-      description: 'Pick cheaper salvage bearing stacks or documented precision root joints before the cluster plates are drilled.',
+      title: 'Choose the lock hardware',
+      station: 'Latch bins, spring drawer, and receipt folder',
+      description: 'Pick cheaper simple spring detents or expensive positive mechanical latches before the rail slots are cut.',
       actions: [
         {
-          label: 'Stack salvage bearing packs',
-          detail: 'Use matched salvage bearings and shim stock. It keeps spend down, but every later smoothness check has less alignment margin.',
+          label: 'Fit simple spring detents',
+          detail: 'Use shop-stock spring pins and salvage detent plates. It is cheaper, but the final safety test gets fussier and the usage guide needs a manual lock-check warning.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The salvage packs spin true enough after shimming, and Curtis keeps the root-joint spend under control.',
-          onFailure: 'Two salvage packs have gritty races, so Curtis overbuys replacements and keeps the cheap route with a louder inspection warning.',
-          nuyenSuccess: -1200,
-          nuyenFailure: -1900,
+          onSuccess: 'The simple detents seat evenly enough after polishing the burrs off two salvage plates.',
+          onFailure: 'Two spring pins are mushy, so Curtis overbuys replacements and keeps the cheap route with a louder inspection warning.',
+          nuyenSuccess: -900,
+          nuyenFailure: -1400,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: salvage bearing stacks reduce immediate project spend but raise the paired-arm smoothness test TN by 1 and leave a root-joint wear-inspection warning.',
+          effectNote: 'Project choice: simple spring detents reduce immediate project spend but raise the deployment safety test TN by 1 and require a manual lock-check warning in the final usage guide.',
         },
         {
-          label: 'Buy precision root-joint sets',
-          detail: 'Pay for documented compact bearing sets and cleaner shoulder hardware so the six root pivots start with better alignment paperwork.',
+          label: 'Buy positive mechanical latches',
+          detail: 'Pay for documented low-profile latches with positive engagement, cleaner receipts, and less argument when the rig reaches final acceptance.',
           skill: 'negotiation',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The precision sets match the segment sheet cleanly and give Curtis better alignment documentation for final acceptance.',
-          onFailure: 'The first supplier ships two wrong shoulders, so Curtis pays rush replacement money but still gets documented root hardware.',
-          nuyenSuccess: -3000,
-          nuyenFailure: -4200,
+          onSuccess: 'The latch sets arrive with matched shoulders and usable spec sheets for final acceptance documentation.',
+          onFailure: 'The first supplier short-ships two latch shoulders, so Curtis pays rush replacement money but still gets documented hardware.',
+          nuyenSuccess: -2400,
+          nuyenFailure: -3300,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Project choice: precision root-joint sets cost more now but reduce the paired-arm smoothness test TN by 1 and improve final acceptance documentation.',
+          effectNote: 'Project choice: positive mechanical latches cost more now but reduce the deployment safety test TN by 1 and improve final acceptance documentation.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Build the cluster carrier plates',
-      station: 'Drill press, clamps, and backplate jig',
-      description: 'Cut and drill the left/right carrier plates that hold the root-joint stack against the fixed welded spine.',
+      title: 'Cut the paired retraction rails',
+      station: 'Drill press, file set, and rail jig',
+      description: 'Cut left/right retraction rails and latch pockets so the arms can fold down into a compact pack outline without eating the hip-belt load path.',
       actions: [
         {
-          label: 'Cut paired root carrier plates',
-          detail: 'Use the Day 4 gusset notes to cut left/right carrier plates without drilling through the mystery-hole zones or hip-belt load path.',
-          skill: 'carBR',
+          label: 'Slot and dress the rail pairs',
+          detail: 'Use the folded rail envelope to cut six rail slots, dress the edges, and leave clearance for the selected lock hardware.',
+          skill: 'rotorAircraftBR',
           targetNumber: 6,
           requiredSuccesses: 1,
-          onSuccess: 'The paired carrier plates line up well enough that the six root pivots can share one backplate datum.',
-          onFailure: 'One carrier plate walks under the drill press, so Curtis recuts it and adds an ugly but serviceable datum mark.',
-          nuyenSuccess: -900,
-          nuyenFailure: -1500,
+          onSuccess: 'The rail pairs slide without obvious rack, and the latch pockets have enough meat left for later actuator mounting.',
+          onFailure: 'One rail slot chatters under the drill press, so Curtis recuts a plate and adds a visible witness mark for future setup.',
+          nuyenSuccess: -650,
+          nuyenFailure: -1150,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -237,54 +237,54 @@ const activeJob: JobProfile = {
     },
     {
       id: 'test',
-      title: 'Set the root angle strategy',
-      station: 'Bench sweep jig and fish scale',
-      description: 'Decide whether to keep the root angles conservative for reliability or open them up for more tool clearance.',
+      title: 'Set the deployment stroke',
+      station: 'Bench sweep jig and lock-click test',
+      description: 'Decide whether the rails stop short for safer deployment or chase the full useful travel Curtis wants for tool clearance.',
       actions: [
         {
-          label: 'Keep conservative root angles',
-          detail: 'Match the Day 4 conservative reach envelope and keep the root sweep tight, accepting stricter final-use limits for cleaner reliability.',
+          label: 'Keep a conservative rail stroke',
+          detail: 'Limit travel to a safer short stroke that is easier to lock and easier for Day 7 actuators to move cleanly.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The conservative root angles sweep cleanly and make the Day 6 lock-detent geometry easier to trust.',
-          onFailure: 'The conservative angle still binds one lower lane, so Curtis adds a shim note for the lock-detent bench.',
-          nuyenSuccess: -350,
-          nuyenFailure: -700,
+          onSuccess: 'The conservative stroke clicks in without bounce and keeps the future actuator load predictable.',
+          onFailure: 'The short stroke still kisses one link shoulder, so Curtis adds a shim note before Day 7 actuator work.',
+          nuyenSuccess: -250,
+          nuyenFailure: -550,
           qualitySuccess: 2,
           qualityFailure: 0,
-          effectNote: 'Project choice: conservative root angles pair with the Day 4 conservative reach, simplifying lock-detent geometry but keeping the final usage guide strict.',
+          effectNote: 'Project choice: conservative rail stroke simplifies Day 7 actuator setup and keeps the final usage guide stricter.',
         },
         {
-          label: 'Open the root angles for tool clearance',
-          detail: 'Give the arms a little more useful tool clearance now, even though the root cluster and Day 6 locks will need cleaner alignment.',
-          skill: 'rotorAircraftBR',
+          label: 'Chase full deployment travel',
+          detail: 'Open the rails for better tool clearance now, accepting a harder safety test and more actuator load next phase.',
+          skill: 'vectorThrustBR',
           targetNumber: 6,
           requiredSuccesses: 1,
-          onSuccess: 'The wider root angles clear the bench sweep without overloading the light drilled links.',
-          onFailure: 'The wider root angle amplifies link flex, so Curtis adds a root-stop warning before trusting the lock-detent phase.',
-          nuyenSuccess: -650,
-          nuyenFailure: -1100,
+          onSuccess: 'The longer stroke clears the bench sweep and gives the tool sockets more future working room.',
+          onFailure: 'The long stroke snaps one detent too hard, so Curtis adds a root-stop warning before trusting the actuator mule.',
+          nuyenSuccess: -500,
+          nuyenFailure: -950,
           qualitySuccess: 1,
           qualityFailure: -1,
-          effectNote: 'Project choice: wider root angles may improve final tool clearance, but Day 6 lock detents must account for extra sweep and root-stop stress.',
+          effectNote: 'Project choice: full deployment travel may improve final tool clearance, but Day 7 actuator setup must account for extra stroke and root-stop stress.',
         },
       ],
     },
     {
       id: 'closeout',
-      title: 'Write the root-joint cluster sheet',
+      title: 'Write the rail lock sheet',
       station: 'Build notebook and receipt folder',
-      description: 'Record bearing choice, carrier-plate geometry, root-angle strategy, spend total, and the Day 6 lock-detent trigger.',
+      description: 'Record lock hardware, rail travel, deployment stroke, spend total, and the Day 7 actuator setup warning.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 5 sheet',
-          detail: 'Write the root-joint note: bearing choice, root angles, carrier-plate fit, receipt quality, spend total, and lock-detent warnings for Day 6.',
+          label: 'Log the Backpack Arms Day 6 sheet',
+          detail: 'Write the rail-lock note: lock hardware choice, stroke choice, test behavior, receipt quality, spend total, and actuator warnings for Day 7.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 5 sheet is clear enough for Day 6 to build lock detents around known root angles instead of guesswork.',
-          onFailure: 'The sheet is readable, but Curtis flags one lower pivot and one receipt photo for recheck before Day 6 cuts lock hardware.',
+          onSuccess: 'The Day 6 sheet is clear enough for Day 7 to mount an actuator mule around known rail stops instead of guesses.',
+          onFailure: 'The sheet is readable, but Curtis flags one latch pocket and one rail-stop measurement for recheck before Day 7 powers anything.',
           nuyenSuccess: -100,
           nuyenFailure: -250,
           qualitySuccess: 1,
@@ -367,46 +367,46 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const salvageBearings = shift.log.some((entry) => entry.action === 'Stack salvage bearing packs')
-  const precisionRoots = shift.log.some((entry) => entry.action === 'Buy precision root-joint sets')
-  const widerRootAngles = shift.log.some((entry) => entry.action === 'Open the root angles for tool clearance')
-  const conservativeRootAngles = shift.log.some((entry) => entry.action === 'Keep conservative root angles')
+  const simpleDetents = shift.log.some((entry) => entry.action === 'Fit simple spring detents')
+  const positiveLatches = shift.log.some((entry) => entry.action === 'Buy positive mechanical latches')
+  const fullTravel = shift.log.some((entry) => entry.action === 'Chase full deployment travel')
+  const conservativeStroke = shift.log.some((entry) => entry.action === 'Keep a conservative rail stroke')
 
   if (stageId === 'test') {
-    if (precisionRoots) {
+    if (positiveLatches) {
       return {
         ...runtime,
         targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Precision root-joint sets are in effect: documented compact bearings reduce this paired-arm smoothness test TN by 1.',
+        modifierNote: 'Positive mechanical latches are in effect: documented positive engagement reduces this deployment safety test TN by 1.',
       }
     }
-    if (salvageBearings) {
+    if (simpleDetents) {
       return {
         ...runtime,
         targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Salvage bearing stacks are in effect: shimmed thrift hardware raises this paired-arm smoothness test TN by 1.',
+        modifierNote: 'Simple spring detents are in effect: cheaper lock hardware raises this deployment safety test TN by 1.',
       }
     }
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'No bearing choice has been logged yet; use the conservative unknown-root-hardware TN +1 until Curtis picks a stack.',
+      modifierNote: 'No lock hardware choice has been logged yet; use the conservative unknown-lock TN +1 until Curtis picks a latch path.',
     }
   }
 
   if (stageId === 'closeout') {
-    if (widerRootAngles) {
+    if (fullTravel) {
       return {
         ...runtime,
         targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Wider root angles are in effect: Day 6 lock-detent warnings need cleaner documentation, raising this closeout TN by 1.',
+        modifierNote: 'Full deployment travel is in effect: the actuator and root-stop warnings need cleaner documentation, raising this closeout TN by 1.',
       }
     }
-    if (conservativeRootAngles) {
+    if (conservativeStroke) {
       return {
         ...runtime,
         targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Conservative root angles are in effect: the lock-detent target is simpler to document, reducing this closeout TN by 1.',
+        modifierNote: 'Conservative rail stroke is in effect: the actuator setup note is simpler to document, reducing this closeout TN by 1.',
       }
     }
   }
