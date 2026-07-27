@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 6
+const PROJECT_DAY: number = 7
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Actuator test mule'
+const NEXT_PROJECT_PHASE = 'Power and control trunk'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '5,900¥ logged before this work order; Day 5 rotated out untouched with no spend, no penalty, and no carry-forward bonus.'
+const PROJECT_CURRENT_SPEND = '8,800¥ logged before this work order; Day 6 completed with simple spring detents, conservative rail stroke, and manual lock-check / actuator setup hooks.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 
 const skillLabels: Record<keyof SkillProfile, string> = {
@@ -137,8 +137,8 @@ const projectSteps: ProjectStep[] = [
   { day: 3, title: 'Folded-profile dummy pack', status: 'waiting', choicePressure: 'compact hard limit vs easier service access', spendBand: '500-2,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 4, title: 'Arm segment pattern', status: 'complete', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'completed with light drilled links, conservative reach, and root-joint gusset notes' },
   { day: 5, title: 'Root joint cluster', status: 'waiting', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
-  { day: 6, title: 'Retraction rails and lock detents', status: 'active', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'active now; lock choice affects deployment safety, Day 7 actuator setup, and final acceptance notes' },
-  { day: 7, title: 'Actuator test mule', status: 'waiting', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'actuator choice defines power/control work' },
+  { day: 6, title: 'Retraction rails and lock detents', status: 'complete', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'completed with simple spring detents, conservative rail stroke, and a manual lock-check warning' },
+  { day: 7, title: 'Actuator test mule', status: 'active', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'active now; actuator choice defines power/control work and Day 8 safety cutoffs' },
   { day: 8, title: 'Power and control trunk', status: 'waiting', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'control style affects safety cutoffs and failure behavior' },
   { day: 9, title: 'Quick-change wrist sockets', status: 'waiting', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'socket standard defines end-effector limits' },
   { day: 10, title: 'Single-arm lift and tool test', status: 'waiting', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'safe load rating informs final guide' },
@@ -149,30 +149,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-retraction-rails-lock-detents',
-  title: 'Rail Lock Detents',
-  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 4 light drilled link patterns, conservative reach envelope, hip-belt transfer brackets, no-drill mystery-hole zones, and no Day 5 root-joint bonus or penalty because the prior work order rotated out untouched",
-  customer: 'Curtis, continuing Day 6 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-actuator-test-mule',
+  title: 'Actuator Test Mule',
+  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 4 light drilled link patterns, conservative reach envelope, Day 6 simple spring detents, conservative rail stroke, manual lock-check warning, and known rail stops for actuator setup",
+  customer: 'Curtis, continuing Day 7 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The arm links have to fold into a backpack profile without rattling loose, but the rig still needs to deploy without Curtis fighting a drawer slide full of grit. Day 6 picks how expensive the lock hardware gets and whether the rails favor safe short travel or maximum tool clearance.',
-  baseline: "GM-approved 14-day diversion track. Day 5 root-joint work rotated out untouched with no spend, no penalty, and no carry-forward bonus. This phase builds retraction rails and lock detents only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The rails now lock short and safe, but nothing moves under its own power yet. Day 7 builds a sacrificial actuator mule around the known rail stops and chooses whether Curtis pays for cleaner electric micro-servos or saves money with cable/hydraulic assist fussiness.',
+  baseline: "GM-approved 14-day diversion track. Day 6 rail locks completed with simple spring detents and conservative rail stroke; the final usage guide needs a manual lock-check warning. This phase builds an actuator test mule only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Re-square the folded rail envelope',
-      station: 'Backplate jig and cardboard backpack shell',
-      description: 'Check the folded backpack profile against Day 4 link patterns so the rails have a believable home before anyone starts drilling lock pockets.',
+      title: 'Confirm rail-stop actuator envelope',
+      station: 'Backplate jig and short-stroke rail stops',
+      description: 'Use the Day 6 rail-lock sheet to verify where an actuator mule can mount without overrunning the conservative stops or crowding the belt hardware.',
       actions: [
         {
-          label: 'Map the rail travel lanes',
-          detail: 'Mark three sliding lanes per side around the hip-belt brackets, no-drill zones, and conservative reach envelope.',
+          label: 'Map actuator clearance around the rail stops',
+          detail: 'Mark motor/assist clearance around the simple detents, witness mark, shim note, hip-belt brackets, and conservative stroke limit.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis gets clean rail-lane marks and keeps the folded profile from crowding the belt hardware.',
-          onFailure: 'One lower lane kisses the belt bracket, so Curtis burns template stock and re-marks the rail stop before cutting metal.',
-          nuyenSuccess: -200,
-          nuyenFailure: -450,
+          onSuccess: 'Curtis gets clean actuator lanes and keeps the mule from loading the detents sideways.',
+          onFailure: 'One lower actuator lane crowds the belt bracket, so Curtis spends template stock and re-marks the mule bracket before mounting anything live.',
+          nuyenSuccess: -250,
+          nuyenFailure: -600,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -180,56 +180,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the lock hardware',
-      station: 'Latch bins, spring drawer, and receipt folder',
-      description: 'Pick cheaper simple spring detents or expensive positive mechanical latches before the rail slots are cut.',
+      title: 'Choose the actuator drive',
+      station: 'Servo catalog, cable bin, pump drawer, and receipt folder',
+      description: 'Pick cleaner electric micro-servos or cheaper cable/hydraulic assist before the mule brackets are drilled.',
       actions: [
         {
-          label: 'Fit simple spring detents',
-          detail: 'Use shop-stock spring pins and salvage detent plates. It is cheaper, but the final safety test gets fussier and the usage guide needs a manual lock-check warning.',
+          label: 'Mount electric micro-servos',
+          detail: 'Pay for documented micro-servos with cleaner control behavior and easier Day 8 power-trunk planning.',
+          skill: 'electronics',
+          targetNumber: 5,
+          requiredSuccesses: 1,
+          onSuccess: 'The servo pair seats cleanly with usable spec sheets and predictable throw around the conservative rail stops.',
+          onFailure: 'One servo horn is out of square, so Curtis buys a replacement kit and keeps the documented electric route.',
+          nuyenSuccess: -2200,
+          nuyenFailure: -3100,
+          qualitySuccess: 2,
+          qualityFailure: 1,
+          effectNote: 'Project choice: electric micro-servos cost more now but simplify Day 8 power/control trunk work and improve final safety documentation.',
+        },
+        {
+          label: 'Build cable/hydraulic assist',
+          detail: 'Use cheaper cable assist and tiny salvage hydraulic parts. It saves money, but Day 8 needs fussier control and leak/tension warnings.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The simple detents seat evenly enough after polishing the burrs off two salvage plates.',
-          onFailure: 'Two spring pins are mushy, so Curtis overbuys replacements and keeps the cheap route with a louder inspection warning.',
-          nuyenSuccess: -900,
-          nuyenFailure: -1400,
+          onSuccess: 'The assist mule pulls the short stroke evenly after Curtis bleeds one stubborn line and tensions the cable pair.',
+          onFailure: 'The first routing drags, so Curtis replaces a sleeve and keeps the cheaper route with a louder maintenance warning.',
+          nuyenSuccess: -1300,
+          nuyenFailure: -2100,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: simple spring detents reduce immediate project spend but raise the deployment safety test TN by 1 and require a manual lock-check warning in the final usage guide.',
-        },
-        {
-          label: 'Buy positive mechanical latches',
-          detail: 'Pay for documented low-profile latches with positive engagement, cleaner receipts, and less argument when the rig reaches final acceptance.',
-          skill: 'negotiation',
-          targetNumber: 5,
-          requiredSuccesses: 1,
-          onSuccess: 'The latch sets arrive with matched shoulders and usable spec sheets for final acceptance documentation.',
-          onFailure: 'The first supplier short-ships two latch shoulders, so Curtis pays rush replacement money but still gets documented hardware.',
-          nuyenSuccess: -2400,
-          nuyenFailure: -3300,
-          qualitySuccess: 2,
-          qualityFailure: 1,
-          effectNote: 'Project choice: positive mechanical latches cost more now but reduce the deployment safety test TN by 1 and improve final acceptance documentation.',
+          effectNote: 'Project choice: cable/hydraulic assist reduces immediate project spend but raises Day 8 control-safety work TN by 1 and requires leak/tension warnings in the final usage guide.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Cut the paired retraction rails',
-      station: 'Drill press, file set, and rail jig',
-      description: 'Cut left/right retraction rails and latch pockets so the arms can fold down into a compact pack outline without eating the hip-belt load path.',
+      title: 'Build the mule brackets',
+      station: 'Drill press, bracket stock, and rail witness mark',
+      description: 'Mount sacrificial actuator brackets around the Day 6 witness mark and conservative rail stroke without cracking the light drilled links.',
       actions: [
         {
-          label: 'Slot and dress the rail pairs',
-          detail: 'Use the folded rail envelope to cut six rail slots, dress the edges, and leave clearance for the selected lock hardware.',
+          label: 'Cut and pin the actuator mule brackets',
+          detail: 'Use the known rail stops to cut temporary brackets, pin the actuator line, and leave clearance for later power trunk wiring.',
           skill: 'rotorAircraftBR',
           targetNumber: 6,
           requiredSuccesses: 1,
-          onSuccess: 'The rail pairs slide without obvious rack, and the latch pockets have enough meat left for later actuator mounting.',
-          onFailure: 'One rail slot chatters under the drill press, so Curtis recuts a plate and adds a visible witness mark for future setup.',
-          nuyenSuccess: -650,
-          nuyenFailure: -1150,
+          onSuccess: 'The mule brackets sit square and leave the detent lock-check path visible for future inspection.',
+          onFailure: 'One bracket tab walks under the drill press, so Curtis recuts it and tags the light link for a closer fatigue inspection.',
+          nuyenSuccess: -750,
+          nuyenFailure: -1250,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -237,54 +237,39 @@ const activeJob: JobProfile = {
     },
     {
       id: 'test',
-      title: 'Set the deployment stroke',
-      station: 'Bench sweep jig and lock-click test',
-      description: 'Decide whether the rails stop short for safer deployment or chase the full useful travel Curtis wants for tool clearance.',
+      title: 'Cycle the short-stroke deployment',
+      station: 'Bench cycle jig and lock-check card',
+      description: 'Cycle the actuator mule through the conservative rail stroke and verify it does not fight the simple spring detents.',
       actions: [
         {
-          label: 'Keep a conservative rail stroke',
-          detail: 'Limit travel to a safer short stroke that is easier to lock and easier for Day 7 actuators to move cleanly.',
+          label: 'Run the actuator cycle test',
+          detail: 'Cycle the mule through repeated short deployments, checking detent engagement, link shoulder clearance, and manual lock-check access.',
           skill: 'carBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The conservative stroke clicks in without bounce and keeps the future actuator load predictable.',
-          onFailure: 'The short stroke still kisses one link shoulder, so Curtis adds a shim note before Day 7 actuator work.',
-          nuyenSuccess: -250,
-          nuyenFailure: -550,
+          onSuccess: 'The mule cycles the short stroke without bouncing the detents, and the manual lock-check remains easy to reach.',
+          onFailure: 'The mule hesitates at one detent pocket, so Curtis adds a stop-pad note before trusting Day 8 control power.',
+          nuyenSuccess: -350,
+          nuyenFailure: -750,
           qualitySuccess: 2,
           qualityFailure: 0,
-          effectNote: 'Project choice: conservative rail stroke simplifies Day 7 actuator setup and keeps the final usage guide stricter.',
-        },
-        {
-          label: 'Chase full deployment travel',
-          detail: 'Open the rails for better tool clearance now, accepting a harder safety test and more actuator load next phase.',
-          skill: 'vectorThrustBR',
-          targetNumber: 6,
-          requiredSuccesses: 1,
-          onSuccess: 'The longer stroke clears the bench sweep and gives the tool sockets more future working room.',
-          onFailure: 'The long stroke snaps one detent too hard, so Curtis adds a root-stop warning before trusting the actuator mule.',
-          nuyenSuccess: -500,
-          nuyenFailure: -950,
-          qualitySuccess: 1,
-          qualityFailure: -1,
-          effectNote: 'Project choice: full deployment travel may improve final tool clearance, but Day 7 actuator setup must account for extra stroke and root-stop stress.',
         },
       ],
     },
     {
       id: 'closeout',
-      title: 'Write the rail lock sheet',
-      station: 'Build notebook and receipt folder',
-      description: 'Record lock hardware, rail travel, deployment stroke, spend total, and the Day 7 actuator setup warning.',
+      title: 'Write the actuator mule sheet',
+      station: 'Build notebook and power-trunk sketch',
+      description: 'Record actuator choice, mule bracket behavior, cycle test result, spend total, and the Day 8 power/control warning.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 6 sheet',
-          detail: 'Write the rail-lock note: lock hardware choice, stroke choice, test behavior, receipt quality, spend total, and actuator warnings for Day 7.',
+          label: 'Log the Backpack Arms Day 7 sheet',
+          detail: 'Write the actuator-mule note: drive choice, cycle behavior, manual lock-check access, receipt quality, spend total, and Day 8 control-trunk warnings.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 6 sheet is clear enough for Day 7 to mount an actuator mule around known rail stops instead of guesses.',
-          onFailure: 'The sheet is readable, but Curtis flags one latch pocket and one rail-stop measurement for recheck before Day 7 powers anything.',
+          onSuccess: 'The Day 7 sheet is clear enough for Day 8 to build the power and control trunk around known actuator behavior instead of bench folklore.',
+          onFailure: 'The sheet is readable, but Curtis flags one actuator bracket and one lock-check clearance for recheck before Day 8 powers the trunk.',
           nuyenSuccess: -100,
           nuyenFailure: -250,
           qualitySuccess: 1,
@@ -367,46 +352,44 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const simpleDetents = shift.log.some((entry) => entry.action === 'Fit simple spring detents')
-  const positiveLatches = shift.log.some((entry) => entry.action === 'Buy positive mechanical latches')
-  const fullTravel = shift.log.some((entry) => entry.action === 'Chase full deployment travel')
-  const conservativeStroke = shift.log.some((entry) => entry.action === 'Keep a conservative rail stroke')
+  const electricServos = shift.log.some((entry) => entry.action === 'Mount electric micro-servos')
+  const cableHydraulic = shift.log.some((entry) => entry.action === 'Build cable/hydraulic assist')
 
   if (stageId === 'test') {
-    if (positiveLatches) {
+    if (electricServos) {
       return {
         ...runtime,
         targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Positive mechanical latches are in effect: documented positive engagement reduces this deployment safety test TN by 1.',
+        modifierNote: 'Electric micro-servos are in effect: cleaner documented response reduces this actuator cycle test TN by 1.',
       }
     }
-    if (simpleDetents) {
+    if (cableHydraulic) {
       return {
         ...runtime,
         targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Simple spring detents are in effect: cheaper lock hardware raises this deployment safety test TN by 1.',
+        modifierNote: 'Cable/hydraulic assist is in effect: thrift routing and bleed/tension risk raise this actuator cycle test TN by 1.',
       }
     }
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'No lock hardware choice has been logged yet; use the conservative unknown-lock TN +1 until Curtis picks a latch path.',
+      modifierNote: 'No actuator drive choice has been logged yet; use the conservative unknown-actuator TN +1 until Curtis picks a drive path.',
     }
   }
 
   if (stageId === 'closeout') {
-    if (fullTravel) {
-      return {
-        ...runtime,
-        targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Full deployment travel is in effect: the actuator and root-stop warnings need cleaner documentation, raising this closeout TN by 1.',
-      }
-    }
-    if (conservativeStroke) {
+    if (electricServos) {
       return {
         ...runtime,
         targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Conservative rail stroke is in effect: the actuator setup note is simpler to document, reducing this closeout TN by 1.',
+        modifierNote: 'Electric micro-servos are in effect: cleaner specs simplify the Day 8 power/control note, reducing this closeout TN by 1.',
+      }
+    }
+    if (cableHydraulic) {
+      return {
+        ...runtime,
+        targetNumber: runtime.targetNumber + 1,
+        modifierNote: 'Cable/hydraulic assist is in effect: leak/tension and control-safety warnings need cleaner documentation, raising this closeout TN by 1.',
       }
     }
   }
