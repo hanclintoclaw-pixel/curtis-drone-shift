@@ -110,8 +110,9 @@ const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
 const NEXT_PROJECT_PHASE = 'Power and control trunk'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '8,800¥ logged before this work order; Day 6 completed with simple spring detents, conservative rail stroke, and manual lock-check / actuator setup hooks.'
+const PROJECT_CURRENT_SPEND = '8,800¥ logged before this work order; prior build context is preserved on the wiki.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
+const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
 const skillLabels: Record<keyof SkillProfile, string> = {
   electronics: 'Electronics',
@@ -151,7 +152,7 @@ const projectSteps: ProjectStep[] = [
 const activeJob: JobProfile = {
   id: 'backpack-arms-actuator-test-mule',
   title: 'Actuator Test Mule',
-  asset: "Curtis's Backpack Arms rig: fixed welded aluminum spine, Day 4 light drilled link patterns, conservative reach envelope, Day 6 simple spring detents, conservative rail stroke, manual lock-check warning, and known rail stops for actuator setup",
+  asset: "Curtis's Backpack Arms rig: Day 7 actuator test mule",
   customer: 'Curtis, continuing Day 7 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
   hook: 'The rails now lock short and safe, but nothing moves under its own power yet. Day 7 builds a sacrificial actuator mule around the known rail stops and chooses whether Curtis pays for cleaner electric micro-servos or saves money with cable/hydraulic assist fussiness.',
@@ -431,17 +432,15 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     `Job: ${job.title}`,
     `Project track: ${PROJECT_NAME} day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}`,
     `Project page: ${PROJECT_PAGE_URL}`,
-    `Project budget note: ${PROJECT_BUDGET_NOTE} Current logged project spend before this work order: ${PROJECT_CURRENT_SPEND}`,
-    `Asset: ${job.asset}`,
-    `Customer/context: ${job.customer}`,
+    `Context note: ${REPORT_CONTEXT_NOTE}`,
     `Status: ${finalStatus}`,
     `Nuyen delta: ${nuyenText(shift.nuyenDelta)}`,
     `Maintenance quality: ${qualityLabel(shift.quality)} (${shift.quality})`,
     'Notable work log:',
     ...rollLines,
-    'Selected tradeoffs / follow-up effects:',
+    'New tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: When this report is posted with ${CINDY_LOU_BOT_MENTION} pinged, Cindy should ingest it into campaign memory as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}, apply the nuyen delta as project spend, append the result to the project page progress log, close/mark this active Drone Shift Work Order as Job Completed, set the next daily update to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}, and include Curtis's updated running nuyen total in the closeout confirmation. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
+    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; rotate Drone Shift to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}; include Curtis's updated running nuyen total. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
   ]
 
   if (PROJECT_DAY === PROJECT_TOTAL_DAYS) {
