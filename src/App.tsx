@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 7
+const PROJECT_DAY: number = 8
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Power and control trunk'
+const NEXT_PROJECT_PHASE = 'Quick-change wrist sockets'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '8,800¥ logged before this work order; prior build context is preserved on the wiki.'
+const PROJECT_CURRENT_SPEND = '12,950¥ logged before this work order; prior build context is preserved on the wiki.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -139,8 +139,8 @@ const projectSteps: ProjectStep[] = [
   { day: 4, title: 'Arm segment pattern', status: 'complete', choicePressure: 'light drilled links vs reinforced links', spendBand: '1,800-4,000¥', carryForward: 'completed with light drilled links, conservative reach, and root-joint gusset notes' },
   { day: 5, title: 'Root joint cluster', status: 'waiting', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 6, title: 'Retraction rails and lock detents', status: 'complete', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'completed with simple spring detents, conservative rail stroke, and a manual lock-check warning' },
-  { day: 7, title: 'Actuator test mule', status: 'active', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'active now; actuator choice defines power/control work and Day 8 safety cutoffs' },
-  { day: 8, title: 'Power and control trunk', status: 'waiting', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'control style affects safety cutoffs and failure behavior' },
+  { day: 7, title: 'Actuator test mule', status: 'complete', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'completed with electric micro-servos, documented short-stroke behavior, and a light-link fatigue inspection warning' },
+  { day: 8, title: 'Power and control trunk', status: 'active', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'active now; control style affects safety cutoffs, socket interlocks, and failure behavior' },
   { day: 9, title: 'Quick-change wrist sockets', status: 'waiting', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'socket standard defines end-effector limits' },
   { day: 10, title: 'Single-arm lift and tool test', status: 'waiting', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'safe load rating informs final guide' },
   { day: 11, title: 'Three-arm side assembly', status: 'waiting', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'side balance affects mirror-side replication' },
@@ -150,30 +150,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-actuator-test-mule',
-  title: 'Actuator Test Mule',
-  asset: "Curtis's Backpack Arms rig: Day 7 actuator test mule",
-  customer: 'Curtis, continuing Day 7 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-power-control-trunk',
+  title: 'Power and Control Trunk',
+  asset: "Curtis's Backpack Arms rig: Day 8 power and control trunk",
+  customer: 'Curtis, continuing Day 8 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The rails now lock short and safe, but nothing moves under its own power yet. Day 7 builds a sacrificial actuator mule around the known rail stops and chooses whether Curtis pays for cleaner electric micro-servos or saves money with cable/hydraulic assist fussiness.',
-  baseline: "GM-approved 14-day diversion track. Day 6 rail locks completed with simple spring detents and conservative rail stroke; the final usage guide needs a manual lock-check warning. This phase builds an actuator test mule only; no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The short-stroke actuator mule moves cleanly on electric micro-servos. Day 8 turns that bench behavior into a safe power/control trunk, choosing cheap manual switches or a pricier fused smart trunk before any sockets or end effectors get power.',
+  baseline: "GM-approved 14-day diversion track. Day 7 selected electric micro-servos, which simplifies this power/control work and improves final safety documentation. Simple spring detents still require a manual lock-check warning, the walked bracket tab keeps a light-link fatigue inspection hook, and no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Confirm rail-stop actuator envelope',
-      station: 'Backplate jig and short-stroke rail stops',
-      description: 'Use the Day 6 rail-lock sheet to verify where an actuator mule can mount without overrunning the conservative stops or crowding the belt hardware.',
+      title: 'Trace the micro-servo power lanes',
+      station: 'Backplate jig, short-stroke mule, and receipt folder',
+      description: 'Map where power, control, and cutoff wiring can run without covering the simple-detent lock checks or the light-link fatigue inspection point.',
       actions: [
         {
-          label: 'Map actuator clearance around the rail stops',
-          detail: 'Mark motor/assist clearance around the simple detents, witness mark, shim note, hip-belt brackets, and conservative stroke limit.',
+          label: 'Map trunk clearance around the actuator mule',
+          detail: 'Lay tape paths for power, signal, fuse access, manual lock-check clearance, and the Day 7 walked-bracket inspection mark.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis gets clean actuator lanes and keeps the mule from loading the detents sideways.',
-          onFailure: 'One lower actuator lane crowds the belt bracket, so Curtis spends template stock and re-marks the mule bracket before mounting anything live.',
+          onSuccess: 'Curtis gets clean trunk lanes that keep fuse access, lock checks, and the flagged light link visible.',
+          onFailure: 'One trunk lane crowds the manual lock-check path, so Curtis burns extra template stock and redraws it before wiring.',
           nuyenSuccess: -250,
-          nuyenFailure: -600,
+          nuyenFailure: -550,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,56 +181,56 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the actuator drive',
-      station: 'Servo catalog, cable bin, pump drawer, and receipt folder',
-      description: 'Pick cleaner electric micro-servos or cheaper cable/hydraulic assist before the mule brackets are drilled.',
+      title: 'Choose the control style',
+      station: 'Switch bin, fuse block, controller shelf, and parts receipts',
+      description: 'Pick cheaper manual switches or a fused smart control trunk before Curtis commits the harness and cutoff layout.',
       actions: [
         {
-          label: 'Mount electric micro-servos',
-          detail: 'Pay for documented micro-servos with cleaner control behavior and easier Day 8 power-trunk planning.',
+          label: 'Build cheaper manual switches',
+          detail: 'Use labeled manual toggles and simple fuse protection. It saves money, but final operation needs slower sequencing and stricter user discipline.',
+          skill: 'electronicsBR',
+          targetNumber: 4,
+          requiredSuccesses: 1,
+          onSuccess: 'The switch bank lands cleanly with obvious labels and enough fuse access for bench service.',
+          onFailure: 'Two switch leads cross ugly, so Curtis replaces a small terminal strip and documents the manual sequence harder.',
+          nuyenSuccess: -900,
+          nuyenFailure: -1500,
+          qualitySuccess: 1,
+          qualityFailure: 0,
+          effectNote: 'Project choice: manual switches reduce immediate project spend but require slower deployment sequencing, physical interlock discipline, and a stricter final usage warning.',
+        },
+        {
+          label: 'Install a fused smart control trunk',
+          detail: 'Pay for a compact controller, fuse block, and cutoff logic that can supervise the electric micro-servos and simplify later socket interlocks.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The servo pair seats cleanly with usable spec sheets and predictable throw around the conservative rail stops.',
-          onFailure: 'One servo horn is out of square, so Curtis buys a replacement kit and keeps the documented electric route.',
-          nuyenSuccess: -2200,
-          nuyenFailure: -3100,
+          onSuccess: 'The controller, fuse block, and cutoff leads seat cleanly with usable labels and predictable servo behavior.',
+          onFailure: 'One controller daughterboard is bad out of the package, so Curtis buys a replacement and keeps the safer smart-trunk route.',
+          nuyenSuccess: -2800,
+          nuyenFailure: -3700,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Project choice: electric micro-servos cost more now but simplify Day 8 power/control trunk work and improve final safety documentation.',
-        },
-        {
-          label: 'Build cable/hydraulic assist',
-          detail: 'Use cheaper cable assist and tiny salvage hydraulic parts. It saves money, but Day 8 needs fussier control and leak/tension warnings.',
-          skill: 'carBR',
-          targetNumber: 5,
-          requiredSuccesses: 1,
-          onSuccess: 'The assist mule pulls the short stroke evenly after Curtis bleeds one stubborn line and tensions the cable pair.',
-          onFailure: 'The first routing drags, so Curtis replaces a sleeve and keeps the cheaper route with a louder maintenance warning.',
-          nuyenSuccess: -1300,
-          nuyenFailure: -2100,
-          qualitySuccess: 1,
-          qualityFailure: 0,
-          effectNote: 'Project choice: cable/hydraulic assist reduces immediate project spend but raises Day 8 control-safety work TN by 1 and requires leak/tension warnings in the final usage guide.',
+          effectNote: 'Project choice: fused smart control trunk costs more now but improves safety cutoffs, simplifies Day 9 socket interlocks, and strengthens final acceptance documentation.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Build the mule brackets',
-      station: 'Drill press, bracket stock, and rail witness mark',
-      description: 'Mount sacrificial actuator brackets around the Day 6 witness mark and conservative rail stroke without cracking the light drilled links.',
+      title: 'Lace the harness and cutoff block',
+      station: 'Harness board, fuse block, shrink wrap, and continuity meter',
+      description: 'Build the actual power/control trunk with service loops, strain relief, visible fuse access, and no pressure on the flagged light link.',
       actions: [
         {
-          label: 'Cut and pin the actuator mule brackets',
-          detail: 'Use the known rail stops to cut temporary brackets, pin the actuator line, and leave clearance for later power trunk wiring.',
-          skill: 'rotorAircraftBR',
-          targetNumber: 6,
+          label: 'Wire the power/control harness',
+          detail: 'Lace power and control leads around the known micro-servo throw, leave fuse/cutoff access, and keep the manual lock-check card reachable.',
+          skill: 'electronicsBR',
+          targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The mule brackets sit square and leave the detent lock-check path visible for future inspection.',
-          onFailure: 'One bracket tab walks under the drill press, so Curtis recuts it and tags the light link for a closer fatigue inspection.',
-          nuyenSuccess: -750,
-          nuyenFailure: -1250,
+          onSuccess: 'The harness dresses cleanly, clears the moving rail envelope, and leaves the lock-check and light-link inspection points visible.',
+          onFailure: 'One service loop pulls tight at full short-stroke travel, so Curtis rebuilds that run and marks it for Day 9 socket clearance.',
+          nuyenSuccess: -650,
+          nuyenFailure: -1150,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -238,20 +238,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'test',
-      title: 'Cycle the short-stroke deployment',
-      station: 'Bench cycle jig and lock-check card',
-      description: 'Cycle the actuator mule through the conservative rail stroke and verify it does not fight the simple spring detents.',
+      title: 'Bench the safety cutoffs',
+      station: 'Continuity meter, cutoff switch, and short-stroke cycle jig',
+      description: 'Prove the trunk shuts the electric micro-servos down cleanly and does not mask the simple-detent manual lock check.',
       actions: [
         {
-          label: 'Run the actuator cycle test',
-          detail: 'Cycle the mule through repeated short deployments, checking detent engagement, link shoulder clearance, and manual lock-check access.',
-          skill: 'carBR',
-          targetNumber: 5,
+          label: 'Run the cutoff and misfire test',
+          detail: 'Cycle power, emergency cutoff, detent lock checks, and one simulated stuck command before Day 9 adds wrist sockets.',
+          skill: 'electronics',
+          targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The mule cycles the short stroke without bouncing the detents, and the manual lock-check remains easy to reach.',
-          onFailure: 'The mule hesitates at one detent pocket, so Curtis adds a stop-pad note before trusting Day 8 control power.',
+          onSuccess: 'The trunk cuts power cleanly, does not bounce the detents, and leaves a clear failure behavior for the final guide.',
+          onFailure: 'The cutoff works late on one cycle, so Curtis adds a conservative delay note and buys extra protection hardware.',
           nuyenSuccess: -350,
-          nuyenFailure: -750,
+          nuyenFailure: -900,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -259,18 +259,18 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the actuator mule sheet',
-      station: 'Build notebook and power-trunk sketch',
-      description: 'Record actuator choice, mule bracket behavior, cycle test result, spend total, and the Day 8 power/control warning.',
+      title: 'Write the Day 8 trunk sheet',
+      station: 'Build notebook and Day 9 socket sketch',
+      description: 'Record control style, cutoff behavior, harness warnings, spend total, and the Day 9 socket-interlock handoff.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 7 sheet',
-          detail: 'Write the actuator-mule note: drive choice, cycle behavior, manual lock-check access, receipt quality, spend total, and Day 8 control-trunk warnings.',
+          label: 'Log the Backpack Arms Day 8 sheet',
+          detail: 'Write the power/control note: selected control style, cutoff behavior, harness routing, lock-check access, fatigue warning, and Day 9 socket interlock needs.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 7 sheet is clear enough for Day 8 to build the power and control trunk around known actuator behavior instead of bench folklore.',
-          onFailure: 'The sheet is readable, but Curtis flags one actuator bracket and one lock-check clearance for recheck before Day 8 powers the trunk.',
+          onSuccess: 'The Day 8 sheet gives Day 9 a clear socket-interlock plan and preserves the safety cutoffs for final acceptance.',
+          onFailure: 'The sheet is usable, but Curtis flags one harness run and one socket-interlock assumption for review before Day 9.',
           nuyenSuccess: -100,
           nuyenFailure: -250,
           qualitySuccess: 1,
@@ -353,44 +353,44 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const electricServos = shift.log.some((entry) => entry.action === 'Mount electric micro-servos')
-  const cableHydraulic = shift.log.some((entry) => entry.action === 'Build cable/hydraulic assist')
+  const manualSwitches = shift.log.some((entry) => entry.action === 'Build cheaper manual switches')
+  const fusedSmartTrunk = shift.log.some((entry) => entry.action === 'Install a fused smart control trunk')
 
   if (stageId === 'test') {
-    if (electricServos) {
+    if (fusedSmartTrunk) {
       return {
         ...runtime,
         targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Electric micro-servos are in effect: cleaner documented response reduces this actuator cycle test TN by 1.',
+        modifierNote: 'Fused smart control trunk is in effect: supervised cutoff logic reduces this safety test TN by 1.',
       }
     }
-    if (cableHydraulic) {
+    if (manualSwitches) {
       return {
         ...runtime,
         targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Cable/hydraulic assist is in effect: thrift routing and bleed/tension risk raise this actuator cycle test TN by 1.',
+        modifierNote: 'Manual switches are in effect: physical sequencing and user-discipline risk raise this safety test TN by 1.',
       }
     }
     return {
       ...runtime,
       targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'No actuator drive choice has been logged yet; use the conservative unknown-actuator TN +1 until Curtis picks a drive path.',
+      modifierNote: 'No control style has been logged yet; use the conservative unknown-control TN +1 until Curtis picks a trunk path.',
     }
   }
 
   if (stageId === 'closeout') {
-    if (electricServos) {
+    if (fusedSmartTrunk) {
       return {
         ...runtime,
         targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Electric micro-servos are in effect: cleaner specs simplify the Day 8 power/control note, reducing this closeout TN by 1.',
+        modifierNote: 'Fused smart control trunk is in effect: labeled cutoff logic simplifies Day 9 socket-interlock documentation, reducing this closeout TN by 1.',
       }
     }
-    if (cableHydraulic) {
+    if (manualSwitches) {
       return {
         ...runtime,
         targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Cable/hydraulic assist is in effect: leak/tension and control-safety warnings need cleaner documentation, raising this closeout TN by 1.',
+        modifierNote: 'Manual switches are in effect: slower sequencing and interlock warnings need cleaner documentation, raising this closeout TN by 1.',
       }
     }
   }
