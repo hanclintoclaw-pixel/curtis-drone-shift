@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 8
+const PROJECT_DAY: number = 9
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Quick-change wrist sockets'
+const NEXT_PROJECT_PHASE = 'Single-arm lift and tool test'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '12,950¥ logged before this work order; prior build context is preserved on the wiki.'
+const PROJECT_CURRENT_SPEND = '15,950¥ logged before this work order; prior build context is preserved on the wiki.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -140,8 +140,8 @@ const projectSteps: ProjectStep[] = [
   { day: 5, title: 'Root joint cluster', status: 'discarded', choicePressure: 'salvage bearing stack vs precision root joints', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 6, title: 'Retraction rails and lock detents', status: 'complete', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'completed with simple spring detents, conservative rail stroke, and a manual lock-check warning' },
   { day: 7, title: 'Actuator test mule', status: 'complete', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'completed with electric micro-servos, documented short-stroke behavior, and a light-link fatigue inspection warning' },
-  { day: 8, title: 'Power and control trunk', status: 'active', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'active now; control style affects safety cutoffs, socket interlocks, and failure behavior' },
-  { day: 9, title: 'Quick-change wrist sockets', status: 'waiting', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'socket standard defines end-effector limits' },
+  { day: 8, title: 'Power and control trunk', status: 'complete', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'completed with manual switches, clean cutoffs, slower sequencing, and a Day 9 socket-interlock review hook' },
+  { day: 9, title: 'Quick-change wrist sockets', status: 'active', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'active now; socket standard defines tool compatibility, interlock difficulty, and final end-effector limits' },
   { day: 10, title: 'Single-arm lift and tool test', status: 'waiting', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'safe load rating informs final guide' },
   { day: 11, title: 'Three-arm side assembly', status: 'waiting', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'side balance affects mirror-side replication' },
   { day: 12, title: 'Mirror-side replication', status: 'waiting', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'symmetry affects wear/snag final tests' },
@@ -150,30 +150,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-power-control-trunk',
-  title: 'Power and Control Trunk',
-  asset: "Curtis's Backpack Arms rig: Day 8 power and control trunk",
-  customer: 'Curtis, continuing Day 8 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-quick-change-wrist-sockets',
+  title: 'Quick-Change Wrist Sockets',
+  asset: "Curtis's Backpack Arms rig: Day 9 quick-change wrist sockets",
+  customer: 'Curtis, continuing Day 9 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The short-stroke actuator mule moves cleanly on electric micro-servos. Day 8 turns that bench behavior into a safe power/control trunk, choosing cheap manual switches or a pricier fused smart trunk before any sockets or end effectors get power.',
-  baseline: "GM-approved 14-day diversion track. Day 7 selected electric micro-servos, which simplifies this power/control work and improves final safety documentation. Simple spring detents still require a manual lock-check warning, the walked bracket tab keeps a light-link fatigue inspection hook, and no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The Day 8 trunk has clean cutoff behavior, but Curtis went with cheaper manual switches and left one socket-interlock assumption flagged. Day 9 decides whether the arm tips get flexible universal wrists or pricier specialized tool pods before any real end effectors are allowed near the rig.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 15,950¥ before this work order. Day 8's manual switches save money but force slower sequencing, physical interlock discipline, and a stricter final usage warning. Day 9 can buy down that risk with better socket keying, but no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Trace the micro-servo power lanes',
-      station: 'Backplate jig, short-stroke mule, and receipt folder',
-      description: 'Map where power, control, and cutoff wiring can run without covering the simple-detent lock checks or the light-link fatigue inspection point.',
+      title: 'Audit the wrist envelope',
+      station: 'Bench vise, socket blanks, and Day 8 trunk sheet',
+      description: 'Check the six wrist ends against the manual-switch trunk, flagged harness run, simple detents, and conservative rail stroke before cutting socket metal.',
       actions: [
         {
-          label: 'Map trunk clearance around the actuator mule',
-          detail: 'Lay tape paths for power, signal, fuse access, manual lock-check clearance, and the Day 7 walked-bracket inspection mark.',
+          label: 'Mark socket clearance and interlock risks',
+          detail: 'Blue-tape the folded wrist envelope, manual switch sequence, socket-index marks, and the one harness assumption that Day 8 left for review.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis gets clean trunk lanes that keep fuse access, lock checks, and the flagged light link visible.',
-          onFailure: 'One trunk lane crowds the manual lock-check path, so Curtis burns extra template stock and redraws it before wiring.',
-          nuyenSuccess: -250,
-          nuyenFailure: -550,
+          onSuccess: 'Curtis catches the tight wrist envelope before cutting sockets and keeps the manual-switch sequence visible.',
+          onFailure: 'One wrist mark lands too close to the harness service loop, so Curtis burns extra template stock and redraws the index marks.',
+          nuyenSuccess: -200,
+          nuyenFailure: -500,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,77 +181,92 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the control style',
-      station: 'Switch bin, fuse block, controller shelf, and parts receipts',
-      description: 'Pick cheaper manual switches or a fused smart control trunk before Curtis commits the harness and cutoff layout.',
+      title: 'Choose the socket standard',
+      station: 'Socket blanks, tool-pod samples, and receipt folder',
+      description: 'Pick flexible universal wrists or pricier specialized tool-pod sockets. Either route changes the later dummy-load test and the final end-effector limits.',
       actions: [
         {
-          label: 'Build cheaper manual switches',
-          detail: 'Use labeled manual toggles and simple fuse protection. It saves money, but final operation needs slower sequencing and stricter user discipline.',
+          label: 'Cut universal wrist socket plates',
+          detail: 'Use cheaper universal plates that can accept more future tool heads, but need stricter indexing because the manual switches cannot supervise every mismatch.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The switch bank lands cleanly with obvious labels and enough fuse access for bench service.',
-          onFailure: 'Two switch leads cross ugly, so Curtis replaces a small terminal strip and documents the manual sequence harder.',
-          nuyenSuccess: -900,
-          nuyenFailure: -1500,
+          onSuccess: 'The universal plates cut straight and leave enough witness mark for manual indexing.',
+          onFailure: 'Two universal plates chatter under the drill press, so Curtis recuts them and tightens the tolerance note.',
+          nuyenSuccess: -1200,
+          nuyenFailure: -1900,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: manual switches reduce immediate project spend but require slower deployment sequencing, physical interlock discipline, and a stricter final usage warning.',
+          effectNote: 'Project choice: universal wrist sockets lower immediate spend and preserve broad tool compatibility, but raise the Day 9 dummy-load/index test TN by 1 and require stricter final load limits.',
         },
         {
-          label: 'Install a fused smart control trunk',
-          detail: 'Pay for a compact controller, fuse block, and cutoff logic that can supervise the electric micro-servos and simplify later socket interlocks.',
+          label: 'Build specialized tool-pod sockets',
+          detail: 'Pay for documented socket hardware matched to approved tool pods. It narrows compatibility, but makes indexing and final acceptance easier.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The controller, fuse block, and cutoff leads seat cleanly with usable labels and predictable servo behavior.',
-          onFailure: 'One controller daughterboard is bad out of the package, so Curtis buys a replacement and keeps the safer smart-trunk route.',
-          nuyenSuccess: -2800,
-          nuyenFailure: -3700,
+          onSuccess: 'The tool-pod sockets seat square with clean keyways and documented part numbers.',
+          onFailure: 'One socket set ships with a bad keyway, so Curtis buys a replacement and keeps the documented tool-pod route.',
+          nuyenSuccess: -2600,
+          nuyenFailure: -3400,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Project choice: fused smart control trunk costs more now but improves safety cutoffs, simplifies Day 9 socket interlocks, and strengthens final acceptance documentation.',
+          effectNote: 'Project choice: specialized tool-pod sockets cost more now and narrow end-effector compatibility, but reduce the Day 9 dummy-load/index test TN by 1 and strengthen final acceptance documentation.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Lace the harness and cutoff block',
-      station: 'Harness board, fuse block, shrink wrap, and continuity meter',
-      description: 'Build the actual power/control trunk with service loops, strain relief, visible fuse access, and no pressure on the flagged light link.',
+      title: 'Set the socket interlocks',
+      station: 'Index pins, key plates, warning tags, and manual switch card',
+      description: 'Decide how hard to solve Day 8\'s manual-switch interlock problem before the sockets get dummy-load tested.',
       actions: [
         {
-          label: 'Wire the power/control harness',
-          detail: 'Lace power and control leads around the known micro-servo throw, leave fuse/cutoff access, and keep the manual lock-check card reachable.',
-          skill: 'electronicsBR',
+          label: 'Label the manual socket sequence',
+          detail: 'Use cheap witness marks, warning tags, and a laminated sequence card. It saves parts money but leaves more user-discipline burden.',
+          skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The harness dresses cleanly, clears the moving rail envelope, and leaves the lock-check and light-link inspection points visible.',
-          onFailure: 'One service loop pulls tight at full short-stroke travel, so Curtis rebuilds that run and marks it for Day 9 socket clearance.',
-          nuyenSuccess: -650,
-          nuyenFailure: -1150,
+          onSuccess: 'The labels and witness marks make the manual socket sequence hard to miss during bench handling.',
+          onFailure: 'Two labels crowd the folded-pack seam, so Curtis buys better tags and makes the warning card uglier but clearer.',
+          nuyenSuccess: -450,
+          nuyenFailure: -900,
           qualitySuccess: 1,
           qualityFailure: 0,
+          effectNote: 'Project choice: manual socket labels keep Day 9 cheaper, but raise the closeout documentation TN by 1 and preserve a strict final usage warning for sequence discipline.',
+        },
+        {
+          label: 'Add keyed socket interlock plates',
+          detail: 'Buy and fit keyed plates so the socket standard physically discourages mismatched tool heads before the manual switches energize anything.',
+          skill: 'electronicsBR',
+          targetNumber: 5,
+          requiredSuccesses: 1,
+          onSuccess: 'The keyed plates line up cleanly and give the manual-switch trunk a real physical interlock.',
+          onFailure: 'One keyed plate binds under folded-pack clearance, so Curtis files it back and buys a replacement pin kit.',
+          nuyenSuccess: -1250,
+          nuyenFailure: -1800,
+          qualitySuccess: 2,
+          qualityFailure: 1,
+          effectNote: 'Project choice: keyed socket interlock plates cost more now, but reduce the Day 9 dummy-load/index test TN by 1 and the closeout documentation TN by 1.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Bench the safety cutoffs',
-      station: 'Continuity meter, cutoff switch, and short-stroke cycle jig',
-      description: 'Prove the trunk shuts the electric micro-servos down cleanly and does not mask the simple-detent manual lock check.',
+      title: 'Cycle dummy tools under wrist load',
+      station: 'Dummy tool heads, torque wrench, and socket-index jig',
+      description: 'Run the chosen socket standard through light dummy loads, quick swaps, detent checks, and manual-switch sequencing before Day 10 tries single-arm lift work.',
       actions: [
         {
-          label: 'Run the cutoff and misfire test',
-          detail: 'Cycle power, emergency cutoff, detent lock checks, and one simulated stuck command before Day 9 adds wrist sockets.',
-          skill: 'electronics',
+          label: 'Run the socket index and dummy-load test',
+          detail: 'Swap three dummy tool heads, check keyed or marked index positions, cycle the manual sequence, and verify the sockets do not tug the harness run.',
+          skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The trunk cuts power cleanly, does not bounce the detents, and leaves a clear failure behavior for the final guide.',
-          onFailure: 'The cutoff works late on one cycle, so Curtis adds a conservative delay note and buys extra protection hardware.',
+          onSuccess: 'The sockets hold light dummy loads, index predictably, and do not pull the Day 8 harness run out of its service loop.',
+          onFailure: 'One wrist socket rocks under dummy load, so Curtis buys extra bushings and flags a Day 10 conservative lift limit.',
           nuyenSuccess: -350,
-          nuyenFailure: -900,
+          nuyenFailure: -850,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -259,18 +274,18 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the Day 8 trunk sheet',
-      station: 'Build notebook and Day 9 socket sketch',
-      description: 'Record control style, cutoff behavior, harness warnings, spend total, and the Day 9 socket-interlock handoff.',
+      title: 'Write the Day 9 socket sheet',
+      station: 'Build notebook and Day 10 lift-test card',
+      description: 'Record socket standard, interlock treatment, dummy-load behavior, end-effector limits, spend total, and the Day 10 lift-test handoff.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 8 sheet',
-          detail: 'Write the power/control note: selected control style, cutoff behavior, harness routing, lock-check access, fatigue warning, and Day 9 socket interlock needs.',
+          label: 'Log the Backpack Arms Day 9 sheet',
+          detail: 'Write the socket note: selected standard, interlock approach, dummy-load result, end-effector limits, manual sequence warning, and Day 10 lift-test needs.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 8 sheet gives Day 9 a clear socket-interlock plan and preserves the safety cutoffs for final acceptance.',
-          onFailure: 'The sheet is usable, but Curtis flags one harness run and one socket-interlock assumption for review before Day 9.',
+          onSuccess: 'The Day 9 sheet gives Day 10 a clear socket load limit, approved dummy-tool list, and interlock warning for the first lift test.',
+          onFailure: 'The sheet is usable, but Curtis flags one socket-load assumption for review before Day 10 tries lifting anything useful.',
           nuyenSuccess: -100,
           nuyenFailure: -250,
           qualitySuccess: 1,
@@ -353,45 +368,63 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const manualSwitches = shift.log.some((entry) => entry.action === 'Build cheaper manual switches')
-  const fusedSmartTrunk = shift.log.some((entry) => entry.action === 'Install a fused smart control trunk')
+  const universalSockets = shift.log.some((entry) => entry.action === 'Cut universal wrist socket plates')
+  const specializedSockets = shift.log.some((entry) => entry.action === 'Build specialized tool-pod sockets')
+  const manualSocketLabels = shift.log.some((entry) => entry.action === 'Label the manual socket sequence')
+  const keyedInterlocks = shift.log.some((entry) => entry.action === 'Add keyed socket interlock plates')
 
   if (stageId === 'test') {
-    if (fusedSmartTrunk) {
-      return {
-        ...runtime,
-        targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Fused smart control trunk is in effect: supervised cutoff logic reduces this safety test TN by 1.',
-      }
+    let targetNumber = runtime.targetNumber
+    const modifierNotes: string[] = []
+
+    if (universalSockets) {
+      targetNumber += 1
+      modifierNotes.push('universal wrist sockets raise this dummy-load/index test TN by 1')
     }
-    if (manualSwitches) {
-      return {
-        ...runtime,
-        targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Manual switches are in effect: physical sequencing and user-discipline risk raise this safety test TN by 1.',
-      }
+    if (specializedSockets) {
+      targetNumber -= 1
+      modifierNotes.push('specialized tool-pod sockets reduce this dummy-load/index test TN by 1')
     }
+    if (keyedInterlocks) {
+      targetNumber -= 1
+      modifierNotes.push('keyed socket interlocks reduce this dummy-load/index test TN by 1')
+    }
+    if (!universalSockets && !specializedSockets) {
+      targetNumber += 1
+      modifierNotes.push('no socket standard has been logged yet, so use the conservative unknown-socket TN +1')
+    }
+
     return {
       ...runtime,
-      targetNumber: runtime.targetNumber + 1,
-      modifierNote: 'No control style has been logged yet; use the conservative unknown-control TN +1 until Curtis picks a trunk path.',
+      targetNumber: Math.max(2, targetNumber),
+      modifierNote: modifierNotes.length ? `Project modifiers: ${modifierNotes.join('; ')}.` : undefined,
     }
   }
 
   if (stageId === 'closeout') {
-    if (fusedSmartTrunk) {
-      return {
-        ...runtime,
-        targetNumber: Math.max(2, runtime.targetNumber - 1),
-        modifierNote: 'Fused smart control trunk is in effect: labeled cutoff logic simplifies Day 9 socket-interlock documentation, reducing this closeout TN by 1.',
-      }
+    let targetNumber = runtime.targetNumber
+    const modifierNotes: string[] = []
+
+    if (manualSocketLabels) {
+      targetNumber += 1
+      modifierNotes.push('manual socket labels need stricter sequence documentation, raising this closeout TN by 1')
     }
-    if (manualSwitches) {
-      return {
-        ...runtime,
-        targetNumber: runtime.targetNumber + 1,
-        modifierNote: 'Manual switches are in effect: slower sequencing and interlock warnings need cleaner documentation, raising this closeout TN by 1.',
-      }
+    if (keyedInterlocks) {
+      targetNumber -= 1
+      modifierNotes.push('keyed socket interlocks simplify final socket documentation, reducing this closeout TN by 1')
+    }
+    if (specializedSockets) {
+      targetNumber -= 1
+      modifierNotes.push('documented tool-pod sockets strengthen acceptance notes, reducing this closeout TN by 1')
+    }
+    if (universalSockets) {
+      modifierNotes.push('universal sockets require stricter final load-limit language')
+    }
+
+    return {
+      ...runtime,
+      targetNumber: Math.max(2, targetNumber),
+      modifierNote: modifierNotes.length ? `Project modifiers: ${modifierNotes.join('; ')}.` : undefined,
     }
   }
 
