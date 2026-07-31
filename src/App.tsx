@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 10
+const PROJECT_DAY: number = 11
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Three-arm side assembly'
+const NEXT_PROJECT_PHASE = 'Mirror-side replication'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '18,750¥ logged before this work order; prior build context is preserved on the wiki.'
+const PROJECT_CURRENT_SPEND = '20,950¥ logged before this work order; prior build context is preserved on the wiki.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -142,38 +142,38 @@ const projectSteps: ProjectStep[] = [
   { day: 7, title: 'Actuator test mule', status: 'complete', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'completed with electric micro-servos, documented short-stroke behavior, and a light-link fatigue inspection warning' },
   { day: 8, title: 'Power and control trunk', status: 'complete', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'completed with manual switches, clean cutoffs, slower sequencing, and a Day 9 socket-interlock review hook' },
   { day: 9, title: 'Quick-change wrist sockets', status: 'complete', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'completed with universal wrist sockets, manual socket labels, a stricter load-limit warning, and a conservative Day 10 lift-limit flag' },
-  { day: 10, title: 'Single-arm lift and tool test', status: 'active', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'active now; safe load rating informs the final guide and Day 11 side assembly' },
-  { day: 11, title: 'Three-arm side assembly', status: 'waiting', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'side balance affects mirror-side replication' },
+  { day: 10, title: 'Single-arm lift and tool test', status: 'complete', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'completed with conservative torque, reused ballast, fresh bushings, a strict safe-load number, and a side-assembly balance note' },
+  { day: 11, title: 'Three-arm side assembly', status: 'active', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'active now; side balance affects mirror-side replication' },
   { day: 12, title: 'Mirror-side replication', status: 'waiting', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'symmetry affects wear/snag final tests' },
   { day: 13, title: 'Wear test and snag test', status: 'waiting', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'wear findings become final limitations' },
   { day: 14, title: 'Final acceptance and usage guide', status: 'final', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'accepted result updates Curtis page with final gear and usage guide' },
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-single-arm-lift-test',
-  title: 'Single-Arm Lift Test',
-  asset: "Curtis's Backpack Arms rig: Day 10 single-arm lift and tool test",
-  customer: 'Curtis, continuing Day 10 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-three-arm-side-assembly',
+  title: 'Three-Arm Side Assembly',
+  asset: "Curtis's Backpack Arms rig: Day 11 three-arm side assembly",
+  customer: 'Curtis, continuing Day 11 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'One universal wrist socket rocked under dummy load yesterday, and the manual-switch labels now say the quiet part out loud: Curtis needs a real safe-load number before three arms get bolted onto one side. Today is the first honest lift test, with a dummy tool, ballast, and Taco yelling not to dent the prep table.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 18,750¥ before this work order. Day 9's universal sockets keep tool options broad but require stricter final load-limit language, and the rocking dummy-load result pushes Curtis toward a conservative first lift. Today's spend sets the safe load rating for Day 11 side assembly, but no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The first arm can lift, but only inside a strict safe-load note after the wrist twitched on release. Today Curtis has to turn that one cautious arm into a whole three-arm side without losing the visible socket labels, safety stops, or manual sequence discipline.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 20,950¥ before this work order. Day 10 left a conservative torque ceiling, reused-ballast maintenance note, fresh bushing replacement, strict single-arm safe-load number, socket warning, and side-assembly balance note. Today's work decides whether the first complete side favors symmetric reliability or one stronger utility arm. No permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Fixture the first arm safely',
-      station: 'Bench vise, rail stop, dummy wrist, and shop ballast',
-      description: 'Bolt one arm lane into a safe bench fixture, preserve the manual socket labels, and make sure the Day 9 rocking wrist socket cannot bite Curtis during the first lift.',
+      title: 'Lay out the three-arm side fixture',
+      station: 'Side rail fixture, labeled sockets, safety stops, and Day 10 safe-load card',
+      description: 'Transfer the square first-arm fixture into a side assembly jig without hiding socket labels, pinching wiring, or moving the Day 10 safety-stop reference.',
       actions: [
         {
-          label: 'Set the lift-test fixture and safety stops',
-          detail: 'Clamp the arm lane into a bench fixture, tag the manual switch sequence, and add soft stops so a bad lift test bends scrap before it bends Curtis.',
+          label: 'Square the side fixture around the Day 10 reference arm',
+          detail: 'Lock the first arm into the side jig, preserve the visible manual socket labels, and mark stop positions before adding the second and third arm lanes.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The fixture holds square, the socket labels stay visible, and the safety stops give Curtis a clean starting envelope.',
-          onFailure: 'The first clamp stack walks sideways, so Curtis buys better stop blocks and resets the fixture before putting load on the arm.',
-          nuyenSuccess: -150,
-          nuyenFailure: -450,
+          onSuccess: 'The side fixture stays square, the labels remain readable, and the safety-stop marks give Curtis a clean three-arm starting envelope.',
+          onFailure: 'The side jig creeps out of square, so Curtis buys better spacer blocks and resets the stop marks before adding more arms.',
+          nuyenSuccess: -300,
+          nuyenFailure: -750,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,92 +181,92 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Pick the torque ceiling',
-      station: 'Torque wrench, micro-servo limits, and Day 9 socket note',
-      description: 'Choose whether the first arm gets a conservative tool load or a pricier higher-load attempt. This choice changes the lift test and the final usage guide.',
+      title: 'Choose the side-balance plan',
+      station: 'Three-arm rail, servo limits, strict safe-load card, and utility-arm sketch',
+      description: 'Decide whether the first complete side stays symmetric and conservative, or whether one arm gets extra utility emphasis at higher balancing risk.',
       actions: [
         {
-          label: 'Set a conservative torque limit',
-          detail: 'Respect the rocking universal socket and cap the first lift at a safe tool-work ceiling. It is less impressive, but easier to document and approve.',
+          label: 'Build a symmetric reliability side',
+          detail: 'Keep all three arms inside the strict Day 10 safe-load number and bias the side toward repeatable motion instead of impressive tool leverage.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis sets a believable conservative torque ceiling and keeps the universal socket inside its comfort zone.',
-          onFailure: 'The first limit table is too optimistic, so Curtis pays for an extra current-limiter pack and rewrites the ceiling downward.',
-          nuyenSuccess: -700,
-          nuyenFailure: -1300,
+          onSuccess: 'Curtis maps a balanced three-arm side where each socket stays inside the conservative safe-load note.',
+          onFailure: 'The first balance sketch overloads the outer wrist, so Curtis buys extra bracket stock and redraws the side as stricter but safer.',
+          nuyenSuccess: -900,
+          nuyenFailure: -1700,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: conservative torque limit lowers Day 10 test risk and final approval friction, but locks the first safe-load note to light tool work unless Day 14 GM acceptance expands it.',
+          effectNote: 'Project choice: symmetric reliability lowers Day 11 side-sync risk and makes Day 12 mirror-side replication easier, but keeps all three arms locked to the strict Day 10 light-tool safe-load note unless Day 14 GM acceptance expands it.',
         },
         {
-          label: 'Attempt a higher tool load',
-          detail: 'Buy better current limiting and push the first arm toward a useful shop-tool load. It costs more and demands a cleaner lift test.',
+          label: 'Bias one stronger utility arm',
+          detail: 'Spend more on one reinforced lane so the side may have a primary utility arm, accepting harder balance checks and stricter final approval language.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The higher-load table is plausible on the bench, with documented current limits and a real fuse margin.',
-          onFailure: 'The higher-load table browns out ugly, so Curtis buys another controller protection kit before trusting the number.',
-          nuyenSuccess: -1300,
-          nuyenFailure: -2200,
+          onSuccess: 'The utility-arm lane looks plausible on paper, with extra bracing and a clear warning that the other two arms remain light-tool support.',
+          onFailure: 'The stronger lane twists the side balance ugly, so Curtis buys a heavier brace set and marks the whole side for conservative use until Day 14 review.',
+          nuyenSuccess: -1800,
+          nuyenFailure: -3000,
           qualitySuccess: 2,
           qualityFailure: 0,
-          effectNote: 'Project choice: higher tool load costs more and makes the Day 10 lift test require one extra success, but a clean result gives Day 11 a stronger utility-arm option to document.',
+          effectNote: 'Project choice: one stronger utility arm costs more and raises Day 11 side-sync risk, but a clean result gives Day 12 a primary-arm asymmetry to copy or correct before final acceptance.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Choose the load witness setup',
-      station: 'Ballast tray, lift cell catalog, sacrificial sling, and receipt folder',
-      description: 'Pick a cheap shop witness setup or pay for documented lift hardware. Either route changes the actual lift-test target number.',
+      title: 'Set bushings and safe-load witnesses',
+      station: 'Fresh wrist bushings, reused ballast witness, socket labels, and torque notes',
+      description: 'Decide how much effort Curtis spends rechecking the Day 10 wrist twitch and reused-ballast safe-load witness before three arms move together.',
       actions: [
         {
-          label: 'Reuse the shop ballast fixture',
-          detail: 'Pad the old ballast tray, add a sacrificial sling, and accept that the witness setup is a little garage-scientific.',
+          label: 'Recheck the fresh bushings and ballast witness',
+          detail: 'Seat the fresh bushings, rerun witness marks with the reused ballast setup, and make the strict safe-load number defensible before side sync.',
+          skill: 'electronicsBR',
+          targetNumber: 4,
+          requiredSuccesses: 1,
+          onSuccess: 'The fresh bushings seat cleanly and the reused ballast witness repeats well enough for a cautious three-arm side test.',
+          onFailure: 'One bushing still shows witness rub, so Curtis buys a better matched set and keeps the safe-load card strict.',
+          nuyenSuccess: -700,
+          nuyenFailure: -1400,
+          qualitySuccess: 1,
+          qualityFailure: 0,
+          effectNote: 'Project choice: bushing and ballast recheck costs more shop time now, reduces Day 11 side-sync uncertainty, and preserves the maintenance note to recheck the safe-load witness after rough use.',
+        },
+        {
+          label: 'Trust the Day 10 witness marks',
+          detail: 'Keep the Day 10 bushing replacement and ballast marks as-is, saving money but accepting more uncertainty once three arms move together.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The reused ballast fixture reads consistently enough for a cautious first-arm lift test.',
-          onFailure: 'The tray sloshes weight sideways, so Curtis buys better sling stock and reruns the witness marks.',
-          nuyenSuccess: -350,
-          nuyenFailure: -850,
-          qualitySuccess: 1,
+          onSuccess: 'The Day 10 witness marks line up well enough to proceed, though Curtis tags the side for a stricter post-test inspection.',
+          onFailure: 'The old marks disagree once the side rail is loaded, so Curtis buys fresh witness tape and a replacement bushing pair anyway.',
+          nuyenSuccess: -250,
+          nuyenFailure: -1100,
+          qualitySuccess: 0,
           qualityFailure: 0,
-          effectNote: 'Project choice: reused ballast keeps spend down but raises the Day 10 lift test TN by 1 and adds a maintenance note about rechecking the safe-load witness after rough use.',
-        },
-        {
-          label: 'Buy a calibrated lift cell and clevis set',
-          detail: 'Spend real money on documented lift hardware so the safe-load number is easier to trust and easier to sell to the GM at final acceptance.',
-          skill: 'electronicsBR',
-          targetNumber: 5,
-          requiredSuccesses: 1,
-          onSuccess: 'The lift cell and clevis set give Curtis a clean documented safe-load trace.',
-          onFailure: 'The first clevis set is the wrong pin size, so Curtis pays rush markup and logs the corrected part number.',
-          nuyenSuccess: -950,
-          nuyenFailure: -1600,
-          qualitySuccess: 2,
-          qualityFailure: 1,
-          effectNote: 'Project choice: calibrated lift hardware costs more now, reduces the Day 10 lift test TN by 1, and strengthens final safe-load documentation.',
+          effectNote: 'Project choice: trusting the Day 10 witness marks keeps spend down but raises the Day 11 side-sync test TN by 1 and leaves a stricter post-test inspection hook.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Run the single-arm lift',
-      station: 'Dummy tool head, safety stop blocks, and lift witness rig',
-      description: 'Lift the dummy tool through the chosen torque ceiling, watch the universal wrist socket, and verify the manual-switch cutoff sequence under load.',
+      title: 'Run the three-arm side sync',
+      station: 'Three-arm side rail, dummy tools, manual switch sequence, and stop blocks',
+      description: 'Cycle all three arms through a conservative synchronized motion, watch side balance, verify the socket labels stay readable, and confirm the arms fail safe on stop blocks.',
       actions: [
         {
-          label: 'Lift, hold, release, and cutoff-test the arm',
-          detail: 'Raise the dummy tool, hold for a counted beat, release onto the stop blocks, and kill power to confirm the arm fails safe instead of grabbing air like a drunk spider.',
+          label: 'Cycle the three-arm side under strict safe-load',
+          detail: 'Move three dummy tool heads through the manual sequence, hold a side-balanced pose, release onto the stops, and make sure no wrist walks out of the strict safe-load envelope.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The first arm lifts cleanly inside the documented envelope, releases onto the stops, and cuts power without bouncing the socket loose.',
-          onFailure: 'The arm lifts, but the wrist twitches on release; Curtis buys fresh bushings and flags the safe-load number as strict until Day 14 review.',
-          nuyenSuccess: -250,
-          nuyenFailure: -900,
+          onSuccess: 'The three-arm side cycles inside the strict safe-load number, holds balance without hiding the labels, and releases onto the stops cleanly.',
+          onFailure: 'The side moves, but one wrist lags and the rail twists on release; Curtis buys extra bracing and flags the side balance as strict until mirror-side work proves it.',
+          nuyenSuccess: -600,
+          nuyenFailure: -1800,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -274,20 +274,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the Day 10 safe-load card',
-      station: 'Build notebook, Day 11 side-assembly card, and warning labels',
-      description: 'Record torque ceiling, witness setup, lift behavior, bushing notes, safe-load number, and the exact warning Day 11 must preserve while assembling three arms on one side.',
+      title: 'Write the Day 11 side-assembly card',
+      station: 'Build notebook, Day 12 mirror-side card, and warning labels',
+      description: 'Record side-balance choice, bushing/witness handling, sync behavior, safe-load limits, socket warnings, and the exact Day 12 mirror-side replication hook.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 10 safe-load sheet',
-          detail: 'Write the lift note: selected torque ceiling, witness setup, dummy-tool behavior, safe-load limit, bushing condition, and Day 11 side-balance warning.',
+          label: 'Log the Backpack Arms Day 11 side-assembly sheet',
+          detail: 'Write the side note: selected balance plan, witness approach, three-arm behavior, safe-load warning, side-balance limit, and Day 12 mirror-side replication cue.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 10 sheet gives Day 11 a clear single-arm safe-load number, socket warning, and side-assembly balance note.',
-          onFailure: 'The sheet is readable but conservative; Curtis marks the safe-load card as strict until the three-arm side assembly proves it.',
-          nuyenSuccess: -100,
-          nuyenFailure: -300,
+          onSuccess: 'The Day 11 sheet gives Day 12 a clear mirror-side replication plan, side-balance warning, socket-label note, and safe-load limit.',
+          onFailure: 'The sheet is usable but extra conservative; Curtis marks Day 12 to recheck side balance before copying anything.',
+          nuyenSuccess: -200,
+          nuyenFailure: -650,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -368,35 +368,35 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const conservativeTorque = shift.log.some((entry) => entry.action === 'Set a conservative torque limit')
-  const higherToolLoad = shift.log.some((entry) => entry.action === 'Attempt a higher tool load')
-  const reusedBallast = shift.log.some((entry) => entry.action === 'Reuse the shop ballast fixture')
-  const calibratedLiftHardware = shift.log.some((entry) => entry.action === 'Buy a calibrated lift cell and clevis set')
+  const symmetricReliability = shift.log.some((entry) => entry.action === 'Build a symmetric reliability side')
+  const strongerUtilityArm = shift.log.some((entry) => entry.action === 'Bias one stronger utility arm')
+  const recheckedWitness = shift.log.some((entry) => entry.action === 'Recheck the fresh bushings and ballast witness')
+  const trustedWitnessMarks = shift.log.some((entry) => entry.action === 'Trust the Day 10 witness marks')
 
   if (stageId === 'test') {
     let targetNumber = runtime.targetNumber
     let requiredSuccesses = runtime.requiredSuccesses
     const modifierNotes: string[] = []
 
-    if (conservativeTorque) {
+    if (symmetricReliability) {
       targetNumber -= 1
-      modifierNotes.push('conservative torque limit reduces this lift test TN by 1')
+      modifierNotes.push('symmetric reliability plan reduces this side-sync TN by 1')
     }
-    if (higherToolLoad) {
+    if (strongerUtilityArm) {
       requiredSuccesses += 1
-      modifierNotes.push('higher tool load requires one extra lift-test success')
+      modifierNotes.push('stronger utility arm requires one extra side-sync success')
     }
-    if (reusedBallast) {
-      targetNumber += 1
-      modifierNotes.push('reused shop ballast raises this lift test TN by 1')
-    }
-    if (calibratedLiftHardware) {
+    if (recheckedWitness) {
       targetNumber -= 1
-      modifierNotes.push('calibrated lift hardware reduces this lift test TN by 1')
+      modifierNotes.push('bushing and ballast recheck reduces side-sync uncertainty by 1 TN')
     }
-    if (!conservativeTorque && !higherToolLoad) {
+    if (trustedWitnessMarks) {
       targetNumber += 1
-      modifierNotes.push('no torque ceiling has been logged yet, so use the conservative unknown-load TN +1')
+      modifierNotes.push('trusted Day 10 witness marks raise this side-sync TN by 1')
+    }
+    if (!symmetricReliability && !strongerUtilityArm) {
+      targetNumber += 1
+      modifierNotes.push('no side-balance plan has been logged yet, so use the conservative unknown-balance TN +1')
     }
 
     return {
@@ -411,20 +411,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     let targetNumber = runtime.targetNumber
     const modifierNotes: string[] = []
 
-    if (conservativeTorque) {
+    if (symmetricReliability) {
       targetNumber -= 1
-      modifierNotes.push('conservative torque limit makes the safe-load card easier to defend, reducing this closeout TN by 1')
+      modifierNotes.push('symmetric reliability makes Day 12 mirror-side replication easier to document, reducing this closeout TN by 1')
     }
-    if (higherToolLoad) {
+    if (strongerUtilityArm) {
       targetNumber += 1
-      modifierNotes.push('higher tool load needs stricter Day 11 and final-acceptance language, raising this closeout TN by 1')
+      modifierNotes.push('stronger utility arm needs stricter Day 12 and final-acceptance language, raising this closeout TN by 1')
     }
-    if (reusedBallast) {
-      modifierNotes.push('reused ballast requires a maintenance note to recheck the safe-load witness after rough use')
+    if (recheckedWitness) {
+      modifierNotes.push('bushing and ballast recheck preserves the safe-load witness maintenance note after rough use')
     }
-    if (calibratedLiftHardware) {
-      targetNumber -= 1
-      modifierNotes.push('calibrated lift hardware strengthens safe-load documentation, reducing this closeout TN by 1')
+    if (trustedWitnessMarks) {
+      targetNumber += 1
+      modifierNotes.push('trusted witness marks require a stricter post-test inspection note, raising this closeout TN by 1')
     }
 
     return {
