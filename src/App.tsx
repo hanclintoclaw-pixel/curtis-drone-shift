@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 9
+const PROJECT_DAY: number = 10
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Single-arm lift and tool test'
+const NEXT_PROJECT_PHASE = 'Three-arm side assembly'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '15,950¥ logged before this work order; prior build context is preserved on the wiki.'
+const PROJECT_CURRENT_SPEND = '18,750¥ logged before this work order; prior build context is preserved on the wiki.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -141,8 +141,8 @@ const projectSteps: ProjectStep[] = [
   { day: 6, title: 'Retraction rails and lock detents', status: 'complete', choicePressure: 'simple spring locks vs positive mechanical latches', spendBand: '1,500-4,500¥', carryForward: 'completed with simple spring detents, conservative rail stroke, and a manual lock-check warning' },
   { day: 7, title: 'Actuator test mule', status: 'complete', choicePressure: 'electric micro-servos vs cable/hydraulic assist', spendBand: '2,500-6,000¥', carryForward: 'completed with electric micro-servos, documented short-stroke behavior, and a light-link fatigue inspection warning' },
   { day: 8, title: 'Power and control trunk', status: 'complete', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'completed with manual switches, clean cutoffs, slower sequencing, and a Day 9 socket-interlock review hook' },
-  { day: 9, title: 'Quick-change wrist sockets', status: 'active', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'active now; socket standard defines tool compatibility, interlock difficulty, and final end-effector limits' },
-  { day: 10, title: 'Single-arm lift and tool test', status: 'waiting', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'safe load rating informs final guide' },
+  { day: 9, title: 'Quick-change wrist sockets', status: 'complete', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'completed with universal wrist sockets, manual socket labels, a stricter load-limit warning, and a conservative Day 10 lift-limit flag' },
+  { day: 10, title: 'Single-arm lift and tool test', status: 'active', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'active now; safe load rating informs the final guide and Day 11 side assembly' },
   { day: 11, title: 'Three-arm side assembly', status: 'waiting', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'side balance affects mirror-side replication' },
   { day: 12, title: 'Mirror-side replication', status: 'waiting', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'symmetry affects wear/snag final tests' },
   { day: 13, title: 'Wear test and snag test', status: 'waiting', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'wear findings become final limitations' },
@@ -150,30 +150,30 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-quick-change-wrist-sockets',
-  title: 'Quick-Change Wrist Sockets',
-  asset: "Curtis's Backpack Arms rig: Day 9 quick-change wrist sockets",
-  customer: 'Curtis, continuing Day 9 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-single-arm-lift-test',
+  title: 'Single-Arm Lift Test',
+  asset: "Curtis's Backpack Arms rig: Day 10 single-arm lift and tool test",
+  customer: 'Curtis, continuing Day 10 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The Day 8 trunk has clean cutoff behavior, but Curtis went with cheaper manual switches and left one socket-interlock assumption flagged. Day 9 decides whether the arm tips get flexible universal wrists or pricier specialized tool pods before any real end effectors are allowed near the rig.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 15,950¥ before this work order. Day 8's manual switches save money but force slower sequencing, physical interlock discipline, and a stricter final usage warning. Day 9 can buy down that risk with better socket keying, but no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'One universal wrist socket rocked under dummy load yesterday, and the manual-switch labels now say the quiet part out loud: Curtis needs a real safe-load number before three arms get bolted onto one side. Today is the first honest lift test, with a dummy tool, ballast, and Taco yelling not to dent the prep table.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 18,750¥ before this work order. Day 9's universal sockets keep tool options broad but require stricter final load-limit language, and the rocking dummy-load result pushes Curtis toward a conservative first lift. Today's spend sets the safe load rating for Day 11 side assembly, but no permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Audit the wrist envelope',
-      station: 'Bench vise, socket blanks, and Day 8 trunk sheet',
-      description: 'Check the six wrist ends against the manual-switch trunk, flagged harness run, simple detents, and conservative rail stroke before cutting socket metal.',
+      title: 'Fixture the first arm safely',
+      station: 'Bench vise, rail stop, dummy wrist, and shop ballast',
+      description: 'Bolt one arm lane into a safe bench fixture, preserve the manual socket labels, and make sure the Day 9 rocking wrist socket cannot bite Curtis during the first lift.',
       actions: [
         {
-          label: 'Mark socket clearance and interlock risks',
-          detail: 'Blue-tape the folded wrist envelope, manual switch sequence, socket-index marks, and the one harness assumption that Day 8 left for review.',
+          label: 'Set the lift-test fixture and safety stops',
+          detail: 'Clamp the arm lane into a bench fixture, tag the manual switch sequence, and add soft stops so a bad lift test bends scrap before it bends Curtis.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis catches the tight wrist envelope before cutting sockets and keeps the manual-switch sequence visible.',
-          onFailure: 'One wrist mark lands too close to the harness service loop, so Curtis burns extra template stock and redraws the index marks.',
-          nuyenSuccess: -200,
-          nuyenFailure: -500,
+          onSuccess: 'The fixture holds square, the socket labels stay visible, and the safety stops give Curtis a clean starting envelope.',
+          onFailure: 'The first clamp stack walks sideways, so Curtis buys better stop blocks and resets the fixture before putting load on the arm.',
+          nuyenSuccess: -150,
+          nuyenFailure: -450,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,92 +181,92 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the socket standard',
-      station: 'Socket blanks, tool-pod samples, and receipt folder',
-      description: 'Pick flexible universal wrists or pricier specialized tool-pod sockets. Either route changes the later dummy-load test and the final end-effector limits.',
+      title: 'Pick the torque ceiling',
+      station: 'Torque wrench, micro-servo limits, and Day 9 socket note',
+      description: 'Choose whether the first arm gets a conservative tool load or a pricier higher-load attempt. This choice changes the lift test and the final usage guide.',
       actions: [
         {
-          label: 'Cut universal wrist socket plates',
-          detail: 'Use cheaper universal plates that can accept more future tool heads, but need stricter indexing because the manual switches cannot supervise every mismatch.',
+          label: 'Set a conservative torque limit',
+          detail: 'Respect the rocking universal socket and cap the first lift at a safe tool-work ceiling. It is less impressive, but easier to document and approve.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The universal plates cut straight and leave enough witness mark for manual indexing.',
-          onFailure: 'Two universal plates chatter under the drill press, so Curtis recuts them and tightens the tolerance note.',
-          nuyenSuccess: -1200,
-          nuyenFailure: -1900,
+          onSuccess: 'Curtis sets a believable conservative torque ceiling and keeps the universal socket inside its comfort zone.',
+          onFailure: 'The first limit table is too optimistic, so Curtis pays for an extra current-limiter pack and rewrites the ceiling downward.',
+          nuyenSuccess: -700,
+          nuyenFailure: -1300,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: universal wrist sockets lower immediate spend and preserve broad tool compatibility, but raise the Day 9 dummy-load/index test TN by 1 and require stricter final load limits.',
+          effectNote: 'Project choice: conservative torque limit lowers Day 10 test risk and final approval friction, but locks the first safe-load note to light tool work unless Day 14 GM acceptance expands it.',
         },
         {
-          label: 'Build specialized tool-pod sockets',
-          detail: 'Pay for documented socket hardware matched to approved tool pods. It narrows compatibility, but makes indexing and final acceptance easier.',
+          label: 'Attempt a higher tool load',
+          detail: 'Buy better current limiting and push the first arm toward a useful shop-tool load. It costs more and demands a cleaner lift test.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The tool-pod sockets seat square with clean keyways and documented part numbers.',
-          onFailure: 'One socket set ships with a bad keyway, so Curtis buys a replacement and keeps the documented tool-pod route.',
-          nuyenSuccess: -2600,
-          nuyenFailure: -3400,
+          onSuccess: 'The higher-load table is plausible on the bench, with documented current limits and a real fuse margin.',
+          onFailure: 'The higher-load table browns out ugly, so Curtis buys another controller protection kit before trusting the number.',
+          nuyenSuccess: -1300,
+          nuyenFailure: -2200,
           qualitySuccess: 2,
-          qualityFailure: 1,
-          effectNote: 'Project choice: specialized tool-pod sockets cost more now and narrow end-effector compatibility, but reduce the Day 9 dummy-load/index test TN by 1 and strengthen final acceptance documentation.',
+          qualityFailure: 0,
+          effectNote: 'Project choice: higher tool load costs more and makes the Day 10 lift test require one extra success, but a clean result gives Day 11 a stronger utility-arm option to document.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Set the socket interlocks',
-      station: 'Index pins, key plates, warning tags, and manual switch card',
-      description: 'Decide how hard to solve Day 8\'s manual-switch interlock problem before the sockets get dummy-load tested.',
+      title: 'Choose the load witness setup',
+      station: 'Ballast tray, lift cell catalog, sacrificial sling, and receipt folder',
+      description: 'Pick a cheap shop witness setup or pay for documented lift hardware. Either route changes the actual lift-test target number.',
       actions: [
         {
-          label: 'Label the manual socket sequence',
-          detail: 'Use cheap witness marks, warning tags, and a laminated sequence card. It saves parts money but leaves more user-discipline burden.',
+          label: 'Reuse the shop ballast fixture',
+          detail: 'Pad the old ballast tray, add a sacrificial sling, and accept that the witness setup is a little garage-scientific.',
           skill: 'electronics',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The labels and witness marks make the manual socket sequence hard to miss during bench handling.',
-          onFailure: 'Two labels crowd the folded-pack seam, so Curtis buys better tags and makes the warning card uglier but clearer.',
-          nuyenSuccess: -450,
-          nuyenFailure: -900,
+          onSuccess: 'The reused ballast fixture reads consistently enough for a cautious first-arm lift test.',
+          onFailure: 'The tray sloshes weight sideways, so Curtis buys better sling stock and reruns the witness marks.',
+          nuyenSuccess: -350,
+          nuyenFailure: -850,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: manual socket labels keep Day 9 cheaper, but raise the closeout documentation TN by 1 and preserve a strict final usage warning for sequence discipline.',
+          effectNote: 'Project choice: reused ballast keeps spend down but raises the Day 10 lift test TN by 1 and adds a maintenance note about rechecking the safe-load witness after rough use.',
         },
         {
-          label: 'Add keyed socket interlock plates',
-          detail: 'Buy and fit keyed plates so the socket standard physically discourages mismatched tool heads before the manual switches energize anything.',
+          label: 'Buy a calibrated lift cell and clevis set',
+          detail: 'Spend real money on documented lift hardware so the safe-load number is easier to trust and easier to sell to the GM at final acceptance.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The keyed plates line up cleanly and give the manual-switch trunk a real physical interlock.',
-          onFailure: 'One keyed plate binds under folded-pack clearance, so Curtis files it back and buys a replacement pin kit.',
-          nuyenSuccess: -1250,
-          nuyenFailure: -1800,
+          onSuccess: 'The lift cell and clevis set give Curtis a clean documented safe-load trace.',
+          onFailure: 'The first clevis set is the wrong pin size, so Curtis pays rush markup and logs the corrected part number.',
+          nuyenSuccess: -950,
+          nuyenFailure: -1600,
           qualitySuccess: 2,
           qualityFailure: 1,
-          effectNote: 'Project choice: keyed socket interlock plates cost more now, but reduce the Day 9 dummy-load/index test TN by 1 and the closeout documentation TN by 1.',
+          effectNote: 'Project choice: calibrated lift hardware costs more now, reduces the Day 10 lift test TN by 1, and strengthens final safe-load documentation.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Cycle dummy tools under wrist load',
-      station: 'Dummy tool heads, torque wrench, and socket-index jig',
-      description: 'Run the chosen socket standard through light dummy loads, quick swaps, detent checks, and manual-switch sequencing before Day 10 tries single-arm lift work.',
+      title: 'Run the single-arm lift',
+      station: 'Dummy tool head, safety stop blocks, and lift witness rig',
+      description: 'Lift the dummy tool through the chosen torque ceiling, watch the universal wrist socket, and verify the manual-switch cutoff sequence under load.',
       actions: [
         {
-          label: 'Run the socket index and dummy-load test',
-          detail: 'Swap three dummy tool heads, check keyed or marked index positions, cycle the manual sequence, and verify the sockets do not tug the harness run.',
+          label: 'Lift, hold, release, and cutoff-test the arm',
+          detail: 'Raise the dummy tool, hold for a counted beat, release onto the stop blocks, and kill power to confirm the arm fails safe instead of grabbing air like a drunk spider.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The sockets hold light dummy loads, index predictably, and do not pull the Day 8 harness run out of its service loop.',
-          onFailure: 'One wrist socket rocks under dummy load, so Curtis buys extra bushings and flags a Day 10 conservative lift limit.',
-          nuyenSuccess: -350,
-          nuyenFailure: -850,
+          onSuccess: 'The first arm lifts cleanly inside the documented envelope, releases onto the stops, and cuts power without bouncing the socket loose.',
+          onFailure: 'The arm lifts, but the wrist twitches on release; Curtis buys fresh bushings and flags the safe-load number as strict until Day 14 review.',
+          nuyenSuccess: -250,
+          nuyenFailure: -900,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -274,20 +274,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the Day 9 socket sheet',
-      station: 'Build notebook and Day 10 lift-test card',
-      description: 'Record socket standard, interlock treatment, dummy-load behavior, end-effector limits, spend total, and the Day 10 lift-test handoff.',
+      title: 'Write the Day 10 safe-load card',
+      station: 'Build notebook, Day 11 side-assembly card, and warning labels',
+      description: 'Record torque ceiling, witness setup, lift behavior, bushing notes, safe-load number, and the exact warning Day 11 must preserve while assembling three arms on one side.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 9 sheet',
-          detail: 'Write the socket note: selected standard, interlock approach, dummy-load result, end-effector limits, manual sequence warning, and Day 10 lift-test needs.',
+          label: 'Log the Backpack Arms Day 10 safe-load sheet',
+          detail: 'Write the lift note: selected torque ceiling, witness setup, dummy-tool behavior, safe-load limit, bushing condition, and Day 11 side-balance warning.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 9 sheet gives Day 10 a clear socket load limit, approved dummy-tool list, and interlock warning for the first lift test.',
-          onFailure: 'The sheet is usable, but Curtis flags one socket-load assumption for review before Day 10 tries lifting anything useful.',
+          onSuccess: 'The Day 10 sheet gives Day 11 a clear single-arm safe-load number, socket warning, and side-assembly balance note.',
+          onFailure: 'The sheet is readable but conservative; Curtis marks the safe-load card as strict until the three-arm side assembly proves it.',
           nuyenSuccess: -100,
-          nuyenFailure: -250,
+          nuyenFailure: -300,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -368,35 +368,41 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const universalSockets = shift.log.some((entry) => entry.action === 'Cut universal wrist socket plates')
-  const specializedSockets = shift.log.some((entry) => entry.action === 'Build specialized tool-pod sockets')
-  const manualSocketLabels = shift.log.some((entry) => entry.action === 'Label the manual socket sequence')
-  const keyedInterlocks = shift.log.some((entry) => entry.action === 'Add keyed socket interlock plates')
+  const conservativeTorque = shift.log.some((entry) => entry.action === 'Set a conservative torque limit')
+  const higherToolLoad = shift.log.some((entry) => entry.action === 'Attempt a higher tool load')
+  const reusedBallast = shift.log.some((entry) => entry.action === 'Reuse the shop ballast fixture')
+  const calibratedLiftHardware = shift.log.some((entry) => entry.action === 'Buy a calibrated lift cell and clevis set')
 
   if (stageId === 'test') {
     let targetNumber = runtime.targetNumber
+    let requiredSuccesses = runtime.requiredSuccesses
     const modifierNotes: string[] = []
 
-    if (universalSockets) {
-      targetNumber += 1
-      modifierNotes.push('universal wrist sockets raise this dummy-load/index test TN by 1')
-    }
-    if (specializedSockets) {
+    if (conservativeTorque) {
       targetNumber -= 1
-      modifierNotes.push('specialized tool-pod sockets reduce this dummy-load/index test TN by 1')
+      modifierNotes.push('conservative torque limit reduces this lift test TN by 1')
     }
-    if (keyedInterlocks) {
-      targetNumber -= 1
-      modifierNotes.push('keyed socket interlocks reduce this dummy-load/index test TN by 1')
+    if (higherToolLoad) {
+      requiredSuccesses += 1
+      modifierNotes.push('higher tool load requires one extra lift-test success')
     }
-    if (!universalSockets && !specializedSockets) {
+    if (reusedBallast) {
       targetNumber += 1
-      modifierNotes.push('no socket standard has been logged yet, so use the conservative unknown-socket TN +1')
+      modifierNotes.push('reused shop ballast raises this lift test TN by 1')
+    }
+    if (calibratedLiftHardware) {
+      targetNumber -= 1
+      modifierNotes.push('calibrated lift hardware reduces this lift test TN by 1')
+    }
+    if (!conservativeTorque && !higherToolLoad) {
+      targetNumber += 1
+      modifierNotes.push('no torque ceiling has been logged yet, so use the conservative unknown-load TN +1')
     }
 
     return {
       ...runtime,
       targetNumber: Math.max(2, targetNumber),
+      requiredSuccesses,
       modifierNote: modifierNotes.length ? `Project modifiers: ${modifierNotes.join('; ')}.` : undefined,
     }
   }
@@ -405,20 +411,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     let targetNumber = runtime.targetNumber
     const modifierNotes: string[] = []
 
-    if (manualSocketLabels) {
+    if (conservativeTorque) {
+      targetNumber -= 1
+      modifierNotes.push('conservative torque limit makes the safe-load card easier to defend, reducing this closeout TN by 1')
+    }
+    if (higherToolLoad) {
       targetNumber += 1
-      modifierNotes.push('manual socket labels need stricter sequence documentation, raising this closeout TN by 1')
+      modifierNotes.push('higher tool load needs stricter Day 11 and final-acceptance language, raising this closeout TN by 1')
     }
-    if (keyedInterlocks) {
+    if (reusedBallast) {
+      modifierNotes.push('reused ballast requires a maintenance note to recheck the safe-load witness after rough use')
+    }
+    if (calibratedLiftHardware) {
       targetNumber -= 1
-      modifierNotes.push('keyed socket interlocks simplify final socket documentation, reducing this closeout TN by 1')
-    }
-    if (specializedSockets) {
-      targetNumber -= 1
-      modifierNotes.push('documented tool-pod sockets strengthen acceptance notes, reducing this closeout TN by 1')
-    }
-    if (universalSockets) {
-      modifierNotes.push('universal sockets require stricter final load-limit language')
+      modifierNotes.push('calibrated lift hardware strengthens safe-load documentation, reducing this closeout TN by 1')
     }
 
     return {
@@ -474,7 +480,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'New tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; rotate Drone Shift to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}; include Curtis's updated running nuyen total. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
+    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; mark Job Completed; rotate Drone Shift to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}; include Curtis's updated current nuyen total in the confirmation response to every completed daily post. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
   ]
 
   if (PROJECT_DAY === PROJECT_TOTAL_DAYS) {
