@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 11
+const PROJECT_DAY: number = 12
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Mirror-side replication'
+const NEXT_PROJECT_PHASE = 'Wear test and snag test'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '20,950¥ logged before this work order; prior build context is preserved on the wiki.'
+const PROJECT_CURRENT_SPEND = '20,950¥ logged before this work order; Day 11 rotated out untouched with no spend, no penalty, and no project-state change.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -143,37 +143,37 @@ const projectSteps: ProjectStep[] = [
   { day: 8, title: 'Power and control trunk', status: 'complete', choicePressure: 'cheaper manual switches vs fused smart control trunk', spendBand: '2,000-5,500¥', carryForward: 'completed with manual switches, clean cutoffs, slower sequencing, and a Day 9 socket-interlock review hook' },
   { day: 9, title: 'Quick-change wrist sockets', status: 'complete', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'completed with universal wrist sockets, manual socket labels, a stricter load-limit warning, and a conservative Day 10 lift-limit flag' },
   { day: 10, title: 'Single-arm lift and tool test', status: 'complete', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'completed with conservative torque, reused ballast, fresh bushings, a strict safe-load number, and a side-assembly balance note' },
-  { day: 11, title: 'Three-arm side assembly', status: 'active', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'active now; side balance affects mirror-side replication' },
-  { day: 12, title: 'Mirror-side replication', status: 'waiting', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'symmetry affects wear/snag final tests' },
+  { day: 11, title: 'Three-arm side assembly', status: 'discarded', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
+  { day: 12, title: 'Mirror-side replication', status: 'active', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'active now; symmetry affects wear/snag final tests' },
   { day: 13, title: 'Wear test and snag test', status: 'waiting', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'wear findings become final limitations' },
   { day: 14, title: 'Final acceptance and usage guide', status: 'final', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'accepted result updates Curtis page with final gear and usage guide' },
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-three-arm-side-assembly',
-  title: 'Three-Arm Side Assembly',
-  asset: "Curtis's Backpack Arms rig: Day 11 three-arm side assembly",
-  customer: 'Curtis, continuing Day 11 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-mirror-side-replication',
+  title: 'Mirror-Side Replication',
+  asset: "Curtis's Backpack Arms rig: Day 12 mirror-side replication",
+  customer: 'Curtis, continuing Day 12 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The first arm can lift, but only inside a strict safe-load note after the wrist twitched on release. Today Curtis has to turn that one cautious arm into a whole three-arm side without losing the visible socket labels, safety stops, or manual sequence discipline.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 20,950¥ before this work order. Day 10 left a conservative torque ceiling, reused-ballast maintenance note, fresh bushing replacement, strict single-arm safe-load number, socket warning, and side-assembly balance note. Today's work decides whether the first complete side favors symmetric reliability or one stronger utility arm. No permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The Day 11 side-assembly ticket sat untouched, so it rotates out cleanly: no spend, no penalty, no hidden wobble. Curtis is back at the bench with the Day 10 strict safe-load card and has to build the mirror-side pattern without pretending a missing left side ever got tested.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 20,950¥ before this work order, and Day 11 was discarded with no project-state change. Day 10 still supplies the square first-arm fixture, conservative torque ceiling, reused-ballast maintenance note, fresh bushing replacement, strict single-arm safe-load number, socket warning, manual sequencing discipline, and side-assembly balance cue. Today's work decides whether the mirror side duplicates the proven cautious geometry or pays more to correct asymmetry before the Day 13 wear/snag test. No permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Lay out the three-arm side fixture',
-      station: 'Side rail fixture, labeled sockets, safety stops, and Day 10 safe-load card',
-      description: 'Transfer the square first-arm fixture into a side assembly jig without hiding socket labels, pinching wiring, or moving the Day 10 safety-stop reference.',
+      title: 'Recover the mirror-side reference',
+      station: 'Day 10 safe-load card, untouched Day 11 tray, mirror jig, and socket labels',
+      description: 'Clear the stale Day 11 tray, preserve the strict safe-load card, and square a mirror-side reference from the last proven measurements instead of inventing a completed side that never happened.',
       actions: [
         {
-          label: 'Square the side fixture around the Day 10 reference arm',
-          detail: 'Lock the first arm into the side jig, preserve the visible manual socket labels, and mark stop positions before adding the second and third arm lanes.',
+          label: 'Square the mirror jig from the last proven arm',
+          detail: 'Use the Day 10 reference arm, socket labels, safety-stop marks, and rail envelope to set a mirror-side baseline while discarding the untouched Day 11 work order cleanly.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The side fixture stays square, the labels remain readable, and the safety-stop marks give Curtis a clean three-arm starting envelope.',
-          onFailure: 'The side jig creeps out of square, so Curtis buys better spacer blocks and resets the stop marks before adding more arms.',
-          nuyenSuccess: -300,
-          nuyenFailure: -750,
+          onSuccess: 'The mirror jig keys cleanly from the Day 10 reference, with visible labels and no false Day 11 carry-forward baked into the pattern.',
+          onFailure: 'The mirror jig is a half-degree sour, so Curtis buys a better straightedge set and resets the marks before cutting duplicate lanes.',
+          nuyenSuccess: -350,
+          nuyenFailure: -900,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,92 +181,92 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the side-balance plan',
-      station: 'Three-arm rail, servo limits, strict safe-load card, and utility-arm sketch',
-      description: 'Decide whether the first complete side stays symmetric and conservative, or whether one arm gets extra utility emphasis at higher balancing risk.',
+      title: 'Choose the mirror geometry strategy',
+      station: 'Mirror layout, belt-clearance marks, service-access warning, and final wear-test notes',
+      description: 'Decide whether Curtis duplicates the cautious proven geometry exactly, or spends extra time and parts correcting asymmetry before the rig reaches a real wear/snag test.',
       actions: [
         {
-          label: 'Build a symmetric reliability side',
-          detail: 'Keep all three arms inside the strict Day 10 safe-load number and bias the side toward repeatable motion instead of impressive tool leverage.',
+          label: 'Duplicate the cautious geometry exactly',
+          detail: 'Mirror the Day 10 reference dimensions and manual labels without redesigning the belt clearance, keeping today cheaper but carrying stricter fit notes into Day 13.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis maps a balanced three-arm side where each socket stays inside the conservative safe-load note.',
-          onFailure: 'The first balance sketch overloads the outer wrist, so Curtis buys extra bracket stock and redraws the side as stricter but safer.',
+          onSuccess: 'The mirror dimensions copy cleanly and keep the strict safe-load envelope easy to explain.',
+          onFailure: 'The copied geometry binds near the hip belt, so Curtis buys spacer stock and marks Day 13 for an extra snag check.',
           nuyenSuccess: -900,
-          nuyenFailure: -1700,
+          nuyenFailure: -1900,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: symmetric reliability lowers Day 11 side-sync risk and makes Day 12 mirror-side replication easier, but keeps all three arms locked to the strict Day 10 light-tool safe-load note unless Day 14 GM acceptance expands it.',
+          effectNote: 'Project choice: exact mirror geometry keeps spend down and lowers today\'s documentation burden, but Day 13 must keep a stricter belt-snag and service-access warning unless the wear test proves otherwise.',
         },
         {
-          label: 'Bias one stronger utility arm',
-          detail: 'Spend more on one reinforced lane so the side may have a primary utility arm, accepting harder balance checks and stricter final approval language.',
+          label: 'Correct the mirror-side asymmetry now',
+          detail: 'Buy documented bracket stock and offset the mirror side around the hip-belt and socket-label conflicts before any wear test exposes them.',
           skill: 'electronics',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The utility-arm lane looks plausible on paper, with extra bracing and a clear warning that the other two arms remain light-tool support.',
-          onFailure: 'The stronger lane twists the side balance ugly, so Curtis buys a heavier brace set and marks the whole side for conservative use until Day 14 review.',
-          nuyenSuccess: -1800,
-          nuyenFailure: -3000,
+          onSuccess: 'The corrected mirror offset clears the belt and keeps socket labels readable, though it needs stricter documentation than a direct copy.',
+          onFailure: 'The first correction stacks ugly, so Curtis buys a matched bracket pair and writes the offset as conservative until Day 13 proves it.',
+          nuyenSuccess: -1900,
+          nuyenFailure: -3300,
           qualitySuccess: 2,
           qualityFailure: 0,
-          effectNote: 'Project choice: one stronger utility arm costs more and raises Day 11 side-sync risk, but a clean result gives Day 12 a primary-arm asymmetry to copy or correct before final acceptance.',
+          effectNote: 'Project choice: corrected mirror-side asymmetry costs more and raises today\'s documentation TN, but a clean result reduces Day 13 belt-snag risk and improves final acceptance language.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Set bushings and safe-load witnesses',
-      station: 'Fresh wrist bushings, reused ballast witness, socket labels, and torque notes',
-      description: 'Decide how much effort Curtis spends rechecking the Day 10 wrist twitch and reused-ballast safe-load witness before three arms move together.',
+      title: 'Source the mirror-side wear stack',
+      station: 'Bushings, servo horn pair, rail spacers, and documented receipts',
+      description: 'Pick the parts standard for the mirror side: documented matched hardware that hurts today, or cheaper salvage that keeps nuyen in pocket but makes the replication test fussier.',
       actions: [
         {
-          label: 'Recheck the fresh bushings and ballast witness',
-          detail: 'Seat the fresh bushings, rerun witness marks with the reused ballast setup, and make the strict safe-load number defensible before side sync.',
-          skill: 'electronicsBR',
+          label: 'Buy documented matched hardware',
+          detail: 'Pay for matched bushings, servo horns, and rail spacers with receipts so the mirror side has less mystery wear going into the snag test.',
+          skill: 'negotiation',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The fresh bushings seat cleanly and the reused ballast witness repeats well enough for a cautious three-arm side test.',
-          onFailure: 'One bushing still shows witness rub, so Curtis buys a better matched set and keeps the safe-load card strict.',
-          nuyenSuccess: -700,
-          nuyenFailure: -1400,
+          onSuccess: 'Curtis gets the matched hardware at shop-counter pricing and tags each piece for later maintenance.',
+          onFailure: 'The counter clerk smells desperation; Curtis still gets the matched set, but pays extra for the right servo horns.',
+          nuyenSuccess: -1300,
+          nuyenFailure: -2300,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: bushing and ballast recheck costs more shop time now, reduces Day 11 side-sync uncertainty, and preserves the maintenance note to recheck the safe-load witness after rough use.',
+          effectNote: 'Project choice: documented matched hardware costs more now, lowers the mirror replication test TN by 1, and gives Day 14 cleaner maintenance/acceptance paperwork.',
         },
         {
-          label: 'Trust the Day 10 witness marks',
-          detail: 'Keep the Day 10 bushing replacement and ballast marks as-is, saving money but accepting more uncertainty once three arms move together.',
-          skill: 'electronics',
-          targetNumber: 4,
+          label: 'Scrounge a matched-enough wear stack',
+          detail: 'Pull bushings and spacers from the salvage bins, match them by hand, and accept more rework risk if the mirror side chatters under load.',
+          skill: 'electronicsBR',
+          targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 10 witness marks line up well enough to proceed, though Curtis tags the side for a stricter post-test inspection.',
-          onFailure: 'The old marks disagree once the side rail is loaded, so Curtis buys fresh witness tape and a replacement bushing pair anyway.',
-          nuyenSuccess: -250,
-          nuyenFailure: -1100,
+          onSuccess: 'The salvage wear stack matches well enough after hand-sorting, with a painted witness line for the next test.',
+          onFailure: 'Two bushings chatter under hand load, so Curtis loses time and buys fresh witness tape plus a partial replacement set.',
+          nuyenSuccess: -450,
+          nuyenFailure: -1600,
           qualitySuccess: 0,
           qualityFailure: 0,
-          effectNote: 'Project choice: trusting the Day 10 witness marks keeps spend down but raises the Day 11 side-sync test TN by 1 and leaves a stricter post-test inspection hook.',
+          effectNote: 'Project choice: scrounged wear stack lowers immediate spend but raises the mirror replication test TN by 1 and leaves a Day 13 maintenance-chatter warning.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Run the three-arm side sync',
-      station: 'Three-arm side rail, dummy tools, manual switch sequence, and stop blocks',
-      description: 'Cycle all three arms through a conservative synchronized motion, watch side balance, verify the socket labels stay readable, and confirm the arms fail safe on stop blocks.',
+      title: 'Cycle the mirrored lanes',
+      station: 'Mirror rails, dummy sockets, manual switch sequence, and hip-belt clearance gauge',
+      description: 'Move the mirrored lanes through the strict safe-load envelope, watch for belt snags, confirm the manual sequence still reads left/right cleanly, and stop before anything counts as gear benefit.',
       actions: [
         {
-          label: 'Cycle the three-arm side under strict safe-load',
-          detail: 'Move three dummy tool heads through the manual sequence, hold a side-balanced pose, release onto the stops, and make sure no wrist walks out of the strict safe-load envelope.',
+          label: 'Run the mirror replication cycle under strict safe-load',
+          detail: 'Cycle the mirrored dummy sockets through the manual sequence, hold belt clearance, and verify the mirrored labels still point Curtis toward the right cutoff.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The three-arm side cycles inside the strict safe-load number, holds balance without hiding the labels, and releases onto the stops cleanly.',
-          onFailure: 'The side moves, but one wrist lags and the rail twists on release; Curtis buys extra bracing and flags the side balance as strict until mirror-side work proves it.',
-          nuyenSuccess: -600,
-          nuyenFailure: -1800,
+          onSuccess: 'The mirror side cycles inside the strict safe-load number, clears the belt gauge, and leaves the cutoff labels readable.',
+          onFailure: 'The mirror side moves, but one lane chatters at the hip-belt edge; Curtis buys extra shims and flags Day 13 for conservative snag testing.',
+          nuyenSuccess: -550,
+          nuyenFailure: -1700,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -274,20 +274,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the Day 11 side-assembly card',
-      station: 'Build notebook, Day 12 mirror-side card, and warning labels',
-      description: 'Record side-balance choice, bushing/witness handling, sync behavior, safe-load limits, socket warnings, and the exact Day 12 mirror-side replication hook.',
+      title: 'Write the Day 12 mirror card',
+      station: 'Build notebook, Day 13 wear-test card, warning labels, and maintenance notes',
+      description: 'Record mirror strategy, parts standard, replication behavior, belt-clearance warnings, socket-label discipline, and the exact Day 13 wear/snag test hook.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 11 side-assembly sheet',
-          detail: 'Write the side note: selected balance plan, witness approach, three-arm behavior, safe-load warning, side-balance limit, and Day 12 mirror-side replication cue.',
+          label: 'Log the Backpack Arms Day 12 mirror-side sheet',
+          detail: 'Write the mirror note: exact-copy or corrected-offset choice, documented or scrounged wear stack, cycle result, belt-snag warning, and Day 13 wear-test cue.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 11 sheet gives Day 12 a clear mirror-side replication plan, side-balance warning, socket-label note, and safe-load limit.',
-          onFailure: 'The sheet is usable but extra conservative; Curtis marks Day 12 to recheck side balance before copying anything.',
+          onSuccess: 'The Day 12 sheet gives Day 13 a clean wear/snag test plan, belt-clearance warning, socket-label note, and strict safe-load reminder.',
+          onFailure: 'The sheet is readable but grumpy; Curtis marks Day 13 to recheck belt clearance, label direction, and chatter before any comfort claim.',
           nuyenSuccess: -200,
-          nuyenFailure: -650,
+          nuyenFailure: -700,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -368,35 +368,35 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const symmetricReliability = shift.log.some((entry) => entry.action === 'Build a symmetric reliability side')
-  const strongerUtilityArm = shift.log.some((entry) => entry.action === 'Bias one stronger utility arm')
-  const recheckedWitness = shift.log.some((entry) => entry.action === 'Recheck the fresh bushings and ballast witness')
-  const trustedWitnessMarks = shift.log.some((entry) => entry.action === 'Trust the Day 10 witness marks')
+  const exactMirror = shift.log.some((entry) => entry.action === 'Duplicate the cautious geometry exactly')
+  const correctedMirror = shift.log.some((entry) => entry.action === 'Correct the mirror-side asymmetry now')
+  const documentedHardware = shift.log.some((entry) => entry.action === 'Buy documented matched hardware')
+  const scroungedHardware = shift.log.some((entry) => entry.action === 'Scrounge a matched-enough wear stack')
 
   if (stageId === 'test') {
     let targetNumber = runtime.targetNumber
     let requiredSuccesses = runtime.requiredSuccesses
     const modifierNotes: string[] = []
 
-    if (symmetricReliability) {
+    if (exactMirror) {
       targetNumber -= 1
-      modifierNotes.push('symmetric reliability plan reduces this side-sync TN by 1')
+      modifierNotes.push('exact mirror geometry reduces this replication-cycle TN by 1')
     }
-    if (strongerUtilityArm) {
+    if (correctedMirror) {
       requiredSuccesses += 1
-      modifierNotes.push('stronger utility arm requires one extra side-sync success')
+      modifierNotes.push('corrected mirror-side asymmetry needs one extra success to prove the offset before Day 13')
     }
-    if (recheckedWitness) {
+    if (documentedHardware) {
       targetNumber -= 1
-      modifierNotes.push('bushing and ballast recheck reduces side-sync uncertainty by 1 TN')
+      modifierNotes.push('documented matched hardware reduces this replication-cycle TN by 1')
     }
-    if (trustedWitnessMarks) {
+    if (scroungedHardware) {
       targetNumber += 1
-      modifierNotes.push('trusted Day 10 witness marks raise this side-sync TN by 1')
+      modifierNotes.push('scrounged wear stack raises this replication-cycle TN by 1')
     }
-    if (!symmetricReliability && !strongerUtilityArm) {
+    if (!exactMirror && !correctedMirror) {
       targetNumber += 1
-      modifierNotes.push('no side-balance plan has been logged yet, so use the conservative unknown-balance TN +1')
+      modifierNotes.push('no mirror geometry strategy has been logged yet, so use conservative unknown-fit TN +1')
     }
 
     return {
@@ -411,20 +411,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     let targetNumber = runtime.targetNumber
     const modifierNotes: string[] = []
 
-    if (symmetricReliability) {
+    if (exactMirror) {
       targetNumber -= 1
-      modifierNotes.push('symmetric reliability makes Day 12 mirror-side replication easier to document, reducing this closeout TN by 1')
+      modifierNotes.push('exact mirror geometry is easier to document, reducing this closeout TN by 1')
     }
-    if (strongerUtilityArm) {
+    if (correctedMirror) {
       targetNumber += 1
-      modifierNotes.push('stronger utility arm needs stricter Day 12 and final-acceptance language, raising this closeout TN by 1')
+      modifierNotes.push('corrected mirror-side asymmetry needs stricter Day 13 and final-acceptance language, raising this closeout TN by 1')
     }
-    if (recheckedWitness) {
-      modifierNotes.push('bushing and ballast recheck preserves the safe-load witness maintenance note after rough use')
+    if (documentedHardware) {
+      modifierNotes.push('documented matched hardware preserves cleaner maintenance paperwork for Day 14')
     }
-    if (trustedWitnessMarks) {
+    if (scroungedHardware) {
       targetNumber += 1
-      modifierNotes.push('trusted witness marks require a stricter post-test inspection note, raising this closeout TN by 1')
+      modifierNotes.push('scrounged wear stack requires a maintenance-chatter warning, raising this closeout TN by 1')
     }
 
     return {
