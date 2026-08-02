@@ -110,7 +110,7 @@ const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
 const NEXT_PROJECT_PHASE = 'Post-acceptance follow-up'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; Day 13 completed as solid repair with comfortable daily carry and a slower-deploy note.'
+const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; Day 13 completed as solid repair with comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -145,7 +145,7 @@ const projectSteps: ProjectStep[] = [
   { day: 10, title: 'Single-arm lift and tool test', status: 'complete', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'completed with conservative torque, reused ballast, fresh bushings, a strict safe-load number, and a side-assembly balance note' },
   { day: 11, title: 'Three-arm side assembly', status: 'discarded', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 12, title: 'Mirror-side replication', status: 'discarded', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
-  { day: 13, title: 'Wear test and snag test', status: 'complete', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'completed with comfortable daily carry, reachable safety stops, and a slower-deploy note' },
+  { day: 13, title: 'Wear test and snag test', status: 'complete', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'completed with comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note' },
   { day: 14, title: 'Final acceptance and usage guide', status: 'active', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'active final gate; accepted result updates Curtis page with final gear and usage guide' },
 ]
 
@@ -155,8 +155,8 @@ const activeJob: JobProfile = {
   asset: "Curtis's Backpack Arms rig: Day 14 final acceptance and usage guide",
   customer: 'Curtis, closing Day 14 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The pack finally has to stop being a shop project and become either usable gear or a very expensive warning label. Day 13 proved the comfortable carry profile and reachable safety stops, but it also preserved slower deployment. Today decides what Curtis can actually claim on his sheet.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order. Day 13 completed as a solid repair with the carry mockup hanging square, safety stops reachable, fewer shoulder hot spots, and a slower-deploy note. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
+  hook: 'The pack finally has to stop being a shop project and become either usable gear or a very expensive warning label. Day 13 proved the comfortable carry profile and reachable safety stops, bought documented anti-snag hardware, and still caught the rag strip hard enough to scuff a socket cap. Today decides what Curtis can actually claim on his sheet.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order. Day 13 completed as a solid repair with the carry mockup hanging square, safety stops reachable, fewer shoulder hot spots, documented lined sleeves and edge guards, replacement guards after a failed hallway snag test, a clean wear card, and a slower-deploy note. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
   stages: [
     {
       id: 'intake',
@@ -166,7 +166,7 @@ const activeJob: JobProfile = {
       actions: [
         {
           label: 'Cross-check the acceptance packet',
-          detail: 'Match the safe-load card, socket labels, manual sequence, slower-deploy note, and safety cutoff map against the physical rig.',
+          detail: 'Match the safe-load card, socket labels, manual sequence, slower-deploy note, strict folded-carry limit, documented guard receipts, and safety cutoff map against the physical rig.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
@@ -187,7 +187,7 @@ const activeJob: JobProfile = {
       actions: [
         {
           label: 'Ask for conservative tool-rig approval',
-          detail: 'Frame the rig as wearable utility gear first: folded carry, slow deployment, light tool work, strict sockets, and no extra attacks.',
+          detail: 'Frame the rig as wearable utility gear first: strict folded carry, slow deployment, light tool work, strict sockets, and no extra attacks.',
           skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
@@ -237,7 +237,7 @@ const activeJob: JobProfile = {
         },
         {
           label: 'Keep the final kit lean',
-          detail: 'Use existing spares, handwritten tags, and the Day 13 comfort notes to close cheaply while accepting stricter maintenance language.',
+          detail: 'Use existing spares, handwritten tags, the Day 13 comfort notes, and the replacement-guard warning to close cheaply while accepting stricter maintenance language.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
@@ -259,7 +259,7 @@ const activeJob: JobProfile = {
       actions: [
         {
           label: 'Cycle folded carry, deployment, tool use, and stow',
-          detail: 'Walk the pack, deploy slowly, touch each manual control, lift dummy tools inside the safe-load number, hit the cutoffs, and stow clean.',
+          detail: 'Walk the pack through the strict folded-carry lane, deploy slowly, touch each manual control, lift dummy tools inside the safe-load number, hit the cutoffs, and stow clean.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 2,
