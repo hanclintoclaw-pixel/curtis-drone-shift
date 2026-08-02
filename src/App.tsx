@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 12
+const PROJECT_DAY: number = 13
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Wear test and snag test'
+const NEXT_PROJECT_PHASE = 'Final acceptance and usage guide'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '20,950¥ logged before this work order; Day 11 rotated out untouched with no spend, no penalty, and no project-state change.'
+const PROJECT_CURRENT_SPEND = '20,950¥ logged before this work order; Day 12 rotated out untouched with no spend, no penalty, and no project-state change.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -144,36 +144,36 @@ const projectSteps: ProjectStep[] = [
   { day: 9, title: 'Quick-change wrist sockets', status: 'complete', choicePressure: 'universal socket vs specialized tool pods', spendBand: '1,500-4,000¥', carryForward: 'completed with universal wrist sockets, manual socket labels, a stricter load-limit warning, and a conservative Day 10 lift-limit flag' },
   { day: 10, title: 'Single-arm lift and tool test', status: 'complete', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'completed with conservative torque, reused ballast, fresh bushings, a strict safe-load number, and a side-assembly balance note' },
   { day: 11, title: 'Three-arm side assembly', status: 'discarded', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
-  { day: 12, title: 'Mirror-side replication', status: 'active', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'active now; symmetry affects wear/snag final tests' },
-  { day: 13, title: 'Wear test and snag test', status: 'waiting', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'wear findings become final limitations' },
+  { day: 12, title: 'Mirror-side replication', status: 'discarded', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
+  { day: 13, title: 'Wear test and snag test', status: 'active', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'active now; wear findings become final limitations' },
   { day: 14, title: 'Final acceptance and usage guide', status: 'final', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'accepted result updates Curtis page with final gear and usage guide' },
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-mirror-side-replication',
-  title: 'Mirror-Side Replication',
-  asset: "Curtis's Backpack Arms rig: Day 12 mirror-side replication",
-  customer: 'Curtis, continuing Day 12 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-wear-snag-test',
+  title: 'Wear-and-Snag Test',
+  asset: "Curtis's Backpack Arms rig: Day 13 wear test and snag test",
+  customer: 'Curtis, continuing Day 13 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The Day 11 side-assembly ticket sat untouched, so it rotates out cleanly: no spend, no penalty, no hidden wobble. Curtis is back at the bench with the Day 10 strict safe-load card and has to build the mirror-side pattern without pretending a missing left side ever got tested.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 20,950¥ before this work order, and Day 11 was discarded with no project-state change. Day 10 still supplies the square first-arm fixture, conservative torque ceiling, reused-ballast maintenance note, fresh bushing replacement, strict single-arm safe-load number, socket warning, manual sequencing discipline, and side-assembly balance cue. Today's work decides whether the mirror side duplicates the proven cautious geometry or pays more to correct asymmetry before the Day 13 wear/snag test. No permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The Day 12 mirror-side replication ticket sat untouched, so it rotates out cleanly: no spend, no penalty, no hidden wobble. Curtis is down to the ugly practical question now: can this little spider-pack ride on his back, turn through a door, and deploy without hooking a chair like it owes the chair money?',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 20,950¥ before this work order, and Day 12 was discarded with no project-state change. The wear test starts from Day 10's strict single-arm safe-load card, universal socket warning, manual sequencing discipline, conservative lift envelope, safety-stop discipline, reused-ballast maintenance note, and the prior light-link fatigue warning. Today's choices decide whether the final guide favors comfortable daily carry or a faster, riskier deployment profile, and whether Curtis buys clean anti-snag hardware or saves nuyen with salvage loom that may need maintenance warnings. No permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Recover the mirror-side reference',
-      station: 'Day 10 safe-load card, untouched Day 11 tray, mirror jig, and socket labels',
-      description: 'Clear the stale Day 11 tray, preserve the strict safe-load card, and square a mirror-side reference from the last proven measurements instead of inventing a completed side that never happened.',
+      title: 'Harness up the carry mockup',
+      station: 'Backplate, shoulder straps, hip belt, dummy sockets, and safety stops',
+      description: 'Load the rig with dummy tool weight, cinch the harness, confirm the manual cutoffs are reachable, and keep the Day 12 miss from pretending the mirror side was proven.',
       actions: [
         {
-          label: 'Square the mirror jig from the last proven arm',
-          detail: 'Use the Day 10 reference arm, socket labels, safety-stop marks, and rail envelope to set a mirror-side baseline while discarding the untouched Day 11 work order cleanly.',
+          label: 'Set the carry mockup and safety stops',
+          detail: 'Fit the pack to Curtis-height stance, hang dummy tool weight, check cutoff reach, and mark every place the harness rubs before any deployment cycling starts.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The mirror jig keys cleanly from the Day 10 reference, with visible labels and no false Day 11 carry-forward baked into the pattern.',
-          onFailure: 'The mirror jig is a half-degree sour, so Curtis buys a better straightedge set and resets the marks before cutting duplicate lanes.',
-          nuyenSuccess: -350,
-          nuyenFailure: -900,
+          onSuccess: 'The carry mockup hangs square enough to test without pulling Curtis sideways, and the safety stops stay reachable.',
+          onFailure: 'The pack rides crooked under dummy weight, so Curtis buys extra strap hardware and resets the stop marks before walking it.',
+          nuyenSuccess: -200,
+          nuyenFailure: -650,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,92 +181,92 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the mirror geometry strategy',
-      station: 'Mirror layout, belt-clearance marks, service-access warning, and final wear-test notes',
-      description: 'Decide whether Curtis duplicates the cautious proven geometry exactly, or spends extra time and parts correcting asymmetry before the rig reaches a real wear/snag test.',
+      title: 'Choose the wear-test profile',
+      station: 'Harness marks, deployment card, shoulder clearance, and hallway tape line',
+      description: 'Pick whether Curtis biases the Day 13 test toward long comfortable carry or toward a faster deployment profile that might help Day 14 acceptance but makes the snag test meaner.',
       actions: [
         {
-          label: 'Duplicate the cautious geometry exactly',
-          detail: 'Mirror the Day 10 reference dimensions and manual labels without redesigning the belt clearance, keeping today cheaper but carrying stricter fit notes into Day 13.',
-          skill: 'electronicsBR',
+          label: 'Tune for comfortable daily carry',
+          detail: 'Pad and trim the carry profile so Curtis can wear the rig longer without hot spots, accepting a slower deployment cadence in the final guide.',
+          skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The mirror dimensions copy cleanly and keep the strict safe-load envelope easy to explain.',
-          onFailure: 'The copied geometry binds near the hip belt, so Curtis buys spacer stock and marks Day 13 for an extra snag check.',
-          nuyenSuccess: -900,
-          nuyenFailure: -1900,
+          onSuccess: 'The harness sits lower and calmer, with fewer shoulder hot spots and a clear slower-deploy note.',
+          onFailure: 'The first padding set bunches at the hip belt, so Curtis buys better strap foam and marks slower deployment as mandatory until Day 14 review.',
+          nuyenSuccess: -600,
+          nuyenFailure: -1500,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: exact mirror geometry keeps spend down and lowers today\'s documentation burden, but Day 13 must keep a stricter belt-snag and service-access warning unless the wear test proves otherwise.',
+          effectNote: 'Project choice: comfortable daily carry lowers the hallway snag-test TN by 1 and improves final wear-limit language, but the final usage guide must keep slower deployment sequencing unless Day 14 approves otherwise.',
         },
         {
-          label: 'Correct the mirror-side asymmetry now',
-          detail: 'Buy documented bracket stock and offset the mirror side around the hip-belt and socket-label conflicts before any wear test exposes them.',
-          skill: 'electronics',
+          label: 'Tune for aggressive deployment profile',
+          detail: 'Keep the pack tighter and springier so the arms clear faster, spending more on stiffeners and accepting a harsher snag test.',
+          skill: 'rotorAircraftBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The corrected mirror offset clears the belt and keeps socket labels readable, though it needs stricter documentation than a direct copy.',
-          onFailure: 'The first correction stacks ugly, so Curtis buys a matched bracket pair and writes the offset as conservative until Day 13 proves it.',
-          nuyenSuccess: -1900,
-          nuyenFailure: -3300,
+          onSuccess: 'The tighter profile deploys with less wasted travel and gives Day 14 something useful to test for approval language.',
+          onFailure: 'The aggressive profile bites at the shoulder strap, so Curtis buys extra stiffener stock and flags deployment as not combat-safe yet.',
+          nuyenSuccess: -1200,
+          nuyenFailure: -2500,
           qualitySuccess: 2,
           qualityFailure: 0,
-          effectNote: 'Project choice: corrected mirror-side asymmetry costs more and raises today\'s documentation TN, but a clean result reduces Day 13 belt-snag risk and improves final acceptance language.',
+          effectNote: 'Project choice: aggressive deployment profile costs more and makes the hallway snag test require one extra success, but a clean result gives Day 14 stronger deployment and possible combat-limit language.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Source the mirror-side wear stack',
-      station: 'Bushings, servo horn pair, rail spacers, and documented receipts',
-      description: 'Pick the parts standard for the mirror side: documented matched hardware that hurts today, or cheaper salvage that keeps nuyen in pocket but makes the replication test fussier.',
+      title: 'Set the anti-snag hardware standard',
+      station: 'Edge guards, cable sleeves, socket caps, receipt pile, and salvage loom',
+      description: 'Choose whether Curtis buys documented anti-snag hardware for clean acceptance paperwork or saves nuyen with filed salvage loom that may chatter and need a maintenance warning.',
       actions: [
         {
-          label: 'Buy documented matched hardware',
-          detail: 'Pay for matched bushings, servo horns, and rail spacers with receipts so the mirror side has less mystery wear going into the snag test.',
+          label: 'Buy lined sleeves and edge guards',
+          detail: 'Pay for low-profile cable sleeves, lined edge guards, and socket caps with receipts so the hallway test is about the design instead of mystery burrs.',
           skill: 'negotiation',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis gets the matched hardware at shop-counter pricing and tags each piece for later maintenance.',
-          onFailure: 'The counter clerk smells desperation; Curtis still gets the matched set, but pays extra for the right servo horns.',
-          nuyenSuccess: -1300,
-          nuyenFailure: -2300,
+          onSuccess: 'Curtis gets the lined hardware at a painful but fair price and tags the receipts for Day 14 acceptance.',
+          onFailure: 'The parts counter only has the better sleeve kit, so Curtis pays more but gets clean edge protection.',
+          nuyenSuccess: -900,
+          nuyenFailure: -1800,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: documented matched hardware costs more now, lowers the mirror replication test TN by 1, and gives Day 14 cleaner maintenance/acceptance paperwork.',
+          effectNote: 'Project choice: documented sleeves and edge guards reduce the hallway snag-test TN by 1 and give Day 14 cleaner repair and maintenance paperwork.',
         },
         {
-          label: 'Scrounge a matched-enough wear stack',
-          detail: 'Pull bushings and spacers from the salvage bins, match them by hand, and accept more rework risk if the mirror side chatters under load.',
+          label: 'File salvage loom and reuse socket caps',
+          detail: 'Shape cheaper salvage loom by hand, reuse socket caps, and accept that any burr or crooked sleeve may become a final maintenance warning.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The salvage wear stack matches well enough after hand-sorting, with a painted witness line for the next test.',
-          onFailure: 'Two bushings chatter under hand load, so Curtis loses time and buys fresh witness tape plus a partial replacement set.',
-          nuyenSuccess: -450,
-          nuyenFailure: -1600,
+          onSuccess: 'The salvage loom files clean enough for testing, with witness paint marking the spots Curtis should inspect later.',
+          onFailure: 'A reused cap grabs the test cloth, so Curtis buys witness paint, files the loom again, and flags extra maintenance checks.',
+          nuyenSuccess: -250,
+          nuyenFailure: -1100,
           qualitySuccess: 0,
           qualityFailure: 0,
-          effectNote: 'Project choice: scrounged wear stack lowers immediate spend but raises the mirror replication test TN by 1 and leaves a Day 13 maintenance-chatter warning.',
+          effectNote: 'Project choice: salvage loom lowers immediate spend but raises the hallway snag-test TN by 1 and adds a Day 14 maintenance-inspection warning unless the test result is excellent.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Cycle the mirrored lanes',
-      station: 'Mirror rails, dummy sockets, manual switch sequence, and hip-belt clearance gauge',
-      description: 'Move the mirrored lanes through the strict safe-load envelope, watch for belt snags, confirm the manual sequence still reads left/right cleanly, and stop before anything counts as gear benefit.',
+      title: 'Run the hallway snag test',
+      station: 'Doorframe tape, shop chair, hanging rag strip, manual switch card, and dummy tools',
+      description: 'Walk, turn, sit, stand, and deploy through a mean little shop obstacle lane. This is where the prior choices must prove whether they bought reliability or merely bought optimism.',
       actions: [
         {
-          label: 'Run the mirror replication cycle under strict safe-load',
-          detail: 'Cycle the mirrored dummy sockets through the manual sequence, hold belt clearance, and verify the mirrored labels still point Curtis toward the right cutoff.',
+          label: 'Walk the pack through the snag lane',
+          detail: 'Cycle folded carry, chair turn, doorframe pass, rag-strip brush, and one slow manual deployment while staying inside the strict safe-load number.',
           skill: 'electronicsBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The mirror side cycles inside the strict safe-load number, clears the belt gauge, and leaves the cutoff labels readable.',
-          onFailure: 'The mirror side moves, but one lane chatters at the hip-belt edge; Curtis buys extra shims and flags Day 13 for conservative snag testing.',
-          nuyenSuccess: -550,
-          nuyenFailure: -1700,
+          onSuccess: 'The pack clears the snag lane with only honest rub marks, and the manual sequence remains readable under dummy load.',
+          onFailure: 'The pack catches the rag strip and scuffs a socket cap; Curtis buys replacement guards and marks Day 14 for strict folded-carry limitations.',
+          nuyenSuccess: -350,
+          nuyenFailure: -1400,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -274,20 +274,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the Day 12 mirror card',
-      station: 'Build notebook, Day 13 wear-test card, warning labels, and maintenance notes',
-      description: 'Record mirror strategy, parts standard, replication behavior, belt-clearance warnings, socket-label discipline, and the exact Day 13 wear/snag test hook.',
+      title: 'Write the Day 13 wear card',
+      station: 'Build notebook, final acceptance checklist, safety warnings, and usage-guide draft',
+      description: 'Record the carry profile, anti-snag standard, test behavior, safety cutoff reach, maintenance warning, and exactly what Day 14 must decide before Curtis gets a real gear entry.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 12 mirror-side sheet',
-          detail: 'Write the mirror note: exact-copy or corrected-offset choice, documented or scrounged wear stack, cycle result, belt-snag warning, and Day 13 wear-test cue.',
+          label: 'Log the Backpack Arms Day 13 wear-and-snag sheet',
+          detail: 'Write the wear note: comfort or aggressive profile, sleeve standard, snag result, folded-carry limit, safety cutoff note, and final Day 14 acceptance questions.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 12 sheet gives Day 13 a clean wear/snag test plan, belt-clearance warning, socket-label note, and strict safe-load reminder.',
-          onFailure: 'The sheet is readable but grumpy; Curtis marks Day 13 to recheck belt clearance, label direction, and chatter before any comfort claim.',
-          nuyenSuccess: -200,
-          nuyenFailure: -700,
+          onSuccess: 'The Day 13 sheet gives Day 14 clean acceptance questions and a usable first draft of the carry and maintenance limitations.',
+          onFailure: 'The sheet is complete but fussy; Curtis flags Day 14 to restate folded carry, cutoffs, and maintenance limits before any approval.',
+          nuyenSuccess: -150,
+          nuyenFailure: -600,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -368,35 +368,35 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const exactMirror = shift.log.some((entry) => entry.action === 'Duplicate the cautious geometry exactly')
-  const correctedMirror = shift.log.some((entry) => entry.action === 'Correct the mirror-side asymmetry now')
-  const documentedHardware = shift.log.some((entry) => entry.action === 'Buy documented matched hardware')
-  const scroungedHardware = shift.log.some((entry) => entry.action === 'Scrounge a matched-enough wear stack')
+  const comfortableCarry = shift.log.some((entry) => entry.action === 'Tune for comfortable daily carry')
+  const aggressiveDeployment = shift.log.some((entry) => entry.action === 'Tune for aggressive deployment profile')
+  const documentedSleeves = shift.log.some((entry) => entry.action === 'Buy lined sleeves and edge guards')
+  const salvageLoom = shift.log.some((entry) => entry.action === 'File salvage loom and reuse socket caps')
 
   if (stageId === 'test') {
     let targetNumber = runtime.targetNumber
     let requiredSuccesses = runtime.requiredSuccesses
     const modifierNotes: string[] = []
 
-    if (exactMirror) {
+    if (comfortableCarry) {
       targetNumber -= 1
-      modifierNotes.push('exact mirror geometry reduces this replication-cycle TN by 1')
+      modifierNotes.push('comfortable daily carry lowers this hallway snag-test TN by 1')
     }
-    if (correctedMirror) {
+    if (aggressiveDeployment) {
       requiredSuccesses += 1
-      modifierNotes.push('corrected mirror-side asymmetry needs one extra success to prove the offset before Day 13')
+      modifierNotes.push('aggressive deployment profile requires one extra success to prove faster clearance')
     }
-    if (documentedHardware) {
+    if (documentedSleeves) {
       targetNumber -= 1
-      modifierNotes.push('documented matched hardware reduces this replication-cycle TN by 1')
+      modifierNotes.push('documented sleeves and edge guards lower this hallway snag-test TN by 1')
     }
-    if (scroungedHardware) {
+    if (salvageLoom) {
       targetNumber += 1
-      modifierNotes.push('scrounged wear stack raises this replication-cycle TN by 1')
+      modifierNotes.push('salvage loom raises this hallway snag-test TN by 1')
     }
-    if (!exactMirror && !correctedMirror) {
+    if (!comfortableCarry && !aggressiveDeployment) {
       targetNumber += 1
-      modifierNotes.push('no mirror geometry strategy has been logged yet, so use conservative unknown-fit TN +1')
+      modifierNotes.push('no wear-test profile has been logged yet, so use conservative unknown-fit TN +1')
     }
 
     return {
@@ -411,20 +411,20 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     let targetNumber = runtime.targetNumber
     const modifierNotes: string[] = []
 
-    if (exactMirror) {
+    if (comfortableCarry) {
       targetNumber -= 1
-      modifierNotes.push('exact mirror geometry is easier to document, reducing this closeout TN by 1')
+      modifierNotes.push('comfortable carry is easier to document for daily-use limits, reducing this closeout TN by 1')
     }
-    if (correctedMirror) {
+    if (aggressiveDeployment) {
       targetNumber += 1
-      modifierNotes.push('corrected mirror-side asymmetry needs stricter Day 13 and final-acceptance language, raising this closeout TN by 1')
+      modifierNotes.push('aggressive deployment needs stricter Day 14 approval language, raising this closeout TN by 1')
     }
-    if (documentedHardware) {
-      modifierNotes.push('documented matched hardware preserves cleaner maintenance paperwork for Day 14')
+    if (documentedSleeves) {
+      modifierNotes.push('documented sleeves and edge guards preserve cleaner repair and maintenance paperwork for Day 14')
     }
-    if (scroungedHardware) {
+    if (salvageLoom) {
       targetNumber += 1
-      modifierNotes.push('scrounged wear stack requires a maintenance-chatter warning, raising this closeout TN by 1')
+      modifierNotes.push('salvage loom requires a maintenance-inspection warning, raising this closeout TN by 1')
     }
 
     return {
