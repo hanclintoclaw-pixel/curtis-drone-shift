@@ -105,12 +105,12 @@ interface ProjectStep {
 const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
-const PROJECT_DAY: number = 13
+const PROJECT_DAY: number = 14
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Final acceptance and usage guide'
+const NEXT_PROJECT_PHASE = 'Post-acceptance follow-up'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '20,950¥ logged before this work order; Day 12 rotated out untouched with no spend, no penalty, and no project-state change.'
+const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; Day 13 completed as solid repair with comfortable daily carry and a slower-deploy note.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -145,35 +145,35 @@ const projectSteps: ProjectStep[] = [
   { day: 10, title: 'Single-arm lift and tool test', status: 'complete', choicePressure: 'conservative torque limit vs higher tool load', spendBand: '1,000-3,500¥', carryForward: 'completed with conservative torque, reused ballast, fresh bushings, a strict safe-load number, and a side-assembly balance note' },
   { day: 11, title: 'Three-arm side assembly', status: 'discarded', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 12, title: 'Mirror-side replication', status: 'discarded', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
-  { day: 13, title: 'Wear test and snag test', status: 'active', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'active now; wear findings become final limitations' },
-  { day: 14, title: 'Final acceptance and usage guide', status: 'final', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'accepted result updates Curtis page with final gear and usage guide' },
+  { day: 13, title: 'Wear test and snag test', status: 'complete', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'completed with comfortable daily carry, reachable safety stops, and a slower-deploy note' },
+  { day: 14, title: 'Final acceptance and usage guide', status: 'active', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'active final gate; accepted result updates Curtis page with final gear and usage guide' },
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-wear-snag-test',
-  title: 'Wear-and-Snag Test',
-  asset: "Curtis's Backpack Arms rig: Day 13 wear test and snag test",
-  customer: 'Curtis, continuing Day 13 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-final-acceptance',
+  title: 'Final Acceptance and Usage Guide',
+  asset: "Curtis's Backpack Arms rig: Day 14 final acceptance and usage guide",
+  customer: 'Curtis, closing Day 14 of the 14-day Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The Day 12 mirror-side replication ticket sat untouched, so it rotates out cleanly: no spend, no penalty, no hidden wobble. Curtis is down to the ugly practical question now: can this little spider-pack ride on his back, turn through a door, and deploy without hooking a chair like it owes the chair money?',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 20,950¥ before this work order, and Day 12 was discarded with no project-state change. The wear test starts from Day 10's strict single-arm safe-load card, universal socket warning, manual sequencing discipline, conservative lift envelope, safety-stop discipline, reused-ballast maintenance note, and the prior light-link fatigue warning. Today's choices decide whether the final guide favors comfortable daily carry or a faster, riskier deployment profile, and whether Curtis buys clean anti-snag hardware or saves nuyen with salvage loom that may need maintenance warnings. No permanent equipment, combat, or stat benefit applies until Day 14 final acceptance updates Curtis's page and usage guide.",
+  hook: 'The pack finally has to stop being a shop project and become either usable gear or a very expensive warning label. Day 13 proved the comfortable carry profile and reachable safety stops, but it also preserved slower deployment. Today decides what Curtis can actually claim on his sheet.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order. Day 13 completed as a solid repair with the carry mockup hanging square, safety stops reachable, fewer shoulder hot spots, and a slower-deploy note. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Harness up the carry mockup',
-      station: 'Backplate, shoulder straps, hip belt, dummy sockets, and safety stops',
-      description: 'Load the rig with dummy tool weight, cinch the harness, confirm the manual cutoffs are reachable, and keep the Day 12 miss from pretending the mirror side was proven.',
+      title: 'Audit the final build packet',
+      station: 'Build notebook, Day 10 safe-load card, Day 13 wear card, receipts, and cutoff labels',
+      description: 'Confirm the packet is complete before Curtis asks the GM to bless anything as real gear.',
       actions: [
         {
-          label: 'Set the carry mockup and safety stops',
-          detail: 'Fit the pack to Curtis-height stance, hang dummy tool weight, check cutoff reach, and mark every place the harness rubs before any deployment cycling starts.',
+          label: 'Cross-check the acceptance packet',
+          detail: 'Match the safe-load card, socket labels, manual sequence, slower-deploy note, and safety cutoff map against the physical rig.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The carry mockup hangs square enough to test without pulling Curtis sideways, and the safety stops stay reachable.',
-          onFailure: 'The pack rides crooked under dummy weight, so Curtis buys extra strap hardware and resets the stop marks before walking it.',
-          nuyenSuccess: -200,
-          nuyenFailure: -650,
+          onSuccess: 'The paperwork matches the rig closely enough for a clean acceptance pass, with every major warning traceable to a test note.',
+          onFailure: 'Two notes disagree on the socket sequence, so Curtis buys labels and shop time to rewrite the acceptance packet before review.',
+          nuyenSuccess: -250,
+          nuyenFailure: -900,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -181,92 +181,92 @@ const activeJob: JobProfile = {
     },
     {
       id: 'diagnose',
-      title: 'Choose the wear-test profile',
-      station: 'Harness marks, deployment card, shoulder clearance, and hallway tape line',
-      description: 'Pick whether Curtis biases the Day 13 test toward long comfortable carry or toward a faster deployment profile that might help Day 14 acceptance but makes the snag test meaner.',
+      title: 'Choose the approval scope',
+      station: 'GM acceptance checklist, dummy tools, folded pack, and combat-risk notes',
+      description: 'Decide whether Curtis asks for a conservative tool-rig approval or pushes for limited tool-plus-combat language.',
       actions: [
         {
-          label: 'Tune for comfortable daily carry',
-          detail: 'Pad and trim the carry profile so Curtis can wear the rig longer without hot spots, accepting a slower deployment cadence in the final guide.',
+          label: 'Ask for conservative tool-rig approval',
+          detail: 'Frame the rig as wearable utility gear first: folded carry, slow deployment, light tool work, strict sockets, and no extra attacks.',
           skill: 'carBR',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'The harness sits lower and calmer, with fewer shoulder hot spots and a clear slower-deploy note.',
-          onFailure: 'The first padding set bunches at the hip belt, so Curtis buys better strap foam and marks slower deployment as mandatory until Day 14 review.',
-          nuyenSuccess: -600,
-          nuyenFailure: -1500,
-          qualitySuccess: 1,
-          qualityFailure: 0,
-          effectNote: 'Project choice: comfortable daily carry lowers the hallway snag-test TN by 1 and improves final wear-limit language, but the final usage guide must keep slower deployment sequencing unless Day 14 approves otherwise.',
-        },
-        {
-          label: 'Tune for aggressive deployment profile',
-          detail: 'Keep the pack tighter and springier so the arms clear faster, spending more on stiffeners and accepting a harsher snag test.',
-          skill: 'rotorAircraftBR',
-          targetNumber: 5,
-          requiredSuccesses: 1,
-          onSuccess: 'The tighter profile deploys with less wasted travel and gives Day 14 something useful to test for approval language.',
-          onFailure: 'The aggressive profile bites at the shoulder strap, so Curtis buys extra stiffener stock and flags deployment as not combat-safe yet.',
-          nuyenSuccess: -1200,
-          nuyenFailure: -2500,
+          onSuccess: 'The conservative packet is boring in the useful way: believable, documented, and easy to approve for light tool work.',
+          onFailure: 'Curtis has to buy extra restraint hardware and rewrite the limits tighter before the conservative approval looks safe.',
+          nuyenSuccess: -900,
+          nuyenFailure: -2200,
           qualitySuccess: 2,
           qualityFailure: 0,
-          effectNote: 'Project choice: aggressive deployment profile costs more and makes the hallway snag test require one extra success, but a clean result gives Day 14 stronger deployment and possible combat-limit language.',
+          effectNote: 'Final approval choice: conservative tool-rig approval keeps Day 14 easier and safer, but the usage guide must explicitly deny extra natural limbs, extra attacks, and combat reach unless the GM later expands it.',
+        },
+        {
+          label: 'Push for tool-plus-combat approval language',
+          detail: 'Try to document limited bracing, guard, or intimidation use without pretending the pack is cyberware or a free extra-action machine.',
+          skill: 'rotorAircraftBR',
+          targetNumber: 6,
+          requiredSuccesses: 2,
+          onSuccess: 'Curtis documents a narrow combat-support case without breaking the safe-load card, giving the GM specific limits to accept or trim.',
+          onFailure: 'The combat language gets too spicy for the hardware, so Curtis buys guard stock and marks combat use as GM-call only.',
+          nuyenSuccess: -2200,
+          nuyenFailure: -4200,
+          qualitySuccess: 3,
+          qualityFailure: 0,
+          effectNote: 'Final approval choice: tool-plus-combat language is expensive and harder to pass; failure should keep combat use as GM-call only with no automatic extra actions or reach benefit.',
         },
       ],
     },
     {
       id: 'repair',
-      title: 'Set the anti-snag hardware standard',
-      station: 'Edge guards, cable sleeves, socket caps, receipt pile, and salvage loom',
-      description: 'Choose whether Curtis buys documented anti-snag hardware for clean acceptance paperwork or saves nuyen with filed salvage loom that may chatter and need a maintenance warning.',
+      title: 'Lock the final safety package',
+      station: 'Edge guards, socket caps, lock detents, cutoff tabs, warning tags, and repair kit',
+      description: 'Spend the last parts money on whatever makes the final guide honest instead of optimistic.',
       actions: [
         {
-          label: 'Buy lined sleeves and edge guards',
-          detail: 'Pay for low-profile cable sleeves, lined edge guards, and socket caps with receipts so the hallway test is about the design instead of mystery burrs.',
+          label: 'Buy documented safety spares',
+          detail: 'Add clean socket caps, cutoff tags, spare bushings, detent springs, and receipt-backed edge guards for the final maintenance section.',
           skill: 'negotiation',
           targetNumber: 4,
           requiredSuccesses: 1,
-          onSuccess: 'Curtis gets the lined hardware at a painful but fair price and tags the receipts for Day 14 acceptance.',
-          onFailure: 'The parts counter only has the better sleeve kit, so Curtis pays more but gets clean edge protection.',
-          nuyenSuccess: -900,
-          nuyenFailure: -1800,
+          onSuccess: 'Curtis gets the final safety spares without being robbed blind, and the maintenance kit looks like something a GM can point at.',
+          onFailure: 'The last-minute parts run hurts, but Curtis gets clean spares and documented replacements instead of gambling on salvage.',
+          nuyenSuccess: -1100,
+          nuyenFailure: -2400,
           qualitySuccess: 1,
           qualityFailure: 0,
-          effectNote: 'Project choice: documented sleeves and edge guards reduce the hallway snag-test TN by 1 and give Day 14 cleaner repair and maintenance paperwork.',
+          effectNote: 'Final safety package: documented spares support cleaner maintenance intervals and make it easier to repair one arm or socket without sidelining the whole pack.',
         },
         {
-          label: 'File salvage loom and reuse socket caps',
-          detail: 'Shape cheaper salvage loom by hand, reuse socket caps, and accept that any burr or crooked sleeve may become a final maintenance warning.',
+          label: 'Keep the final kit lean',
+          detail: 'Use existing spares, handwritten tags, and the Day 13 comfort notes to close cheaply while accepting stricter maintenance language.',
           skill: 'electronicsBR',
           targetNumber: 5,
           requiredSuccesses: 1,
-          onSuccess: 'The salvage loom files clean enough for testing, with witness paint marking the spots Curtis should inspect later.',
-          onFailure: 'A reused cap grabs the test cloth, so Curtis buys witness paint, files the loom again, and flags extra maintenance checks.',
-          nuyenSuccess: -250,
-          nuyenFailure: -1100,
+          onSuccess: 'The lean kit is readable and safe enough, but it clearly depends on inspection discipline after rough use.',
+          onFailure: 'A reused tag and a tired bushing fail the closeout check, forcing Curtis to buy replacements and write a harsher maintenance warning.',
+          nuyenSuccess: -350,
+          nuyenFailure: -1600,
           qualitySuccess: 0,
           qualityFailure: 0,
-          effectNote: 'Project choice: salvage loom lowers immediate spend but raises the hallway snag-test TN by 1 and adds a Day 14 maintenance-inspection warning unless the test result is excellent.',
+          effectNote: 'Final safety package: lean closeout saves money but preserves strict maintenance inspections after rough use and any socket-cap replacement.',
         },
       ],
     },
     {
       id: 'test',
-      title: 'Run the hallway snag test',
-      station: 'Doorframe tape, shop chair, hanging rag strip, manual switch card, and dummy tools',
-      description: 'Walk, turn, sit, stand, and deploy through a mean little shop obstacle lane. This is where the prior choices must prove whether they bought reliability or merely bought optimism.',
+      title: 'Run the final acceptance cycle',
+      station: 'Folded carry lane, manual switch card, dummy end effectors, and safe-load witness mark',
+      description: 'Perform the final folded-carry, deployment, cutoff, tool-load, and stow cycle without exceeding the conservative safe-load card.',
       actions: [
         {
-          label: 'Walk the pack through the snag lane',
-          detail: 'Cycle folded carry, chair turn, doorframe pass, rag-strip brush, and one slow manual deployment while staying inside the strict safe-load number.',
+          label: 'Cycle folded carry, deployment, tool use, and stow',
+          detail: 'Walk the pack, deploy slowly, touch each manual control, lift dummy tools inside the safe-load number, hit the cutoffs, and stow clean.',
           skill: 'electronicsBR',
           targetNumber: 4,
-          requiredSuccesses: 1,
-          onSuccess: 'The pack clears the snag lane with only honest rub marks, and the manual sequence remains readable under dummy load.',
-          onFailure: 'The pack catches the rag strip and scuffs a socket cap; Curtis buys replacement guards and marks Day 14 for strict folded-carry limitations.',
-          nuyenSuccess: -350,
-          nuyenFailure: -1400,
+          requiredSuccesses: 2,
+          onSuccess: 'The final cycle stays inside the safe-load number, the cutoffs stay reachable, and the pack stows without pretending it is fast.',
+          onFailure: 'The cycle passes only after a snag and a socket reset, so Curtis buys replacement guards and writes stricter folded-carry limits.',
+          nuyenSuccess: -600,
+          nuyenFailure: -2300,
           qualitySuccess: 2,
           qualityFailure: 0,
         },
@@ -274,20 +274,20 @@ const activeJob: JobProfile = {
     },
     {
       id: 'closeout',
-      title: 'Write the Day 13 wear card',
-      station: 'Build notebook, final acceptance checklist, safety warnings, and usage-guide draft',
-      description: 'Record the carry profile, anti-snag standard, test behavior, safety cutoff reach, maintenance warning, and exactly what Day 14 must decide before Curtis gets a real gear entry.',
+      title: 'Write the finalized usage guide',
+      station: 'Curtis sheet note, project page, usage guide, limitations, and GM approval line',
+      description: 'Close the project with the final total spend, allowed uses, limitations, repair notes, and explicit GM-approved SR3 effects.',
       actions: [
         {
-          label: 'Log the Backpack Arms Day 13 wear-and-snag sheet',
-          detail: 'Write the wear note: comfort or aggressive profile, sleeve standard, snag result, folded-carry limit, safety cutoff note, and final Day 14 acceptance questions.',
+          label: 'Write the Backpack Arms final acceptance report',
+          detail: 'Record folded carry, deployment timing, socket limits, tool uses, combat limits, safety cutoffs, maintenance intervals, repair thresholds, and what the GM approved.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The Day 13 sheet gives Day 14 clean acceptance questions and a usable first draft of the carry and maintenance limitations.',
-          onFailure: 'The sheet is complete but fussy; Curtis flags Day 14 to restate folded carry, cutoffs, and maintenance limits before any approval.',
-          nuyenSuccess: -150,
-          nuyenFailure: -600,
+          onSuccess: 'The final report is clear enough to update Curtis with a player-facing gear entry and no hidden benefits.',
+          onFailure: 'Curtis writes the guide, but it needs tighter wording before anyone treats the rig as more than provisional gear.',
+          nuyenSuccess: -300,
+          nuyenFailure: -900,
           qualitySuccess: 1,
           qualityFailure: 0,
         },
@@ -466,6 +466,10 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     .filter((entry) => entry.effectNote)
     .map((entry) => `- ${entry.action}: ${entry.effectNote}`)
 
+  const closeoutInstruction = PROJECT_DAY === PROJECT_TOTAL_DAYS
+    ? "update Curtis's page with the finalized Backpack Arms gear entry and usage guide before treating the rig as complete"
+    : `rotate Drone Shift to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}`
+
   const reportLines = [
     `${CINDY_LOU_BOT_MENTION} CURTIS DRONE SHIFT REPORT`,
     `Job: ${job.title}`,
@@ -480,7 +484,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'New tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; mark Job Completed; rotate Drone Shift to day ${NEXT_PROJECT_DAY}: ${NEXT_PROJECT_PHASE}; include Curtis's updated current nuyen total in the confirmation response to every completed daily post. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
+    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; mark Job Completed; ${closeoutInstruction}; include Curtis's updated current nuyen total in the confirmation response to every completed daily post. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
   ]
 
   if (PROJECT_DAY === PROJECT_TOTAL_DAYS) {
@@ -618,8 +622,8 @@ function App() {
       <div className="project-trigger-grid">
         <article>
           <span>Daily closeout trigger</span>
-          <strong>Post report to advance the build</strong>
-          <p>Cindy should append the day result to the project log, apply the spend delta, preserve the carry-forward hook, and rotate the next update to Day {NEXT_PROJECT_DAY}: {NEXT_PROJECT_PHASE}.</p>
+          <strong>Post report to close the build</strong>
+          <p>Cindy should append the final result to the project log, apply the spend delta, preserve the final carry-forward limits, and update Curtis's page with the accepted gear entry and usage guide before treating the rig as complete.</p>
         </article>
         <article>
           <span>Final trigger</span>
