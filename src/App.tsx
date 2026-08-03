@@ -368,9 +368,10 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     qualityFailure: action.qualityFailure,
   }
 
-  const comfortableCarry = shift.log.some((entry) => entry.action === 'Tune for comfortable daily carry')
+  const day13AcceptanceCarryForward = PROJECT_DAY === 14 && shift.jobId === activeJob.id
+  const comfortableCarry = day13AcceptanceCarryForward || shift.log.some((entry) => entry.action === 'Tune for comfortable daily carry')
   const aggressiveDeployment = shift.log.some((entry) => entry.action === 'Tune for aggressive deployment profile')
-  const documentedSleeves = shift.log.some((entry) => entry.action === 'Buy lined sleeves and edge guards')
+  const documentedSleeves = day13AcceptanceCarryForward || shift.log.some((entry) => entry.action === 'Buy lined sleeves and edge guards')
   const salvageLoom = shift.log.some((entry) => entry.action === 'File salvage loom and reuse socket caps')
 
   if (stageId === 'test') {
