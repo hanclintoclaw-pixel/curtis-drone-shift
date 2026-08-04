@@ -108,9 +108,9 @@ const PROJECT_NAME = 'Curtis Backpack Arms Build'
 const PROJECT_DAY: number = 14
 const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
-const NEXT_PROJECT_PHASE = 'Post-acceptance follow-up'
+const NEXT_PROJECT_PHASE = 'No queued Backpack Arms day after Day 14 acceptance'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; Day 13 completed as solid repair with comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
+const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; the prior Day 14 prompt rotated out untouched with no spend, no penalty, and no project-state change. Day 13 remains the last completed progress input: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -150,27 +150,27 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-final-acceptance',
-  title: 'Final Acceptance and Usage Guide',
-  asset: "Curtis's Backpack Arms rig: Day 14 final acceptance and usage guide",
-  customer: 'Curtis, closing Day 14 of the 14-day Backpack Arms diversion track',
+  id: 'backpack-arms-acceptance-bench',
+  title: 'Acceptance Bench and Usage Guide',
+  asset: "Curtis's Backpack Arms rig: refreshed Day 14 final acceptance bench",
+  customer: 'Curtis, closing the Day 14 final gate of the Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'The pack finally has to stop being a shop project and become either usable gear or a very expensive warning label. Day 13 proved the comfortable carry profile and reachable safety stops, bought documented anti-snag hardware, and still caught the rag strip hard enough to scuff a socket cap. Today decides what Curtis can actually claim on his sheet.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order. Day 13 completed as a solid repair with the carry mockup hanging square, safety stops reachable, fewer shoulder hot spots, documented lined sleeves and edge guards, replacement guards after a failed hallway snag test, a clean wear card, and a slower-deploy note. Comfortable daily carry and documented sleeves/edge guards each lowered the hallway snag-test TN by 1; comfort improves final wear-limit language while preserving slower deployment sequencing unless Day 14 approves otherwise, and documented hardware gives cleaner repair and maintenance paperwork. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
+  hook: 'Yesterday\'s acceptance ticket went cold, so it leaves no bill and no mark on the build. The pack still needs one honest bench review before it becomes gear instead of a pricey sculpture: folded carry, slow deployment, universal sockets, cutoff reach, and the scuffed socket cap from the failed snag lane all have to line up on paper and under load.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order; the prior Day 14 work order rotated out untouched as no spend, no penalty, and no project-state change. Day 13 remains the last completed input: the carry mockup hung square, safety stops stayed reachable, documented lined sleeves and edge guards were bought, replacement guards were installed after a failed hallway snag test, and the clean wear card preserved strict folded-carry plus slower-deploy limitations. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
   stages: [
     {
       id: 'intake',
-      title: 'Audit the final build packet',
-      station: 'Build notebook, Day 10 safe-load card, Day 13 wear card, receipts, and cutoff labels',
-      description: 'Confirm the packet is complete before Curtis asks the GM to bless anything as real gear.',
+      title: 'Rebuild the acceptance packet',
+      station: 'Build notebook, Day 10 safe-load card, Day 13 wear card, receipts, cutoff labels, and yesterday\'s stale ticket',
+      description: 'Clear the stale ticket, then confirm the packet is complete before Curtis asks the GM to bless anything as real gear.',
       actions: [
         {
-          label: 'Cross-check the acceptance packet',
-          detail: 'Match the safe-load card, socket labels, manual sequence, slower-deploy note, strict folded-carry limit, documented guard receipts, and safety cutoff map against the physical rig.',
+          label: 'Cross-check and redate the acceptance packet',
+          detail: 'Mark the prior prompt discarded/no change, then match the safe-load card, socket labels, manual sequence, slower-deploy note, strict folded-carry limit, documented guard receipts, and safety cutoff map against the physical rig.',
           skill: 'electronics',
           targetNumber: 3,
           requiredSuccesses: 1,
-          onSuccess: 'The paperwork matches the rig closely enough for a clean acceptance pass, with every major warning traceable to a test note.',
+          onSuccess: 'The stale ticket is cleared cleanly, and the paperwork matches the rig closely enough for every major warning to trace back to a test note.',
           onFailure: 'Two notes disagree on the socket sequence, so Curtis buys labels and shop time to rewrite the acceptance packet before review.',
           nuyenSuccess: -250,
           nuyenFailure: -900,
@@ -217,7 +217,7 @@ const activeJob: JobProfile = {
     },
     {
       id: 'repair',
-      title: 'Lock the final safety package',
+      title: 'Buy the final safety package',
       station: 'Edge guards, socket caps, lock detents, cutoff tabs, warning tags, and repair kit',
       description: 'Spend the last parts money on whatever makes the final guide honest instead of optimistic.',
       actions: [
@@ -381,7 +381,7 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
 
     if (comfortableCarry) {
       targetNumber -= 1
-      modifierNotes.push('comfortable daily carry lowers this hallway snag-test TN by 1')
+      modifierNotes.push('comfortable daily carry lowers this final acceptance-cycle TN by 1')
     }
     if (aggressiveDeployment) {
       requiredSuccesses += 1
@@ -389,7 +389,7 @@ function actionRuntime(action: JobAction, stageId: JobStageId, shift: ShiftState
     }
     if (documentedSleeves) {
       targetNumber -= 1
-      modifierNotes.push('documented sleeves and edge guards lower this hallway snag-test TN by 1')
+      modifierNotes.push('documented sleeves and edge guards lower this final acceptance-cycle TN by 1')
     }
     if (salvageLoom) {
       targetNumber += 1
@@ -485,7 +485,7 @@ function buildReport(job: JobProfile, shift: ShiftState) {
     ...rollLines,
     'New tradeoffs / follow-up effects:',
     ...(effectLines.length ? effectLines : ['- None selected yet.']),
-    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; mark Job Completed; ${closeoutInstruction}; include Curtis's updated current nuyen total in the confirmation response to every completed daily post. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
+    `Cindy ingest/closeout note: Ingest as Curtis Backpack Arms Build day ${PROJECT_DAY}/${PROJECT_TOTAL_DAYS}; apply this nuyen delta as project spend; append today's result and new hooks to the project page; mark Job Completed; set the next daily update to day ${NEXT_PROJECT_DAY} (${NEXT_PROJECT_PHASE}); ${closeoutInstruction}; include Curtis's updated current nuyen total in the confirmation response to every completed daily post. Do not apply permanent drone, vehicle, equipment, combat, or stat changes until day ${PROJECT_TOTAL_DAYS} final GM acceptance.`,
   ]
 
   if (PROJECT_DAY === PROJECT_TOTAL_DAYS) {
