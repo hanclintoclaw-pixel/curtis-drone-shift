@@ -110,7 +110,7 @@ const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
 const NEXT_PROJECT_PHASE = 'No queued Backpack Arms day after Day 14 acceptance'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; the prior Day 14 prompt rotated out untouched with no spend, no penalty, and no project-state change. Day 13 remains the last completed progress input: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
+const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; the 2026-08-04 Day 14 prompt rotated out untouched with no spend, no penalty, and no project-state change. Day 13 remains the last completed progress input: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -146,17 +146,17 @@ const projectSteps: ProjectStep[] = [
   { day: 11, title: 'Three-arm side assembly', status: 'discarded', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 12, title: 'Mirror-side replication', status: 'discarded', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 13, title: 'Wear test and snag test', status: 'complete', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'completed with comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note' },
-  { day: 14, title: 'Final acceptance and usage guide', status: 'active', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'active final gate; accepted result updates Curtis page with final gear and usage guide' },
+  { day: 14, title: 'Load Card and Use Limits', status: 'active', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'active final gate; accepted result updates Curtis page with final gear and usage guide' },
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-acceptance-bench',
-  title: 'Acceptance Bench and Usage Guide',
-  asset: "Curtis's Backpack Arms rig: refreshed Day 14 final acceptance bench",
+  id: 'backpack-arms-load-card-use-limits',
+  title: 'Load Card and Use Limits',
+  asset: "Curtis's Backpack Arms rig: refreshed Day 14 load card and use-limits bench",
   customer: 'Curtis, closing the Day 14 final gate of the Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'Yesterday\'s acceptance ticket went cold, so it leaves no bill and no mark on the build. The pack still needs one honest bench review before it becomes gear instead of a pricey sculpture: folded carry, slow deployment, universal sockets, cutoff reach, and the scuffed socket cap from the failed snag lane all have to line up on paper and under load.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order; the prior Day 14 work order rotated out untouched as no spend, no penalty, and no project-state change. Day 13 remains the last completed input: the carry mockup hung square, safety stops stayed reachable, documented lined sleeves and edge guards were bought, replacement guards were installed after a failed hallway snag test, and the clean wear card preserved strict folded-carry plus slower-deploy limitations. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
+  hook: 'Yesterday\'s acceptance ticket went cold, so it leaves no bill and no mark on the build. The pack still needs one honest load-card review before it becomes gear instead of a pricey sculpture: folded carry, slow deployment, universal sockets, cutoff reach, and the scuffed socket cap from the failed snag lane all have to line up on paper and under load.',
+  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order; the 2026-08-04 Day 14 work order rotated out untouched as no spend, no penalty, and no project-state change. Day 13 remains the last completed input: the carry mockup hung square, safety stops stayed reachable, documented lined sleeves and edge guards were bought, replacement guards were installed after a failed hallway snag test, and the clean wear card preserved strict folded-carry plus slower-deploy limitations. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
   stages: [
     {
       id: 'intake',
