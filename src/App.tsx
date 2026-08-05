@@ -102,7 +102,7 @@ interface ProjectStep {
   carryForward: string
 }
 
-const STORAGE_KEY = 'cindylou.curtisDroneShift.v1'
+const STORAGE_KEY = 'cindylou.curtisDroneShift.v2'
 const CINDY_LOU_BOT_MENTION = '<@1474892346545012746>'
 const PROJECT_NAME = 'Curtis Backpack Arms Build'
 const PROJECT_DAY: number = 14
@@ -110,7 +110,7 @@ const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
 const NEXT_PROJECT_PHASE = 'No queued Backpack Arms day after Day 14 acceptance'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; the 2026-08-04 Day 14 prompt rotated out untouched with no spend, no penalty, and no project-state change. Day 13 remains the last completed progress input: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
+const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; final accepted project spend is 29,050¥ after the completed Day 14 report. Day 13 remains the last completed progress input before final acceptance: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
 
@@ -146,7 +146,7 @@ const projectSteps: ProjectStep[] = [
   { day: 11, title: 'Three-arm side assembly', status: 'discarded', choicePressure: 'symmetric reliability vs one stronger utility arm', spendBand: '2,500-6,000¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 12, title: 'Mirror-side replication', status: 'discarded', choicePressure: 'exact duplicate vs corrected asymmetry', spendBand: '2,000-5,500¥', carryForward: 'rotated out untouched with no spend, no penalty, and no carry-forward bonus' },
   { day: 13, title: 'Wear test and snag test', status: 'complete', choicePressure: 'comfortable daily carry vs aggressive deployment profile', spendBand: '1,000-3,000¥', carryForward: 'completed with comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note' },
-  { day: 14, title: 'Load Card and Use Limits', status: 'active', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'active final gate; accepted result updates Curtis page with final gear and usage guide' },
+  { day: 14, title: 'Load Card and Use Limits', status: 'complete', choicePressure: 'tool-rig approval vs tool-plus-combat approval', spendBand: '2,500-6,000¥', carryForward: 'completed with conservative light tool-work approval, safety spares, stricter folded-carry limits, and no combat/action benefits without later GM expansion' },
 ]
 
 const activeJob: JobProfile = {
@@ -155,8 +155,8 @@ const activeJob: JobProfile = {
   asset: "Curtis's Backpack Arms rig: refreshed Day 14 load card and use-limits bench",
   customer: 'Curtis, closing the Day 14 final gate of the Backpack Arms diversion track',
   risk: 'shop mess',
-  hook: 'Yesterday\'s acceptance ticket went cold, so it leaves no bill and no mark on the build. The pack still needs one honest load-card review before it becomes gear instead of a pricey sculpture: folded carry, slow deployment, universal sockets, cutoff reach, and the scuffed socket cap from the failed snag lane all have to line up on paper and under load.',
-  baseline: "GM-approved 14-day diversion track. Current project spend is 24,200¥ before this work order; the 2026-08-04 Day 14 work order rotated out untouched as no spend, no penalty, and no project-state change. Day 13 remains the last completed input: the carry mockup hung square, safety stops stayed reachable, documented lined sleeves and edge guards were bought, replacement guards were installed after a failed hallway snag test, and the clean wear card preserved strict folded-carry plus slower-deploy limitations. Final acceptance must preserve conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language unless the GM explicitly expands them. No permanent equipment, combat, or stat benefit applies until this final report is accepted and Curtis's page gets the finalized gear entry and usage guide.",
+  hook: 'The final acceptance packet is closed. Curtis has a believable conservative light-tool rig, not a free extra-action machine: folded carry, slow deployment, universal sockets, cutoff reach, replacement guards, and the scuffed socket-cap lesson all stay in the usage guide.',
+  baseline: "GM-approved 14-day diversion track. Final accepted project spend is 29,050¥ after the completed Day 14 report. Day 13's carry mockup hung square, safety stops stayed reachable, documented lined sleeves and edge guards were bought, replacement guards were installed after a failed hallway snag test, and the clean wear card preserved strict folded-carry plus slower-deploy limitations. Final acceptance preserves conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language. No extra natural limbs, extra attacks, combat reach, or combat end effectors apply unless the GM later expands the approval.",
   stages: [
     {
       id: 'intake',
@@ -301,11 +301,83 @@ function freshShift(job: JobProfile): ShiftState {
   return {
     version: 1,
     jobId: job.id,
-    currentStageId: job.stages[0].id,
-    completedStageIds: [],
-    nuyenDelta: 0,
-    quality: 0,
-    log: [],
+    currentStageId: 'closeout',
+    completedStageIds: ['intake', 'diagnose', 'repair', 'test', 'closeout'],
+    nuyenDelta: -4850,
+    quality: 5,
+    log: [
+      {
+        id: 'day14-intake',
+        stage: 'Rebuild the acceptance packet',
+        action: 'Cross-check and redate the acceptance packet',
+        skill: 'Electronics',
+        targetNumber: 3,
+        dice: [3, 3, 1, 1, 1, 1],
+        successes: 2,
+        requiredSuccesses: 1,
+        outcome: 'success',
+        nuyenDelta: -250,
+        qualityDelta: 1,
+        note: 'The stale ticket is cleared cleanly, and the paperwork matches the rig closely enough for every major warning to trace back to a test note.',
+      },
+      {
+        id: 'day14-diagnose',
+        stage: 'Choose the approval scope',
+        action: 'Ask for conservative tool-rig approval',
+        skill: 'Car B/R',
+        targetNumber: 4,
+        dice: [4, 4, 1],
+        successes: 2,
+        requiredSuccesses: 1,
+        outcome: 'success',
+        nuyenDelta: -900,
+        qualityDelta: 2,
+        effectNote: 'Final approval choice: conservative tool-rig approval keeps Day 14 easier and safer, but the usage guide must explicitly deny extra natural limbs, extra attacks, and combat reach unless the GM later expands it.',
+        note: 'The conservative packet is boring in the useful way: believable, documented, and easy to approve for light tool work.',
+      },
+      {
+        id: 'day14-repair',
+        stage: 'Buy the final safety package',
+        action: 'Buy final safety spares and maintenance kit',
+        skill: 'Negotiation / parts scrounge',
+        targetNumber: 4,
+        dice: [4, 4],
+        successes: 2,
+        requiredSuccesses: 1,
+        outcome: 'success',
+        nuyenDelta: -1100,
+        qualityDelta: 2,
+        note: 'Curtis gets the final safety spares without being robbed blind, and the maintenance kit looks like something a GM can point at.',
+      },
+      {
+        id: 'day14-test',
+        stage: 'Run the final acceptance cycle',
+        action: 'Cycle folded carry, deployment, tool use, and stow',
+        skill: 'Electronics B/R',
+        targetNumber: 2,
+        dice: [2],
+        successes: 1,
+        requiredSuccesses: 2,
+        outcome: 'failure',
+        nuyenDelta: -2300,
+        qualityDelta: 0,
+        note: 'The cycle passes only after a snag and a socket reset, so Curtis buys replacement guards and writes stricter folded-carry limits. Project modifiers: comfortable daily carry lowers this final acceptance-cycle TN by 1; documented sleeves and edge guards lower this final acceptance-cycle TN by 1.',
+      },
+      {
+        id: 'day14-closeout',
+        stage: 'Write the finalized usage guide',
+        action: 'Write the Backpack Arms final acceptance report',
+        skill: 'Electronics',
+        targetNumber: 3,
+        dice: [3, 1, 1, 1, 1, 1],
+        successes: 1,
+        requiredSuccesses: 1,
+        outcome: 'success',
+        nuyenDelta: -300,
+        qualityDelta: 1,
+        note: 'The final report is clear enough to update Curtis with a player-facing gear entry and no hidden benefits.',
+      },
+    ],
     reportCopied: false,
   }
 }
@@ -506,7 +578,7 @@ function App() {
   const selectedAction = currentStage.actions[selectedActionIndex] ?? currentStage.actions[0]
   const selectedRuntime = actionRuntime(selectedAction, currentStage.id, shift)
   const isComplete = shift.completedStageIds.includes('closeout')
-  const ticketLabel = 'Active shift'
+  const ticketLabel = isComplete ? 'Completed shift' : 'Active shift'
   const report = useMemo(() => buildReport(job, shift), [job, shift])
 
   useEffect(() => {
@@ -618,18 +690,18 @@ function App() {
       <div>
         <span className="kicker">GM-approved diversion track</span>
         <h2>{PROJECT_NAME}</h2>
-        <p>{PROJECT_BUDGET_NOTE} Current logged project spend before this work order: {PROJECT_CURRENT_SPEND} Day {PROJECT_DAY} is active now; day {PROJECT_TOTAL_DAYS} finalizes only after GM acceptance and Curtis-page gear/usage-guide updates.</p>
+        <p>{PROJECT_BUDGET_NOTE} {PROJECT_CURRENT_SPEND} Day {PROJECT_DAY} is complete; Curtis's page now carries the finalized gear entry and conservative usage guide.</p>
       </div>
       <div className="project-trigger-grid">
         <article>
           <span>Daily closeout trigger</span>
-          <strong>Post report to close the build</strong>
-          <p>Cindy should append the final result to the project log, apply the spend delta, preserve the final carry-forward limits, and update Curtis's page with the accepted gear entry and usage guide before treating the rig as complete.</p>
+          <strong>Build closed</strong>
+          <p>The final result is appended to the project log, the spend delta is applied, the final carry-forward limits are preserved, and Curtis's page has the accepted gear entry and usage guide.</p>
         </article>
         <article>
           <span>Final trigger</span>
-          <strong>Day {PROJECT_TOTAL_DAYS} writes Curtis's gear entry</strong>
-          <p>Final acceptance must update Curtis's page with the finished Backpack Arms rig, total spend, usage guide, limitations, allowed end effectors, and GM-approved SR3 effects.</p>
+          <strong>Day {PROJECT_TOTAL_DAYS} wrote Curtis's gear entry</strong>
+          <p>Final acceptance updated Curtis's page with the finished Backpack Arms rig, total spend, usage guide, limitations, allowed end effectors, and GM-approved SR3 effects.</p>
         </article>
       </div>
       <div className="project-steps">
