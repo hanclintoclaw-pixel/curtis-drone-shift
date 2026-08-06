@@ -110,9 +110,10 @@ const PROJECT_TOTAL_DAYS: number = 14
 const NEXT_PROJECT_DAY = PROJECT_DAY + 1
 const NEXT_PROJECT_PHASE = 'No queued Backpack Arms day after Day 14 acceptance'
 const PROJECT_BUDGET_NOTE = 'GM-approved 14-day diversion track; expected total project spend roughly 28,000-45,000¥ before final acceptance.'
-const PROJECT_CURRENT_SPEND = '24,200¥ logged before this work order; final accepted project spend is 29,050¥ after the completed Day 14 report. Day 13 remains the last completed progress input before final acceptance: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
+const PROJECT_CURRENT_SPEND = 'Final accepted project spend is 29,050¥ after the completed Day 14 report. Day 13 remains the last pre-acceptance progress input: comfortable daily carry, documented anti-snag hardware, a failed snag lane, replacement guards, strict folded-carry limits, and a slower-deploy note.'
 const PROJECT_PAGE_URL = 'https://hanclintoclaw-pixel.github.io/campaign-wiki/PCs/Curtis-Backpack-Arms-Build.html'
 const REPORT_CONTEXT_NOTE = 'Prior build details stay on the wiki; this report lists only today\'s work, spend delta, and new follow-up hooks.'
+const TRACK_CLOSED = true
 
 const skillLabels: Record<keyof SkillProfile, string> = {
   electronics: 'Electronics',
@@ -150,13 +151,13 @@ const projectSteps: ProjectStep[] = [
 ]
 
 const activeJob: JobProfile = {
-  id: 'backpack-arms-load-card-use-limits',
-  title: 'Load Card and Use Limits',
-  asset: "Curtis's Backpack Arms rig: refreshed Day 14 load card and use-limits bench",
-  customer: 'Curtis, closing the Day 14 final gate of the Backpack Arms diversion track',
-  risk: 'shop mess',
-  hook: 'The final acceptance packet is closed. Curtis has a believable conservative light-tool rig, not a free extra-action machine: folded carry, slow deployment, universal sockets, cutoff reach, replacement guards, and the scuffed socket-cap lesson all stay in the usage guide.',
-  baseline: "GM-approved 14-day diversion track. Final accepted project spend is 29,050¥ after the completed Day 14 report. Day 13's carry mockup hung square, safety stops stayed reachable, documented lined sleeves and edge guards were bought, replacement guards were installed after a failed hallway snag test, and the clean wear card preserved strict folded-carry plus slower-deploy limitations. Final acceptance preserves conservative torque and lift limits, universal-socket warnings, manual sequencing discipline, manual lock checks, strict folded-carry limitations, reused-ballast recheck notes, and strict load-limit language. No extra natural limbs, extra attacks, combat reach, or combat end effectors apply unless the GM later expands the approval.",
+  id: 'backpack-arms-track-complete',
+  title: 'Backpack Arms Build Complete',
+  asset: "Curtis's Backpack Arms rig: accepted conservative light utility gear",
+  customer: 'Curtis, with no queued Backpack Arms daily work order after Day 14 acceptance',
+  risk: 'low',
+  hook: 'The final acceptance gate is closed, so the old active prompt has been cleared instead of inventing an unauthorized Day 15. Missed prior work orders remain discarded with no change, no spend, and no penalty.',
+  baseline: "GM-approved 14-day diversion track is complete at 29,050¥ final accepted project spend. Curtis has a conservative light-tool rig with folded carry, slow deployment, universal sockets, safety cutoffs, repair notes, and no extra natural limbs, extra attacks, combat reach, or combat end effectors unless the GM later expands the approval.",
   stages: [
     {
       id: 'intake',
@@ -578,7 +579,11 @@ function App() {
   const selectedAction = currentStage.actions[selectedActionIndex] ?? currentStage.actions[0]
   const selectedRuntime = actionRuntime(selectedAction, currentStage.id, shift)
   const isComplete = shift.completedStageIds.includes('closeout')
-  const ticketLabel = isComplete ? 'Completed shift' : 'Active shift'
+  const ticketLabel = TRACK_CLOSED ? 'Project complete' : isComplete ? 'Completed shift' : 'Active shift'
+  const displayedNuyenText = TRACK_CLOSED ? '29,050¥' : nuyenText(shift.nuyenDelta)
+  const displayedNuyenTone = TRACK_CLOSED ? 'neutral' : nuyenTone(shift.nuyenDelta)
+  const displayedNuyenLabel = TRACK_CLOSED ? 'final accepted spend' : nuyenLabel(shift.nuyenDelta)
+  const displayedQuality = TRACK_CLOSED ? 'GM accepted' : qualityLabel(shift.quality)
   const report = useMemo(() => buildReport(job, shift), [job, shift])
 
   useEffect(() => {
@@ -658,12 +663,12 @@ function App() {
         <div className="shift-card">
           <span>Today's ticket</span>
           <strong>{ticketLabel}</strong>
-          <small>Daily prototype rotation. Missed prior tickets discard cleanly.</small>
+          <small>{TRACK_CLOSED ? 'No queued Backpack Arms work order. Missed prior tickets discarded cleanly.' : 'Daily prototype rotation. Missed prior tickets discard cleanly.'}</small>
         </div>
-        <div className={`money-card ${nuyenTone(shift.nuyenDelta)}`}>
-          <span>Running total</span>
-          <strong>{nuyenText(shift.nuyenDelta)}</strong>
-          <small>{nuyenLabel(shift.nuyenDelta)} · {qualityLabel(shift.quality)}</small>
+        <div className={`money-card ${displayedNuyenTone}`}>
+          <span>{TRACK_CLOSED ? 'Final spend' : 'Running total'}</span>
+          <strong>{displayedNuyenText}</strong>
+          <small>{displayedNuyenLabel} · {displayedQuality}</small>
         </div>
       </div>
     </header>
@@ -679,10 +684,10 @@ function App() {
         <strong>{job.asset}</strong>
         <p>{job.baseline}</p>
       </article>
-      <article className={`ledger-card ${nuyenTone(shift.nuyenDelta)}`}>
+      <article className={`ledger-card ${displayedNuyenTone}`}>
         <span>Project spend</span>
-        <strong>{nuyenText(shift.nuyenDelta)}</strong>
-        <p>{nuyenLabel(shift.nuyenDelta)} · {qualityLabel(shift.quality)} · quality {shift.quality}</p>
+        <strong>{displayedNuyenText}</strong>
+        <p>{displayedNuyenLabel} · {displayedQuality}{TRACK_CLOSED ? '' : ` · quality ${shift.quality}`}</p>
       </article>
     </section>
 
@@ -715,7 +720,14 @@ function App() {
       </div>
     </section>
 
-    <section className="layout-grid">
+    {TRACK_CLOSED ? <section className="work-panel track-closed-panel">
+      <article className="stage-card">
+        <p className="kicker">Active daily update</p>
+        <h2>No active Work Order</h2>
+        <p>The Backpack Arms 14-day track is complete and accepted. The prior active prompt is cleared as discarded/no change/no penalty if it was not separately reported, and no new Backpack Arms day is queued until the GM changes priority.</p>
+        <p>Final state stays conservative: folded carry, slow deployment, light tool sockets, safety cutoffs, repair/maintenance notes, and no combat, extra-action, vehicle, drone, or stat changes beyond the GM-accepted Day 14 gear entry.</p>
+      </article>
+    </section> : <section className="layout-grid">
       <aside className="side-panel">
         <div className="panel-heading">Curtis dummy skills</div>
         {(Object.keys(skills) as Array<keyof SkillProfile>).map((skill) => <label key={skill}>
@@ -783,9 +795,9 @@ function App() {
           <small>{nuyenText(entry.nuyenDelta)} - {entry.note}</small>
         </article>)}
       </aside>
-    </section>
+    </section>}
 
-    <footer className="footer-note">Build {__SOURCE_COMMIT__} - 14-day Backpack Arms diversion track. Missed work orders discard with no penalty; no permanent gear, combat, or stat effects until GM final acceptance.</footer>
+    <footer className="footer-note">Build {__SOURCE_COMMIT__} - 14-day Backpack Arms diversion track complete. Missed work orders discard with no penalty; no additional gear, combat, or stat effects apply without later GM approval.</footer>
   </main>
 }
 
