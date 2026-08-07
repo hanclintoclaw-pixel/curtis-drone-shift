@@ -22,6 +22,6 @@
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
   },
-  "description": "Daily garage-shift and drone maintenance work-order tool for Curtis",
+  "description": "Curtis's Morning Garage: SR3 rigger bluebooking and daily drone work-order tool",
   "homepage": "https://hanclintoclaw-pixel.github.io/curtis-drone-shift/"
 }
