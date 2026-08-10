@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
+import { ACTIVE_PROJECT_DAY, PROJECT_STATE_NOTE } from './projectState'
 
 declare const __SOURCE_COMMIT__: string
 
@@ -46,8 +47,6 @@ interface DailyResult {
 
 const STORAGE_KEY = 'cindylou.curtisMorningGarage.v1'
 const LEGACY_STORAGE_KEYS = ['cindylou.curtisDroneShift.v2']
-const PROJECT_START = new Date('2026-08-08T00:00:00-04:00').getTime()
-const DAY_MS = 24 * 60 * 60 * 1000
 const LIVE_URL = 'https://hanclintoclaw-pixel.github.io/curtis-drone-shift/'
 const PROJECT_GOAL = 'Recover two Advanced Drone Pilot Rating 2 units: one on Day 14 and one on Day 24.'
 
@@ -952,9 +951,8 @@ const days: GarageDay[] = [
   },
 ]
 
-function getActiveDayNumber(now = Date.now()) {
-  if (now < PROJECT_START) return 1
-  return Math.min(days.length, Math.max(1, Math.floor((now - PROJECT_START) / DAY_MS) + 1))
+function getActiveDayNumber() {
+  return Math.min(days.length, Math.max(1, ACTIVE_PROJECT_DAY))
 }
 
 function rollDice(count: number) {
@@ -1000,7 +998,7 @@ function buildReport(day: GarageDay, result: DailyResult | undefined) {
     `Nuyen delta: ${formatNuyen(result.nuyenDelta)} (minor sheet-facing nuyen changes are GM-permitted for this tool)`,
     `Quality delta: ${result.qualityDelta >= 0 ? '+' : ''}${result.qualityDelta}`,
     `Rigger note: ${day.riggerNote}`,
-    `Cindy ingest/closeout note: Apply the nuyen delta to Curtis if accepted; record the explicit player choice; append the result to Curtis's Morning Garage continuity; missed prior Morning Garage days are no-change/no-penalty.`,
+    `Cindy ingest/closeout note: Apply the nuyen delta to Curtis if accepted; record the explicit player choice; append the result to Curtis's Morning Garage continuity; advance the active app work order only after this posted report is accepted; missed prior Morning Garage days are no-change/no-penalty.`,
   ]
 
   if (day.sheetChange) {
@@ -1071,7 +1069,7 @@ function App() {
           <h1>{activeDay.title}</h1>
           <p className="subtitle">
             Day {activeDay.day}/24: {PROJECT_GOAL} Today&apos;s work stays small, explicit, and
-            GM-readable.
+            GM-readable. {PROJECT_STATE_NOTE}
           </p>
         </div>
 
