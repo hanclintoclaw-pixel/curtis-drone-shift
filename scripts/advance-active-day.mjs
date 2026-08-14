@@ -6,9 +6,11 @@ const STATE_PATH = resolve('src/projectState.ts')
 const MAX_DAY = 24
 
 function usage() {
-  console.error('Usage: node scripts/advance-active-day.mjs (--next | --day N)')
+  console.error('Usage: node scripts/advance-active-day.mjs (--next | --day N) [--dry-run]')
   process.exit(1)
 }
+
+const dryRun = process.argv.includes('--dry-run')
 
 const source = readFileSync(STATE_PATH, 'utf8')
 const match = source.match(/export const ACTIVE_PROJECT_DAY = (\d+)/)
@@ -33,5 +35,7 @@ if (!Number.isInteger(nextDay) || nextDay < 1 || nextDay > MAX_DAY) {
 }
 
 const updated = source.replace(/export const ACTIVE_PROJECT_DAY = \d+/, `export const ACTIVE_PROJECT_DAY = ${nextDay}`)
-writeFileSync(STATE_PATH, updated)
-console.log(`Curtis Morning Garage active day: ${currentDay} -> ${nextDay}`)
+if (!dryRun) {
+  writeFileSync(STATE_PATH, updated)
+}
+console.log(`Curtis Morning Garage active day: ${currentDay} -> ${nextDay}${dryRun ? ' (dry run)' : ''}`)
