@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
-import { ACTIVE_PROJECT_DAY, PROJECT_STATE_NOTE } from './projectState'
+import { ACTIVE_PROJECT_DAY, PROJECT_COMPLETE, PROJECT_STATE_NOTE } from './projectState'
 
 declare const __SOURCE_COMMIT__: string
 
@@ -1033,7 +1033,12 @@ function App() {
   const totalNuyen = Object.values(results).reduce((sum, result) => sum + result.nuyenDelta, 0)
   const totalQuality = Object.values(results).reduce((sum, result) => sum + result.qualityDelta, 0)
   const completedDays = Object.keys(results).length
-  const reportText = useMemo(() => buildReport(activeDay, activeResult), [activeDay, activeResult])
+  const reportText = useMemo(
+    () => PROJECT_COMPLETE
+      ? 'CURTIS MORNING GARAGE PROJECT COMPLETE\nAdvanced Drone Pilot retrieval closed: both Rating 2 pilots are recovered gear. Installation remains a separate GM-approved step.'
+      : buildReport(activeDay, activeResult),
+    [activeDay, activeResult],
+  )
 
   function saveResult(result: DailyResult) {
     const next = { ...results, [String(result.day)]: result }
@@ -1090,7 +1095,7 @@ function App() {
       <section className="job-banner" aria-label="Current work-order status">
         <article>
           <span>Current active daily update</span>
-          <strong>Day {activeDay.day}/24 - {activeDay.title}</strong>
+          <strong>{PROJECT_COMPLETE ? 'Project complete' : `Day ${activeDay.day}/24 - ${activeDay.title}`}</strong>
           <p>{activeDay.morningTask}</p>
         </article>
         <article>
@@ -1112,7 +1117,7 @@ function App() {
         <div className="project-steps">
           {days.map((day) => (
             <article
-              className={day.day === activeDay.day ? 'active' : day.day < activeDay.day ? 'complete' : day.milestone ? 'final' : 'waiting'}
+              className={PROJECT_COMPLETE && day.day <= activeDay.day ? 'complete' : day.day === activeDay.day ? 'active' : day.day < activeDay.day ? 'complete' : day.milestone ? 'final' : 'waiting'}
               key={day.day}
             >
               <span>Day {day.day}</span>
@@ -1132,6 +1137,7 @@ function App() {
             <button
               className={choice.id === selectedChoiceId ? 'selected' : ''}
               key={choice.id}
+              disabled={PROJECT_COMPLETE}
               onClick={() => setSelectedChoiceId(choice.id)}
               type="button"
             >
@@ -1140,8 +1146,8 @@ function App() {
               <small>{choice.skill} {choice.dice} dice vs TN {choice.targetNumber}; {formatNuyen(choice.cost)}</small>
             </button>
           ))}
-          <button className="big-button" onClick={runMorningWork} type="button">
-            Roll today&apos;s work
+          <button className="big-button" disabled={PROJECT_COMPLETE} onClick={runMorningWork} type="button">
+            {PROJECT_COMPLETE ? 'Project complete' : 'Roll today\'s work'}
           </button>
         </aside>
 
@@ -1154,7 +1160,12 @@ function App() {
               <h3>Rigger note</h3>
               <p>{activeDay.riggerNote}</p>
             </div>
-            {activeResult ? (
+            {PROJECT_COMPLETE ? (
+              <div className="feedback success">
+                <strong>Project complete</strong>
+                <span>Both Rating 2 pilots are recovered gear; no active work order remains.</span>
+              </div>
+            ) : activeResult ? (
               <div className={`feedback ${activeResult.tone}`}>
                 <strong>{activeResult.tone === 'success' ? 'Success' : 'Complication'}</strong>
                 <span>Dice: {activeResult.dice.join(', ')} - {activeResult.successes} successes</span>

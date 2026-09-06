@@ -1,4 +1,6 @@
 export const ACTIVE_PROJECT_DAY = 24
 
+export const PROJECT_COMPLETE = true
+
 export const PROJECT_STATE_NOTE =
-  'Report-gated by Cindy/GM: this active work order advances only after Curtis posts an accepted Morning Garage report in #leeland.'
+  'Project complete: both Advanced Drone Pilot Rating 2 units are recovered gear; installation remains separate GM approval.'
